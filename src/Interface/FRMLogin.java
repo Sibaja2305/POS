@@ -10,12 +10,12 @@ import java.awt.Color;
  *
  * @author Hp EliteBook
  */
-public class Login extends javax.swing.JFrame {
+public class FRMLogin extends javax.swing.JFrame {
 
     int xMouse;
     int yMouse;
 
-    public Login() {
+    public FRMLogin() {
 
         initComponents();
         this.setLocationRelativeTo(null);
@@ -131,7 +131,7 @@ public class Login extends javax.swing.JFrame {
         btnExit.setForeground(new java.awt.Color(102, 102, 102));
         btnExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnExit.setText("X");
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnExitMouseClicked(evt);
@@ -150,7 +150,7 @@ public class Login extends javax.swing.JFrame {
         Backgroud.add(blueBackgroud, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 0, 250, -1));
 
         btnLogin.setBackground(new java.awt.Color(0, 134, 190));
-        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnLoginMouseEntered(evt);
@@ -293,20 +293,21 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new FRMLogin().setVisible(true);
             }
         });
     }
