@@ -15,6 +15,9 @@ public class JIFTable extends javax.swing.JInternalFrame {
      */
     public JIFTable() {
         initComponents();
+        lblStatus.setText(lblStatus.getText() + " " + "Disponible");
+        
+
     }
 
     /**
@@ -28,8 +31,7 @@ public class JIFTable extends javax.swing.JInternalFrame {
 
         btnCreateOrder = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tpState = new javax.swing.JTextPane();
+        lblStatus = new javax.swing.JLabel();
 
         setTitle("Mesa");
 
@@ -40,23 +42,22 @@ public class JIFTable extends javax.swing.JInternalFrame {
             }
         });
 
-        tpState.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tpState.setText("Disponible");
-        tpState.setCaretColor(new java.awt.Color(51, 255, 51));
-        jScrollPane2.setViewportView(tpState);
+        lblStatus.setText("Estado:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -84,15 +85,14 @@ public class JIFTable extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateOrderActionPerformed
-//          FrmDialogPedidos dialogPedidos = new FrmDialogPedidos(null, true);
-//      dialogPedidos.setVisible(true);
+        FRMDialogPedido dialogPedidos = new FRMDialogPedido(null, true);
+        dialogPedidos.setVisible(true);
     }//GEN-LAST:event_btnCreateOrderActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateOrder;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane tpState;
+    private javax.swing.JLabel lblStatus;
     // End of variables declaration//GEN-END:variables
 }

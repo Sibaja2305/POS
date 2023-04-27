@@ -13,9 +13,10 @@ public class FRMWaiter extends javax.swing.JFrame {
     /**
      * Creates new form FRMWaiter
      */
-         int x = 10;
-        int y = 10;
-        int i = 0;
+    int x = 10;
+    int y = 10;
+    int i = 0;
+
     public FRMWaiter() {
         initComponents();
     }
@@ -164,7 +165,7 @@ public class FRMWaiter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOpenTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenTableActionPerformed
-       createTable();
+        createTable();
     }//GEN-LAST:event_btnOpenTableActionPerformed
 
     /**
@@ -201,19 +202,20 @@ public class FRMWaiter extends javax.swing.JFrame {
             }
         });
     }
-     private void createTable() {
+
+    private void createTable() {
         for (; i < 10; i++) {
             JIFTable ventana = new JIFTable();
             ventana.setVisible(true);
             ventana.setBounds(x, y, 220, 220);
             DesktopWaiter.add(ventana);
-            ventana.setTitle("Mesa: "+ (i+1));
-           
+            ventana.setTitle("Mesa: " + (i + 1));
+
             if (i == 4) {
                 y = y + 250;
-                x= 5;
-            }else{
-                x= x + 240;
+                x = 5;
+            } else {
+                x = x + 240;
             }
         }
     }
