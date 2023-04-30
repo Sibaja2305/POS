@@ -4,12 +4,14 @@
  */
 package Interface;
 
+import pos.Logic;
+
 /**
  *
  * @author Hp EliteBook
  */
 public class FRMWaiter extends javax.swing.JFrame {
-
+    private Logic logic;
     /**
      * Creates new form FRMWaiter
      */
@@ -18,6 +20,7 @@ public class FRMWaiter extends javax.swing.JFrame {
     int i = 0;
 
     public FRMWaiter() {
+        logic= new Logic();
         initComponents();
     }
 
@@ -84,6 +87,11 @@ public class FRMWaiter extends javax.swing.JFrame {
         btnOrderStatus.setText("Estado de la orden");
 
         btnSignOff.setText("Cerrar Sesion");
+        btnSignOff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignOffActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -167,6 +175,11 @@ public class FRMWaiter extends javax.swing.JFrame {
     private void btnOpenTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenTableActionPerformed
         createTable();
     }//GEN-LAST:event_btnOpenTableActionPerformed
+
+    private void btnSignOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOffActionPerformed
+       logic.lockOut();
+       dispose();
+    }//GEN-LAST:event_btnSignOffActionPerformed
 
     /**
      * @param args the command line arguments

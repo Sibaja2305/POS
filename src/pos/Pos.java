@@ -5,8 +5,10 @@
 package pos;
 
 import Interface.FRMLogin;
+import clases.User;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.LinkedList;
 
 /**
  *
@@ -27,6 +29,10 @@ public class Pos {
 
         pos.setBounds(0, 0, ((int) width), ((int) height));
         pos.setVisible(true);
+        User admin = new User( "admin",  "1",  "1");
+    LinkedList<User> lista = new LinkedList<>();
+    lista.add(admin);
+    
     }
     
 }

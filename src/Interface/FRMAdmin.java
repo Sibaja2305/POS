@@ -4,16 +4,21 @@
  */
 package Interface;
 
+import clases.User;
+import pos.Logic;
+
 /**
  *
  * @author Hp EliteBook
  */
 public class FRMAdmin extends javax.swing.JFrame {
-
+private Logic logic;
     /**
      * Creates new form FRMAdmin
      */
     public FRMAdmin() {
+       
+       logic = new Logic(); 
         initComponents();
     }
 
@@ -34,6 +39,7 @@ public class FRMAdmin extends javax.swing.JFrame {
         btnTable = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
         btnRegisterUser = new javax.swing.JButton();
+        btnLockOut = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         desktopAdmin = new javax.swing.JDesktopPane();
         jPanel2 = new javax.swing.JPanel();
@@ -53,6 +59,18 @@ public class FRMAdmin extends javax.swing.JFrame {
         btnReport.setText("Reporte");
 
         btnRegisterUser.setText("Registrar Usuario");
+        btnRegisterUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterUserActionPerformed(evt);
+            }
+        });
+
+        btnLockOut.setText("Cerrar Sesión");
+        btnLockOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLockOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -70,13 +88,14 @@ public class FRMAdmin extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnReport, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegisterUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnRegisterUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLockOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(17, 17, 17)
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnInventary, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -84,9 +103,11 @@ public class FRMAdmin extends javax.swing.JFrame {
                 .addComponent(btnTable, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(btnRegisterUser, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLockOut)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel3);
@@ -171,6 +192,18 @@ public class FRMAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLockOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockOutActionPerformed
+       logic.lockOut();
+       dispose();
+    }//GEN-LAST:event_btnLockOutActionPerformed
+
+    private void btnRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUserActionPerformed
+        
+        jipRegister ventana = new jipRegister();
+        ventana.setVisible(true);
+        desktopAdmin.add(ventana);
+    }//GEN-LAST:event_btnRegisterUserActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -208,6 +241,7 @@ public class FRMAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInventary;
+    private javax.swing.JButton btnLockOut;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnRegisterUser;
     private javax.swing.JButton btnReport;

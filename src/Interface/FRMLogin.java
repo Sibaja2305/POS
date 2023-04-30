@@ -5,6 +5,8 @@
 package Interface;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
+import pos.Logic;
 
 /**
  *
@@ -12,11 +14,16 @@ import java.awt.Color;
  */
 public class FRMLogin extends javax.swing.JFrame {
 
+    private Logic logic;
     int xMouse;
     int yMouse;
 
     public FRMLogin() {
-
+        super("login");
+        logic = new Logic();
+        System.out.println("Registros en el login");
+        logic.readUser();
+        System.out.println("------------------------");
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -49,9 +56,9 @@ public class FRMLogin extends javax.swing.JFrame {
         txtPass = new javax.swing.JPasswordField();
         btnExit = new javax.swing.JLabel();
         blueBackgroud = new javax.swing.JLabel();
-        btnLogin = new javax.swing.JPanel();
-        loginButtonText = new javax.swing.JLabel();
         toolbar = new javax.swing.JPanel();
+        btnLogin = new javax.swing.JButton();
+        jcRole = new javax.swing.JComboBox<>();
 
         jMenu1.setText("jMenu1");
 
@@ -100,6 +107,11 @@ public class FRMLogin extends javax.swing.JFrame {
                 txtUserMousePressed(evt);
             }
         });
+        txtUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUserActionPerformed(evt);
+            }
+        });
         Backgroud.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 260, 20));
         Backgroud.add(userSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 390, 20));
 
@@ -123,6 +135,11 @@ public class FRMLogin extends javax.swing.JFrame {
         txtPass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtPassMousePressed(evt);
+            }
+        });
+        txtPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassActionPerformed(evt);
             }
         });
         Backgroud.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 260, -1));
@@ -149,41 +166,6 @@ public class FRMLogin extends javax.swing.JFrame {
         blueBackgroud.setText("jLabel2");
         Backgroud.add(blueBackgroud, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 0, 250, -1));
 
-        btnLogin.setBackground(new java.awt.Color(0, 134, 190));
-        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnLoginMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnLoginMouseExited(evt);
-            }
-        });
-
-        loginButtonText.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        loginButtonText.setForeground(new java.awt.Color(255, 255, 255));
-        loginButtonText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        loginButtonText.setText("Ingresar");
-
-        javax.swing.GroupLayout btnLoginLayout = new javax.swing.GroupLayout(btnLogin);
-        btnLogin.setLayout(btnLoginLayout);
-        btnLoginLayout.setHorizontalGroup(
-            btnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnLoginLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(loginButtonText, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        btnLoginLayout.setVerticalGroup(
-            btnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnLoginLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(loginButtonText, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        Backgroud.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 90, 40));
-
         toolbar.setBackground(new java.awt.Color(255, 255, 255));
         toolbar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -208,6 +190,25 @@ public class FRMLogin extends javax.swing.JFrame {
         );
 
         Backgroud.add(toolbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 70));
+
+        btnLogin.setBackground(new java.awt.Color(0, 102, 204));
+        btnLogin.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Ingresar");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+        Backgroud.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
+
+        jcRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Chef", "Mesero", "Bartender" }));
+        jcRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcRoleActionPerformed(evt);
+            }
+        });
+        Backgroud.add(jcRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 150, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -246,40 +247,82 @@ public class FRMLogin extends javax.swing.JFrame {
         btnExit.setForeground(Color.gray);
     }//GEN-LAST:event_btnExitMouseExited
 
-    private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered
-        btnLogin.setBackground(new Color(0, 156, 223));
-    }//GEN-LAST:event_btnLoginMouseEntered
-
-    private void btnLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseExited
-        btnLogin.setBackground(new Color(0, 134, 190));
-    }//GEN-LAST:event_btnLoginMouseExited
-
     private void txtUserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserMousePressed
-        if(txtUser.getText().equals("Ingrese el correo de usuario") ){
-        txtUser.setText("");
-        txtUser.setForeground(Color.black);
+        if (txtUser.getText().equals("Ingrese el correo de usuario")) {
+            txtUser.setText("");
+            txtUser.setForeground(Color.black);
         }
-        if(String.valueOf(txtPass.getPassword()).isEmpty()){
-        txtPass.setText("********");
-        txtPass.setForeground(Color.gray);
+        if (String.valueOf(txtPass.getPassword()).isEmpty()) {
+            txtPass.setText("********");
+            txtPass.setForeground(Color.gray);
         }
     }//GEN-LAST:event_txtUserMousePressed
 
     private void txtPassMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPassMousePressed
-        if(txtUser.getText().isEmpty()){
-        txtUser.setText("Ingrese el correo de usuario");
-        txtUser.setForeground(Color.gray);
+        if (txtUser.getText().isEmpty()) {
+            txtUser.setText("Ingrese el correo de usuario");
+            txtUser.setForeground(Color.gray);
         }
-        if(String.valueOf(txtPass.getPassword()).equals("********")){
-        txtPass.setText("");
-        txtPass.setForeground(Color.black);
+        if (String.valueOf(txtPass.getPassword()).equals("********")) {
+            txtPass.setText("");
+            txtPass.setForeground(Color.black);
         }
     }//GEN-LAST:event_txtPassMousePressed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        String username = txtUser.getText();
+        String password = new String(txtPass.getPassword());
+        String role = (String) jcRole.getSelectedItem();
+
+        if (logic.login(username, password, role)) {
+            JOptionPane.showMessageDialog(this, "¡Bienvenido " + username + "!");
+            if (role.equals("Administrador")) {
+                // Abrir la interfaz de administrador
+                FRMAdmin adminFrame = new FRMAdmin();
+                adminFrame.setVisible(true);
+                dispose();
+            } else if (role.equals("Bartender")) {
+                // Abrir la interfaz de bartender
+                FRMBartender bartenderFrame = new FRMBartender();
+                bartenderFrame.setVisible(true);
+                dispose();
+
+            } else if (role.equals("Chef")) {
+                // Abrir la interfaz de chef
+                FRMChef chefFrame = new FRMChef();
+                chefFrame.setVisible(true);
+                dispose();
+
+            } else if (role.equals("Mesero")) {
+                // Abrir la interfaz de mesero
+                FRMWaiter meseroFrame = new FRMWaiter();
+                meseroFrame.setVisible(true);
+                dispose();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Nombre de usuario, contraseña o rol incorrectos");
+            }
+        }
+
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
+
+    }//GEN-LAST:event_txtUserActionPerformed
+
+    private void jcRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcRoleActionPerformed
+
+    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPassActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -307,6 +350,7 @@ public class FRMLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 new FRMLogin().setVisible(true);
             }
         });
@@ -320,14 +364,14 @@ public class FRMLogin extends javax.swing.JFrame {
     private javax.swing.JLabel User;
     private javax.swing.JLabel blueBackgroud;
     private javax.swing.JLabel btnExit;
-    private javax.swing.JPanel btnLogin;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JLabel icoPassword;
     private javax.swing.JLabel icoUser;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JLabel loginButtonText;
+    private javax.swing.JComboBox<String> jcRole;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel nameLogo;
     private javax.swing.JSeparator passwordSeparator;
