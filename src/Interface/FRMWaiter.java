@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interface;
 
 import pos.Logic;
@@ -173,7 +169,8 @@ public class FRMWaiter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOpenTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenTableActionPerformed
-        createTable();
+       createTable();
+        
     }//GEN-LAST:event_btnOpenTableActionPerformed
 
     private void btnSignOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOffActionPerformed

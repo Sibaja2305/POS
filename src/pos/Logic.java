@@ -1,6 +1,10 @@
 package pos;
 
+import Interface.FRMAdmin;
+import Interface.FRMBartender;
+import Interface.FRMChef;
 import Interface.FRMLogin;
+import Interface.FRMWaiter;
 import clases.User;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,6 +13,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,26 +27,30 @@ public class Logic {
     public Logic() {
         users = new LinkedList<>();
     }
-/**
- * añade usuarios a la lista users
- * @param username
- * @param password
- * @param role 
- */
+
+    /**
+     * añade usuarios a la lista users
+     *
+     * @param username
+     * @param password
+     * @param role
+     */
     public void addUser(String username, String password, String role) {
         User newUser = new User(username, password, role);
         users.add(newUser);
-        System.out.println("se añadio " + username +" "+ password +" "+ role);
+        System.out.println("se añadio " + username + " " + password + " " + role);
     }
-/**
- * compara el usuario, contraseña y rol digitados en la interfaz grafica
- * con cada uno de los integrantes de la lista de usuarios para verificar si coinciden
- * y si es asi permite ingresar a la siguiente ventana
- * @param username
- * @param password
- * @param role
- * @return 
- */
+
+    /**
+     * compara el usuario, contraseña y rol digitados en la interfaz grafica con
+     * cada uno de los integrantes de la lista de usuarios para verificar si
+     * coinciden y si es asi permite ingresar a la siguiente ventana
+     *
+     * @param username
+     * @param password
+     * @param role
+     * @return
+     */
     public boolean login(String username, String password, String role) {
         for (User user : users) {
 
@@ -52,19 +62,22 @@ public class Logic {
         return false;
 
     }
-/**
- * Regresa al login
- */
+
+    /**
+     * Regresa al login
+     */
     public void lockOut() {
         FRMLogin ventana = new FRMLogin();
         ventana.setVisible(true);
 
     }
-/**
- * Verifica si el nuevo usuario ya existe en la lista
- * @param username
- * @return 
- */
+
+    /**
+     * Verifica si el nuevo usuario ya existe en la lista
+     *
+     * @param username
+     * @return
+     */
     public boolean userExists(String username) {
         for (User user : users) {
             if (user.getIdUser().equals(username)) {
@@ -73,9 +86,11 @@ public class Logic {
         }
         return false;
     }
-/**
- * Escribe los usuarios de la lista en un archivo txt para su almacenamiento persistente
- */
+
+    /**
+     * Escribe los usuarios de la lista en un archivo txt para su almacenamiento
+     * persistente
+     */
     public void saveUsersToFile() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("Usuario.txt"));
@@ -89,9 +104,10 @@ public class Logic {
             System.out.println("Error al guardar los usuarios en el archivo." + e);
         }
     }
-/**
- * Carga los usuarios en el txt y los guarda en la lista de usuarios
- */
+
+    /**
+     * Carga los usuarios en el txt y los guarda en la lista de usuarios
+     */
     public void readUser() {
 
         try {
@@ -110,13 +126,15 @@ public class Logic {
             System.out.println("Error al leer el archivo de usuarios" + e);
         }
     }
-/**
- * Utiliza el metodo addUser para añadir un nuevo usuario si este no existe en la
- * lista users 
- * @param username
- * @param password
- * @param role 
- */
+
+    /**
+     * Utiliza el metodo addUser para añadir un nuevo usuario si este no existe
+     * en la lista users
+     *
+     * @param username
+     * @param password
+     * @param role
+     */
     public void addNewUser(String username, String password, String role) {
         if (!userExists(username)) {
             addUser(username, password, role);
@@ -125,6 +143,78 @@ public class Logic {
         } else {
             JOptionPane.showMessageDialog(null, "El nombre de usuario ya existe");
         }
+    }
+
+    /**
+     * Se carga el menu, se lloro pero se logro :)
+     *
+     * @param tbMenu
+     */
+    public void readMenu(JTable tbMenu) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Categoría");
+
+        // Asignar el DefaultTableModel a la JTable
+        tbMenu.setModel(modelo);
+
+        try (BufferedReader br = new BufferedReader(new FileReader("Menu.txt"))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] row = line.split(",");
+
+                modelo.addRow(row);
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Evalua los usuarios
+     *
+     * @param username
+     * @param password
+     * @param role
+     */
+    public void evaluateUser(String username, String password, String role) {
+        if (login(username, password, role)) {
+            JOptionPane.showMessageDialog(null, "¡Bienvenido " + username + "!");
+            if (role.equals("Administrador")) {
+                // Abrir la interfaz de administrador
+                FRMAdmin adminFrame = new FRMAdmin();
+                adminFrame.setVisible(true);
+
+            } else if (role.equals("Bartender")) {
+                // Abrir la interfaz de bartender
+                FRMBartender bartenderFrame = new FRMBartender();
+                bartenderFrame.setVisible(true);
+
+            } else if (role.equals("Chef")) {
+                // Abrir la interfaz de chef
+                FRMChef chefFrame = new FRMChef();
+                chefFrame.setVisible(true);
+
+            } else if (role.equals("Mesero")) {
+                // Abrir la interfaz de mesero
+                FRMWaiter meseroFrame = new FRMWaiter();
+                meseroFrame.setVisible(true);
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Nombre de usuario, contraseña o rol incorrectos");
+            }
+
+        }
+    }
+
+    public void addOrder() {
+
     }
 
 }

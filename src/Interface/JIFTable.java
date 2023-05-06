@@ -33,7 +33,7 @@ public class JIFTable extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         lblStatus = new javax.swing.JLabel();
 
-        setTitle("Mesa");
+        setTitle("Módulo de mesas");
 
         btnCreateOrder.setText("Crear orden");
         btnCreateOrder.addActionListener(new java.awt.event.ActionListener() {

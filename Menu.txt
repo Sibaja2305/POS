@@ -1,0 +1,2 @@
+1,AlosPerro,100,Consumible
+2,Sopa,10,Consumible

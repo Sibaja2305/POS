@@ -274,35 +274,9 @@ public class FRMLogin extends javax.swing.JFrame {
         String password = new String(txtPass.getPassword());
         String role = (String) jcRole.getSelectedItem();
 
-        if (logic.login(username, password, role)) {
-            JOptionPane.showMessageDialog(this, "¡Bienvenido " + username + "!");
-            if (role.equals("Administrador")) {
-                // Abrir la interfaz de administrador
-                FRMAdmin adminFrame = new FRMAdmin();
-                adminFrame.setVisible(true);
-                dispose();
-            } else if (role.equals("Bartender")) {
-                // Abrir la interfaz de bartender
-                FRMBartender bartenderFrame = new FRMBartender();
-                bartenderFrame.setVisible(true);
-                dispose();
+        logic.evaluateUser(username, password, role);
+        dispose();
 
-            } else if (role.equals("Chef")) {
-                // Abrir la interfaz de chef
-                FRMChef chefFrame = new FRMChef();
-                chefFrame.setVisible(true);
-                dispose();
-
-            } else if (role.equals("Mesero")) {
-                // Abrir la interfaz de mesero
-                FRMWaiter meseroFrame = new FRMWaiter();
-                meseroFrame.setVisible(true);
-                dispose();
-
-            } else {
-                JOptionPane.showMessageDialog(this, "Nombre de usuario, contraseña o rol incorrectos");
-            }
-        }
 
     }//GEN-LAST:event_btnLoginActionPerformed
 

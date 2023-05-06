@@ -5,4 +5,5 @@ import java.util.LinkedList;
 public class Order {
 
     private LinkedList<Product> products;
+    private String comment;
 }
