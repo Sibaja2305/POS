@@ -32,7 +32,6 @@ public class Pos {
         User admin = new User( "admin",  "1",  "1");
     LinkedList<User> lista = new LinkedList<>();
     lista.add(admin);
-    
     }
     
 }
