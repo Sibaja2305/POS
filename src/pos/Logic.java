@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -151,14 +152,14 @@ public class Logic {
      * @param tbMenu
      */
     public void readMenu(JTable tbMenu) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Precio");
-        modelo.addColumn("Categoría");
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Nombre");
+        model.addColumn("Precio");
+        model.addColumn("Categoría");
 
         // Asignar el DefaultTableModel a la JTable
-        tbMenu.setModel(modelo);
+        tbMenu.setModel(model);
 
         try (BufferedReader br = new BufferedReader(new FileReader("Menu.txt"))) {
             String line;
@@ -166,7 +167,7 @@ public class Logic {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
 
-                modelo.addRow(row);
+                model.addRow(row);
 
             }
         } catch (IOException e) {
@@ -215,6 +216,17 @@ public class Logic {
 
     public void addOrder() {
 
+    }
+     public void totalPay(JTable jtOrder, JLabel jlTotal, int quantity) {
+        double fullPay = 0.00;
+        int numFila = jtOrder.getRowCount();
+        for (int i = 0; i < numFila; i++) {
+            double cal = Double.parseDouble(String.valueOf(jtOrder.getModel().getValueAt(i, 2)));
+            quantity = Integer.parseInt(jtOrder.getValueAt(i, 1).toString());
+            
+            fullPay += cal*quantity;
+        }
+        jlTotal.setText(String.format("%.2f", fullPay));
     }
 
 }

@@ -11,4 +11,5 @@ public class Billing {
     private String BillingNumber;
 
     private Date date;
+    
 }

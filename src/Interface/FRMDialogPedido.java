@@ -1,5 +1,8 @@
 package Interface;
 
+import java.util.HashMap;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import pos.Logic;
 
 /**
@@ -9,7 +12,8 @@ import pos.Logic;
 public class FRMDialogPedido extends javax.swing.JDialog {
 
     private Logic logic;
-
+    static HashMap<Integer, Integer> addedRow;
+    static int quantity=0;
     /**
      * Creates new form FRMDialogPedido
      */
@@ -18,7 +22,9 @@ public class FRMDialogPedido extends javax.swing.JDialog {
         logic = new Logic();
 
         initComponents();
-        logic.readMenu(tbMenu);
+        logic.readMenu(jtMenu);
+        addedRow = new HashMap<>();
+        
     }
 
     /**
@@ -40,14 +46,15 @@ public class FRMDialogPedido extends javax.swing.JDialog {
         btnAddComment = new javax.swing.JButton();
         btnDeleteComment = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbPedidos = new javax.swing.JTable();
+        jtOrder = new javax.swing.JTable();
+        jltotalBill = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         btnAddOrder = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tbMenu = new javax.swing.JTable();
+        jtMenu = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -78,44 +85,74 @@ public class FRMDialogPedido extends javax.swing.JDialog {
 
         jLabel3.setText("Pedidos:");
 
+        jtOrder.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Cantidad", "Precio"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jtOrder);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(txtComment))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtComment)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(btnAddComment)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                        .addComponent(btnDeleteComment)))
+                                .addContainerGap()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(88, 88, 88)
+                                .addComponent(btnAddComment)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDeleteComment))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jltotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)))
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtComment, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddComment)
                     .addComponent(btnDeleteComment))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addComponent(jltotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75))
         );
 
         jSplitPane2.setTopComponent(jPanel3);
@@ -133,42 +170,15 @@ public class FRMDialogPedido extends javax.swing.JDialog {
 
         jSplitPane2.setRightComponent(jPanel4);
 
-        tbPedidos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Nombre", "Cantidad", "Precio"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(tbPedidos);
-
-        jSplitPane2.setBottomComponent(jScrollPane2);
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+            .addComponent(jSplitPane2)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jSplitPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 25, Short.MAX_VALUE))
+            .addComponent(jSplitPane2)
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
@@ -182,26 +192,23 @@ public class FRMDialogPedido extends javax.swing.JDialog {
 
         jLabel2.setText("Menu:");
 
-        tbMenu.setModel(new javax.swing.table.DefaultTableModel(
+        jtMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nombre", "Precio", "Categoría"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(tbMenu);
+        jScrollPane3.setViewportView(jtMenu);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -225,7 +232,7 @@ public class FRMDialogPedido extends javax.swing.JDialog {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnAddOrder)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel5);
@@ -264,7 +271,44 @@ public class FRMDialogPedido extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrderActionPerformed
+    int selectedRow = jtMenu.getSelectedRow();
 
+        if (selectedRow != -1) { // Se ha seleccionado una row
+            DefaultTableModel originalModel = (DefaultTableModel) jtMenu.getModel();
+            DefaultTableModel targetModel = (DefaultTableModel) jtOrder.getModel();
+           
+            Object[] row = new Object[originalModel.getColumnCount()];
+            for (int i = 0; i < originalModel.getColumnCount(); i++) {
+                if (i==0) {
+                    
+                    row[i] = originalModel.getValueAt(selectedRow, i+1);
+                    
+                }else{
+                    row[i] = originalModel.getValueAt(selectedRow, i);
+                }
+            }
+            
+            
+
+            // Verificar si la row ya ha sido agregada previamente
+            
+            if (addedRow.containsKey(selectedRow)) {
+                 quantity = Integer.parseInt(jtOrder.getValueAt(selectedRow, 1).toString());
+                quantity=quantity+1; // Incrementar la quantity
+                targetModel.setValueAt(quantity, addedRow.get(selectedRow), 1); // Actualizar la quantity en el JTable destino
+                logic.totalPay(jtOrder, jltotalBill,quantity);
+            } else {
+                addedRow.put(selectedRow, targetModel.getRowCount());
+                row[1] = 1; // Establecer la quantity inicial en 1
+                targetModel.addRow(row); // Agregar la row al JTable destino
+                
+               quantity=1; 
+               logic.totalPay(jtOrder, jltotalBill,quantity);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ninguna fila del menu fue agregada");
+        }
+        
     }//GEN-LAST:event_btnAddOrderActionPerformed
 
     private void txtCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCommentActionPerformed
@@ -336,8 +380,9 @@ public class FRMDialogPedido extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JTable tbMenu;
-    private javax.swing.JTable tbPedidos;
+    private javax.swing.JLabel jltotalBill;
+    private javax.swing.JTable jtMenu;
+    private javax.swing.JTable jtOrder;
     private javax.swing.JTextField txtComment;
     // End of variables declaration//GEN-END:variables
 }
