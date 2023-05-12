@@ -214,9 +214,7 @@ public class Logic {
         }
     }
 
-    public void addOrder() {
-
-    }
+ 
      public void totalPay(JTable jtOrder, JLabel jlTotal, int quantity) {
         double fullPay = 0.00;
         int numFila = jtOrder.getRowCount();

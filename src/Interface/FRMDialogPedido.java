@@ -13,7 +13,8 @@ public class FRMDialogPedido extends javax.swing.JDialog {
 
     private Logic logic;
     static HashMap<Integer, Integer> addedRow;
-    static int quantity=0;
+    static int quantity = 0;
+
     /**
      * Creates new form FRMDialogPedido
      */
@@ -24,7 +25,7 @@ public class FRMDialogPedido extends javax.swing.JDialog {
         initComponents();
         logic.readMenu(jtMenu);
         addedRow = new HashMap<>();
-        
+
     }
 
     /**
@@ -61,7 +62,7 @@ public class FRMDialogPedido extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jSplitPane1.setDividerLocation(265);
+        jSplitPane1.setDividerLocation(420);
 
         jSplitPane2.setDividerLocation(250);
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
@@ -90,11 +91,11 @@ public class FRMDialogPedido extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Nombre", "Cantidad", "Precio"
+                "Nombre", "Cantidad", "Precio", "Comentario"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -107,33 +108,31 @@ public class FRMDialogPedido extends javax.swing.JDialog {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(txtComment))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(88, 88, 88)
-                                .addComponent(btnAddComment)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDeleteComment))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jltotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)))
-                .addContainerGap())
+                        .addGap(59, 59, 59)
+                        .addComponent(btnAddComment)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnDeleteComment))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtComment, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(112, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jltotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,8 +148,8 @@ public class FRMDialogPedido extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jltotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75))
         );
@@ -214,25 +213,25 @@ public class FRMDialogPedido extends javax.swing.JDialog {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAddOrder)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(88, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnAddOrder)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(321, Short.MAX_VALUE))
+                .addGap(167, 167, 167))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(35, 35, 35)
                 .addComponent(btnAddOrder)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel5);
@@ -271,44 +270,41 @@ public class FRMDialogPedido extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrderActionPerformed
-    int selectedRow = jtMenu.getSelectedRow();
+        int selectedRow = jtMenu.getSelectedRow();
 
         if (selectedRow != -1) { // Se ha seleccionado una row
             DefaultTableModel originalModel = (DefaultTableModel) jtMenu.getModel();
             DefaultTableModel targetModel = (DefaultTableModel) jtOrder.getModel();
-           
+
             Object[] row = new Object[originalModel.getColumnCount()];
-            for (int i = 0; i < originalModel.getColumnCount(); i++) {
-                if (i==0) {
-                    
-                    row[i] = originalModel.getValueAt(selectedRow, i+1);
-                    
-                }else{
+            for (int i = 0; i < originalModel.getColumnCount() - 1; i++) {
+                if (i == 0) {
+                    row[i] = originalModel.getValueAt(selectedRow, i + 1);
+                } else {
                     row[i] = originalModel.getValueAt(selectedRow, i);
                 }
+
             }
-            
-            
 
             // Verificar si la row ya ha sido agregada previamente
-            
             if (addedRow.containsKey(selectedRow)) {
-                 quantity = Integer.parseInt(jtOrder.getValueAt(selectedRow, 1).toString());
-                quantity=quantity+1; // Incrementar la quantity
+                quantity = Integer.parseInt(jtOrder.getValueAt(selectedRow, 1).toString());
+                quantity = quantity + 1; // Incrementar la quantity
                 targetModel.setValueAt(quantity, addedRow.get(selectedRow), 1); // Actualizar la quantity en el JTable destino
-                logic.totalPay(jtOrder, jltotalBill,quantity);
+                logic.totalPay(jtOrder, jltotalBill, quantity);
             } else {
                 addedRow.put(selectedRow, targetModel.getRowCount());
                 row[1] = 1; // Establecer la quantity inicial en 1
                 targetModel.addRow(row); // Agregar la row al JTable destino
-                
-               quantity=1; 
-               logic.totalPay(jtOrder, jltotalBill,quantity);
+
+                quantity = 1;
+                logic.totalPay(jtOrder, jltotalBill, quantity);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ninguna fila del menu fue agregada");
         }
-        
+        jtMenu.clearSelection();
+
     }//GEN-LAST:event_btnAddOrderActionPerformed
 
     private void txtCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCommentActionPerformed
@@ -316,7 +312,16 @@ public class FRMDialogPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCommentActionPerformed
 
     private void btnAddCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCommentActionPerformed
-        // TODO add your handling code here:
+        
+        DefaultTableModel tmp = (DefaultTableModel) jtOrder.getModel();
+        if (txtComment.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "ESCRIBA UN COMENTARIO");
+        } else {
+            tmp.setValueAt(txtComment.getText(), jtOrder.getSelectedRow(), 3);
+            txtComment.setText("");
+            jtOrder.clearSelection();
+        }
+
     }//GEN-LAST:event_btnAddCommentActionPerformed
 
     /**

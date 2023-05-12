@@ -1,5 +1,6 @@
 package Interface;
 
+import java.util.LinkedList;
 import pos.Logic;
 
 /**
@@ -214,20 +215,27 @@ public class FRMWaiter extends javax.swing.JFrame {
     }
 
     private void createTable() {
-        for (; i < 10; i++) {
+        JIFTable lista [] = new JIFTable [10];
+        for (int j = 0; j < 10; j++) {
             JIFTable ventana = new JIFTable();
-            ventana.setVisible(true);
-            ventana.setBounds(x, y, 220, 220);
-            DesktopWaiter.add(ventana);
-            ventana.setTitle("Mesa: " + (i + 1));
-
-            if (i == 4) {
+             ventana.setBounds(x, y, 220, 220);
+            ventana.setTitle("Mesa: " + (j + 1));
+           
+            if (j == 4) {
                 y = y + 250;
                 x = 5;
             } else {
                 x = x + 240;
             }
+           lista [j] = ventana;
         }
+        for (JIFTable table : lista) {
+             
+            table.setVisible(true);
+            DesktopWaiter.add(table);
+        }
+
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
