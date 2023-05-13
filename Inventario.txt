@@ -1,0 +1,2 @@
+AlosPerro,10,Consumible
+Que cola,10,Almacenable

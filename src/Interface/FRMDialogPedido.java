@@ -283,7 +283,6 @@ public class FRMDialogPedido extends javax.swing.JDialog {
                 } else {
                     row[i] = originalModel.getValueAt(selectedRow, i);
                 }
-
             }
 
             // Verificar si la row ya ha sido agregada previamente
@@ -304,7 +303,6 @@ public class FRMDialogPedido extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Ninguna fila del menu fue agregada");
         }
         jtMenu.clearSelection();
-
     }//GEN-LAST:event_btnAddOrderActionPerformed
 
     private void txtCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCommentActionPerformed

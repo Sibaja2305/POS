@@ -89,26 +89,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="33" pref="33" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="btnInventary" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="btnMenu" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnTable" alignment="1" min="-2" pref="83" max="-2" attributes="0"/>
-                                      <Component id="btnReport" alignment="1" min="-2" pref="83" max="-2" attributes="0"/>
-                                      <Component id="btnRegisterUser" alignment="1" min="-2" pref="108" max="-2" attributes="0"/>
-                                      <Component id="btnLockOut" alignment="1" min="-2" pref="131" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="23" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="btnReport" max="32767" attributes="0"/>
+                              <Component id="btnTable" max="32767" attributes="0"/>
+                              <Component id="btnInventary" max="32767" attributes="0"/>
+                              <Component id="btnMenu" max="32767" attributes="0"/>
+                              <Component id="btnRegisterUser" alignment="1" pref="122" max="32767" attributes="0"/>
+                              <Component id="btnLockOut" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -125,9 +116,9 @@
                           <Component id="btnReport" min="-2" pref="55" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnRegisterUser" min="-2" pref="54" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace pref="50" max="32767" attributes="0"/>
                           <Component id="btnLockOut" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="49" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -142,6 +133,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Inventario"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInventaryActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnTable">
                   <Properties>
@@ -181,16 +175,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="desktopAdmin" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="desktopAdmin" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="desktopAdmin" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -203,12 +193,12 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="650" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="656" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="436" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="442" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>

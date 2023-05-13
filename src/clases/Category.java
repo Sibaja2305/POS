@@ -1,8 +1,7 @@
 package clases;
 
-public class Category {
+public enum Category {
 
-    private String storable;
+    Storable, Consumable;
 
-    private String consumables;
 }

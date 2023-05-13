@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -226,5 +227,44 @@ public class Logic {
         }
         jlTotal.setText(String.format("%.2f", fullPay));
     }
+     
+    public void readStorage(JTable tbStorage){
+    
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Nombre");
+        model.addColumn("Raciones");
+        model.addColumn("Categoría");
 
+        // Asignar el DefaultTableModel a la JTable
+        tbStorage.setModel(model);
+
+        try (BufferedReader br = new BufferedReader(new FileReader("Inventario.txt"))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] row = line.split(",");
+                model.addRow(row);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+}
+    
+    public void searchResult(JTable jtSearchResult, JTextField txtSearch, JTable jtStorage){
+        String search = txtSearch.getText();
+        DefaultTableModel originalModel = (DefaultTableModel) jtStorage.getModel();
+        DefaultTableModel targetModel = (DefaultTableModel) jtSearchResult.getModel();
+        Object[] row = new Object[originalModel.getColumnCount()];
+        
+        for (int j = 0; j < originalModel.getRowCount(); j++) {
+            if (search.equals(originalModel.getValueAt(j, 0).toString())){
+                for(int i = 0; i < originalModel.getColumnCount(); i++){
+                    row[i] = originalModel.getValueAt(j, i);
+                }
+            }
+        }
+        targetModel.addRow(row);
+    }
+    
 }
