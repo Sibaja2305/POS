@@ -5,6 +5,8 @@ import Interface.FRMBartender;
 import Interface.FRMChef;
 import Interface.FRMLogin;
 import Interface.FRMWaiter;
+import clases.Product;
+import clases.Storage;
 import clases.User;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -25,9 +27,14 @@ import javax.swing.table.DefaultTableModel;
 public class Logic {
 
     public LinkedList<User> users;
-
+    public LinkedList<Product> storage;
+    public LinkedList<Product> menu;
+    static DefaultTableModel model;  
     public Logic() {
+        menu=new LinkedList<>();
         users = new LinkedList<>();
+        storage=new LinkedList<>();
+        model=new DefaultTableModel();
     }
 
     /**
@@ -153,11 +160,11 @@ public class Logic {
      * @param tbMenu
      */
     public void readMenu(JTable tbMenu) {
-        DefaultTableModel model = new DefaultTableModel();
+        
         model.addColumn("ID");
         model.addColumn("Nombre");
         model.addColumn("Precio");
-        model.addColumn("Categoría");
+        model.addColumn("Categoria");
 
         // Asignar el DefaultTableModel a la JTable
         tbMenu.setModel(model);
@@ -230,7 +237,7 @@ public class Logic {
      
     public void readStorage(JTable tbStorage){
     
-        DefaultTableModel model = new DefaultTableModel();
+        
         model.addColumn("Nombre");
         model.addColumn("Raciones");
         model.addColumn("Categoría");
@@ -266,5 +273,84 @@ public class Logic {
         }
         targetModel.addRow(row);
     }
+    public void saveOrder(String productName,int quantity,double price, String comment){
+        Product product = new Product(productName, quantity, price,comment);
+        storage.add(product);
+        saveOrderTxt();
+        System.out.println("se añadio " + productName + " " + quantity + " " + price+" "+comment);
+    }
+    public void saveOrderTxt (){
+        int mesa=1;
+        try {
+          
+            BufferedWriter writer = new BufferedWriter(new FileWriter("mesa"+mesa+".txt"));
+            for (Product product : storage) {
+                writer.write(product.getProductName() + "," + product.getQuantity() + "," + product.getPrice() +"," +product.getComment());
+                writer.newLine();
+            }
+            writer.close();
+            JOptionPane.showMessageDialog(null, "pedido ingresado exitosamente");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "pedido no ingresado a la base de datos"+e);
+        }  
+    }
+    public void registerPlate(String productName, double price, String category){
+         Product product=new Product(productName,price,category);
+                menu.add(product);
+        
+        
+        
+    }
+    public void readMenuTxt(){
+        try (BufferedReader br = new BufferedReader(new FileReader("Menu.txt"))) {
+            String line;
+
+             while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                String productName = data[1];
+                double price =Double.parseDouble(data[2]);
+                String category = data[3];
+              registerPlate(productName,price,category);
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+   public void addNewPlate(String productName,double price, String category){
+       if (!addNewPlateExist(productName)) {
+            registerPlate(productName,price,category);
+            savePlateToFile(); // guardar plato en el archivo
+            JOptionPane.showMessageDialog(null, "plato agregado exitosamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "El nombre del plato ya existe");
+        }
+   }
+   public boolean addNewPlateExist(String productName) {
+        for (Product product : menu) {
+            if (product.getProductName().equals(productName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public void savePlateToFile() {
+        int i=1;
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("menu.txt"));
+            for (Product product : menu) {
+                writer.write(i + "," + product.getProductName() + "," + product.getPrice() + "," + product.getCategory());
+                writer.newLine();
+                i++;
+            }
+            
+            writer.close();
+            System.out.println("plato guardados exitosamente en el archivo.");
+        } catch (IOException e) {
+            System.out.println("Error al guardar los platos en el archivo." + e);
+        }
+    }
+     
+   
     
 }

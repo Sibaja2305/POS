@@ -1,2 +1,4 @@
-1,AlosPerro,100,Consumible
-2,Sopa,10,Consumible
+1,AlosPerro,100.0,Consumible
+2,Sopa,10.0,Consumible
+3,sf,2.0,Almacenable
+4,hola,23.0,Consumible

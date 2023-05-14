@@ -19,6 +19,7 @@ public class FRMWaiter extends javax.swing.JFrame {
     public FRMWaiter() {
         logic= new Logic();
         initComponents();
+        createTable();
     }
 
     /**
@@ -35,7 +36,6 @@ public class FRMWaiter extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         DesktopWaiter = new javax.swing.JDesktopPane();
         jPanel4 = new javax.swing.JPanel();
-        btnOpenTable = new javax.swing.JButton();
         btnOrderStatus = new javax.swing.JButton();
         btnSignOff = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -74,13 +74,6 @@ public class FRMWaiter extends javax.swing.JFrame {
 
         jSplitPane1.setRightComponent(jPanel3);
 
-        btnOpenTable.setText("Abrir mesas");
-        btnOpenTable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOpenTableActionPerformed(evt);
-            }
-        });
-
         btnOrderStatus.setText("Estado de la orden");
 
         btnSignOff.setText("Cerrar Sesion");
@@ -99,17 +92,13 @@ public class FRMWaiter extends javax.swing.JFrame {
                 .addComponent(btnSignOff)
                 .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnOrderStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnOpenTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnOrderStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(btnOpenTable)
-                .addGap(66, 66, 66)
+                .addGap(125, 125, 125)
                 .addComponent(btnOrderStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
                 .addComponent(btnSignOff)
@@ -169,11 +158,6 @@ public class FRMWaiter extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnOpenTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenTableActionPerformed
-       createTable();
-        
-    }//GEN-LAST:event_btnOpenTableActionPerformed
-
     private void btnSignOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOffActionPerformed
        logic.lockOut();
        dispose();
@@ -215,11 +199,12 @@ public class FRMWaiter extends javax.swing.JFrame {
     }
 
     private void createTable() {
-        JIFTable lista [] = new JIFTable [10];
+        JIFTable listTable [] = new JIFTable [10];
         for (int j = 0; j < 10; j++) {
-            JIFTable ventana = new JIFTable();
-             ventana.setBounds(x, y, 220, 220);
-            ventana.setTitle("Mesa: " + (j + 1));
+            JIFTable window = new JIFTable();
+             window.setBounds(x, y, 220, 220);
+            window.setTitle("Mesa: " + (j + 1));
+            
            
             if (j == 4) {
                 y = y + 250;
@@ -227,9 +212,9 @@ public class FRMWaiter extends javax.swing.JFrame {
             } else {
                 x = x + 240;
             }
-           lista [j] = ventana;
+           listTable [j] = window;
         }
-        for (JIFTable table : lista) {
+        for (JIFTable table : listTable) {
              
             table.setVisible(true);
             DesktopWaiter.add(table);
@@ -241,7 +226,6 @@ public class FRMWaiter extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DesktopWaiter;
     private javax.swing.JMenu btnHelp;
-    private javax.swing.JButton btnOpenTable;
     private javax.swing.JButton btnOrderStatus;
     private javax.swing.JButton btnSignOff;
     private javax.swing.JMenu jMenu1;

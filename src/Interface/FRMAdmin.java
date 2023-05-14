@@ -51,6 +51,11 @@ private Logic logic;
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnMenu.setText("Menu");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
 
         btnInventary.setText("Inventario");
         btnInventary.addActionListener(new java.awt.event.ActionListener() {
@@ -206,6 +211,12 @@ private Logic logic;
         ventana.setVisible(true);
         desktopAdmin.add(ventana);
     }//GEN-LAST:event_btnInventaryActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+       JIFMenu menu=new JIFMenu();
+       menu.setVisible(true);
+       desktopAdmin.add(menu);
+    }//GEN-LAST:event_btnMenuActionPerformed
 
     /**
      * @param args the command line arguments
