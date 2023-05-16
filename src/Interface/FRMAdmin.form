@@ -96,7 +96,7 @@
                               <Component id="btnTable" max="32767" attributes="0"/>
                               <Component id="btnInventary" max="32767" attributes="0"/>
                               <Component id="btnMenu" max="32767" attributes="0"/>
-                              <Component id="btnRegisterUser" alignment="1" pref="122" max="32767" attributes="0"/>
+                              <Component id="btnUsers" alignment="1" pref="122" max="32767" attributes="0"/>
                               <Component id="btnLockOut" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -115,7 +115,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnReport" min="-2" pref="55" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnRegisterUser" min="-2" pref="54" max="-2" attributes="0"/>
+                          <Component id="btnUsers" min="-2" pref="54" max="-2" attributes="0"/>
                           <EmptySpace pref="50" max="32767" attributes="0"/>
                           <Component id="btnLockOut" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -150,12 +150,12 @@
                     <Property name="text" type="java.lang.String" value="Reporte"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnRegisterUser">
+                <Component class="javax.swing.JButton" name="btnUsers">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Registrar Usuario"/>
+                    <Property name="text" type="java.lang.String" value="Usuario"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegisterUserActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsersActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnLockOut">

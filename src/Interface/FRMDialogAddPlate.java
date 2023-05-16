@@ -1,29 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package Interface;
 
 import javax.swing.JTable;
 import pos.Logic;
 
 /**
+ * Class that represents the manager window in the application.
  *
- * @author Hp EliteBook
+ * @author Diego Herrera López
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Tiffany Hernández Rodriguez
+ * @author Jonathan Alfaro Herrera
  */
 public class FRMDialogAddPlate extends javax.swing.JDialog {
 
+    Logic logic; // Instance of the Logic class to handle the manager logic
+    JIFMenu jifMenu; //menu table instance
+
     /**
      * Creates new form FRMDialogAddPlate
+     *
+     * Constructor of the FRMDialogAddPlate class. Calls the constructor of the
+     * parent class (JDialog) passing the main frame and the mode flag
+     *
+     * @param parent The main frame (parent window) that displays this dialog.
+     * @param modal Specifies whether the dialog is modal or not.
      */
-    Logic logic;
-    JIFMenu jifMenu;
-
     public FRMDialogAddPlate(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         logic = new Logic();
 
-        initComponents();
+        initComponents(); // Initialize window components
 
     }
 
@@ -61,7 +68,7 @@ public class FRMDialogAddPlate extends javax.swing.JDialog {
 
         jcCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Almacenable", "Consumible" }));
 
-        jLabel3.setText("Categoria:");
+        jLabel3.setText("Categoría:");
 
         btnSave.setText("Guardar ");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -77,25 +84,33 @@ public class FRMDialogAddPlate extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jcCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtProductName)
-                        .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(343, Short.MAX_VALUE)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jcCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,6 +152,14 @@ public class FRMDialogAddPlate extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProductNameActionPerformed
 
+    /**
+     * Method that is executed when an action is performed on the "btnSave"
+     * button. Gets the values of the text fields and the combo box. Call the
+     * "readMenuTxt()" method of the "logic" class instance. Call the
+     * "addNewPlate()" method of the "logic" class instance to add a new plate.
+     *
+     * @param evt The action event associated with the "btnSave" button.
+     */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         String productName = txtProductName.getText();
         double price = Double.parseDouble(txtPrice.getText());
@@ -146,6 +169,8 @@ public class FRMDialogAddPlate extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
+     * Java application entry point.
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {

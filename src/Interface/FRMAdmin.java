@@ -1,25 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interface;
 
 import clases.User;
 import pos.Logic;
 
 /**
+ * Class that represents the manager window in the application.
  *
- * @author Hp EliteBook
+ * @author Diego Herrera López
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Tiffany Hernández Rodriguez
+ * @author Jonathan Alfaro Herrera
  */
 public class FRMAdmin extends javax.swing.JFrame {
-private Logic logic;
+
+    private Logic logic; // Instance of the Logic class to handle the manager logic
+
     /**
-     * Creates new form FRMAdmin
+     * Constructor of the FRMAdmin class. Create a new instance of the Logic
+     * class and call the initComponents() method to initialize the window
+     * components. Creates new form FRMAdmin
      */
     public FRMAdmin() {
-       
-       logic = new Logic(); 
-        initComponents();
+
+        logic = new Logic();
+        initComponents(); // Initialize window components
     }
 
     /**
@@ -38,7 +43,7 @@ private Logic logic;
         btnInventary = new javax.swing.JButton();
         btnTable = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
-        btnRegisterUser = new javax.swing.JButton();
+        btnUsers = new javax.swing.JButton();
         btnLockOut = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         desktopAdmin = new javax.swing.JDesktopPane();
@@ -68,10 +73,10 @@ private Logic logic;
 
         btnReport.setText("Reporte");
 
-        btnRegisterUser.setText("Registrar Usuario");
-        btnRegisterUser.addActionListener(new java.awt.event.ActionListener() {
+        btnUsers.setText("Usuario");
+        btnUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterUserActionPerformed(evt);
+                btnUsersActionPerformed(evt);
             }
         });
 
@@ -93,7 +98,7 @@ private Logic logic;
                     .addComponent(btnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnInventary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRegisterUser, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                    .addComponent(btnUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                     .addComponent(btnLockOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
         );
@@ -109,7 +114,7 @@ private Logic logic;
                 .addGap(18, 18, 18)
                 .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnRegisterUser, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(btnLockOut)
                 .addGap(18, 18, 18))
@@ -194,31 +199,62 @@ private Logic logic;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Method that is executed when an action is performed on the "btnLockOut"
+     * button. Call the "lockOut()" method of the "logic" class instance. Close
+     * the current window "dispose()"
+     *
+     * @param evt The action event associated with the "btnLockOut" button.
+     */
     private void btnLockOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockOutActionPerformed
-       logic.lockOut();
-       dispose();
+        logic.lockOut();
+        dispose();
     }//GEN-LAST:event_btnLockOutActionPerformed
 
-    private void btnRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUserActionPerformed
+    /**
+     * Method that is executed when an action is performed on the
+     * "btnRegisterUser" button. Creates an instance of the "JIFRegister" class
+     * and displays it. Add the "JIFRegister" instance to the "desktopAdmin".
+     *
+     * @param evt The action event associated with the "btnRegisterUser" button.
+     */
+    private void btnUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersActionPerformed
         
-        jipRegister ventana = new jipRegister();
+        JIFUsers ventana = new JIFUsers();
         ventana.setVisible(true);
         desktopAdmin.add(ventana);
-    }//GEN-LAST:event_btnRegisterUserActionPerformed
+       
+    }//GEN-LAST:event_btnUsersActionPerformed
 
+    /**
+     * Method that is executed when an action is performed on the "btnInventory"
+     * button. Creates an instance of the "JIFInventory" class and displays it.
+     * Add the instance of "JIFInventory" to the "desktopAdmin".
+     *
+     * @param evt The action event associated with the "btnInventary" button.
+     */
     private void btnInventaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventaryActionPerformed
-        JIFStorage ventana = new JIFStorage();
+        JIFInventory ventana = new JIFInventory();
         ventana.setVisible(true);
         desktopAdmin.add(ventana);
     }//GEN-LAST:event_btnInventaryActionPerformed
 
+    /**
+     * Method that is executed when an action is performed on the "btnMenu"
+     * button. Creates an instance of the "JIFMenu" class and displays it. Add
+     * the instance of "JIFMenu" to the "desktopAdmin".
+     *
+     * @param evt The action event associated with the "btnMenu" button.
+     */
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-       JIFMenu menu=new JIFMenu();
-       menu.setVisible(true);
-       desktopAdmin.add(menu);
+        JIFMenu menu = new JIFMenu();
+        menu.setVisible(true);
+        desktopAdmin.add(menu);
     }//GEN-LAST:event_btnMenuActionPerformed
 
     /**
+     * Java application entry point.
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -257,9 +293,9 @@ private Logic logic;
     private javax.swing.JButton btnInventary;
     private javax.swing.JButton btnLockOut;
     private javax.swing.JButton btnMenu;
-    private javax.swing.JButton btnRegisterUser;
     private javax.swing.JButton btnReport;
     private javax.swing.JButton btnTable;
+    private javax.swing.JButton btnUsers;
     private javax.swing.JDesktopPane desktopAdmin;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

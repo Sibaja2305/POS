@@ -6,10 +6,16 @@ import javax.swing.table.DefaultTableModel;
 import pos.Logic;
 
 /**
+ * Dialogue to place an order. And Create new instances of the FRMDialogOrder
+ * class
  *
- * @author diego
+ * @author Diego Herrera López
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Tiffany Hernández Rodriguez
+ * @author Jonathan Alfaro Herrera
  */
-public class FRMDialogPedido extends javax.swing.JDialog {
+public class FRMDialogOrder extends javax.swing.JDialog {
 
     private Logic logic;
     static HashMap<Integer, Integer> addedRow;
@@ -17,16 +23,22 @@ public class FRMDialogPedido extends javax.swing.JDialog {
     static DefaultTableModel tmp;
 
     /**
-     * Creates new form FRMDialogPedido
+     * Constructor of the FRMDialogOrder class. Calls the constructor of the
+     * parent class (JDialog) passing the main frame and the mode flag. Call the
+     * initComponents() method to initialize the window components. Creates new
+     * form FRMDialogPedido
+     *
+     * @param parent The main frame (parent window) that displays this dialog.
+     * @param modal Specifies whether the dialog is modal or not.
      */
-    public FRMDialogPedido(java.awt.Frame parent, boolean modal) {
+    public FRMDialogOrder(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        logic = new Logic();
+        logic = new Logic(); // Initialize the Logic instance
 
         initComponents();
-        logic.readMenu(jtMenu);
-        addedRow = new HashMap<>();
-        tmp = (DefaultTableModel) jtOrder.getModel();
+        logic.readMenu(jtMenu); // Read menu from logic and display it in jtMenu table
+        addedRow = new HashMap<>(); // Initialize the addedRow map to track the rows added to the order
+        tmp = (DefaultTableModel) jtOrder.getModel(); // Get the model from the jtOrder table and assign it to tmp
 
     }
 
@@ -113,24 +125,22 @@ public class FRMDialogPedido extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnconfirmOrder)
                         .addGap(18, 18, 18)
                         .addComponent(jltotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(btnAddComment)
                             .addGap(18, 18, 18)
                             .addComponent(btnDeleteComment))
                         .addComponent(txtComment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 91, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,8 +159,8 @@ public class FRMDialogPedido extends javax.swing.JDialog {
                     .addComponent(btnDeleteComment))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jltotalBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnconfirmOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
+                    .addComponent(jltotalBill, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                    .addComponent(btnconfirmOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(38, 38, 38))
         );
 
@@ -260,14 +270,34 @@ public class FRMDialogPedido extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Handles the click event on the "Add Order" button. Get the index of the
+     * selected row in the jtMenu using the getSelectedRow() method. Check if a
+     * row has been selected in the jtMenu using the condition selectedRow !=
+     * -1. Get the originalModel and targetModel table models from jtMenu and
+     * jtOrder, respectively. A row array is created to store the values of the
+     * selected row in the jtMenu. The values of the selected row in the jtMenu
+     * are copied to the row array in the corresponding order. Check if the row
+     * has already been added previously in jtOrder using the containsKey()
+     * method of addedRow. If the row has already been added previously, get the
+     * index of the row in jtOrder and update the quantity by adding 1 to it. If
+     * the row has not been previously added, add the row to the jtOrder model
+     * and set the initial quantity to 1. The value "-" is also assigned to the
+     * "Comment" column of the added row. And finally the total payment is
+     * updated
+     *
+     * @param evt The action event generated by the button.
+     */
     private void btnAddOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrderActionPerformed
+        // Get the selected row in the jtMenu table
         int selectedRow = jtMenu.getSelectedRow();
-         
         if (selectedRow != -1) { // Se ha seleccionado una row
             DefaultTableModel originalModel = (DefaultTableModel) jtMenu.getModel();
             DefaultTableModel targetModel = (DefaultTableModel) jtOrder.getModel();
 
             Object[] row = new Object[originalModel.getColumnCount()];
+
+            // Copy the values of the selected row to the array row
             for (int i = 0; i < originalModel.getColumnCount() - 1; i++) {
                 if (i == 0) {
                     row[i] = originalModel.getValueAt(selectedRow, i + 1);
@@ -276,65 +306,99 @@ public class FRMDialogPedido extends javax.swing.JDialog {
                 }
             }
 
-            // Verificar si la row ya ha sido agregada previamente
+            // Check if the row has already been added previously
             if (addedRow.containsKey(selectedRow)) {
-                
-                  int rowIndex = addedRow.get(selectedRow);
+
+                int rowIndex = addedRow.get(selectedRow);
                 quantity = Integer.parseInt(jtOrder.getValueAt(rowIndex, 1).toString());
-                
-                quantity++; // Incrementar la quantity
-                
-                targetModel.setValueAt(quantity, rowIndex, 1); // Actualizar la quantity en el JTable destino
-                logic.totalPay(jtOrder, jltotalBill, quantity);
+
+                quantity++; // Increase the quantity
+
+                targetModel.setValueAt(quantity, rowIndex, 1); // Update the quantity in the target JTable
+                logic.totalPay(jtOrder, jltotalBill, quantity); // Calculate the total to pay
             } else {
                 addedRow.put(selectedRow, targetModel.getRowCount());
-                row[1] = 1; // Establecer la quantity inicial en 1
+                row[1] = 1; // Set the initial amount to 1
 
-                targetModel.addRow(row); // Agregar la row al JTable destino
+                targetModel.addRow(row); // Add the row to the destination JTable
 
                 quantity = 1;
-                targetModel.setValueAt("-", addedRow.get(selectedRow), 3);
-                logic.totalPay(jtOrder, jltotalBill, quantity);
+                targetModel.setValueAt("-", addedRow.get(selectedRow), 3); // Set the "Remarks" field to "-"
+                logic.totalPay(jtOrder, jltotalBill, quantity); // Calculate the total to pay
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ninguna fila del menu fue agregada");
         }
-        jtMenu.clearSelection();
+        jtMenu.clearSelection(); // Clear the selection in the jtMenu table
     }//GEN-LAST:event_btnAddOrderActionPerformed
 
     private void txtCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCommentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCommentActionPerformed
 
+    /**
+     * Handles the click event on the "Add Comment" button. The comment field
+     * (txtComment) is checked for empty using the getText() method and compared
+     * to an empty string. If the comment field is empty, a dialog message is
+     * displayed prompting the user to type a comment. If the comment field
+     * contains text, the value of the field is obtained and assigned to the
+     * "Comment" column of the selected row in jtOrder using the setValueAt()
+     * method of the tmp table model. Then, the comment field is cleared by
+     * calling the setText("") method. Finally, the selection in the jtOrder
+     * table is cleared by calling the clearSelection() method.
+     *
+     * @param evt The action event generated by the button.
+     */
     private void btnAddCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCommentActionPerformed
-
+        // Check if the comment field is empty
         if (txtComment.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "ESCRIBA UN COMENTARIO");
         } else {
+            // Get the value of the comment field and assign it to the "Comment" column of the selected row in jtOrder
             tmp.setValueAt(txtComment.getText(), jtOrder.getSelectedRow(), 3);
+            // Clear the comment field
             txtComment.setText("");
+            // Clear the selection in the jtOrder table
             jtOrder.clearSelection();
         }
 
     }//GEN-LAST:event_btnAddCommentActionPerformed
 
+    /**
+     * Handles the click event on the "Confirm Order" button. Iterates through
+     * the rows in the tmp table model, which corresponds to the JTable jtOrder.
+     * The values of each column of the current row are obtained and stored in
+     * corresponding variables: productName, count, price, and comment. Check if
+     * the comment is empty using the isEmpty() method of the comment string. If
+     * the comment is empty, the value "-" is assigned to the variable comment.
+     * The logic object is used to save the order by calling the saveOrder()
+     * method and passing the obtained values as parameters: productName, count,
+     * price, and comment.
+     *
+     * @param evt The action event generated by the button.
+     */
     private void btnconfirmOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconfirmOrderActionPerformed
         for (int i = 0; i < tmp.getRowCount(); i++) {
             String productName = tmp.getValueAt(i, 0).toString();
             int count = Integer.parseInt(tmp.getValueAt(i, 1).toString());
             double price = Double.parseDouble(tmp.getValueAt(i, 2).toString());
             String comment = tmp.getValueAt(i, 3).toString();
-
+            
+            // Check if the comment is empty and assign "-" instead
             if (comment.isEmpty()) {
 
                 comment = "-";
             }
+            
+            // Save the order using the logic object and the returned values
             logic.saveOrder(productName, count, price, comment);
 
         }
     }//GEN-LAST:event_btnconfirmOrderActionPerformed
 
     /**
+     * Java application entry point.
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -351,20 +415,21 @@ public class FRMDialogPedido extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FRMDialogPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMDialogOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FRMDialogPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMDialogOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FRMDialogPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMDialogOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FRMDialogPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMDialogOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FRMDialogPedido dialog = new FRMDialogPedido(new javax.swing.JFrame(), true);
+                FRMDialogOrder dialog = new FRMDialogOrder(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

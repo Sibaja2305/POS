@@ -2,3 +2,8 @@
 2,2,Mesero
 3,3,Chef
 4,4,Bartender
+5,5,Administrador
+6,6,Chef
+7,7,Bartender
+8,8,Mesero
+9,9,Chef

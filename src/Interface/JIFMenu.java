@@ -1,23 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package Interface;
 
 import pos.Logic;
 
 /**
+ * The logic is instantiated which will be private
  *
- * @author Hp EliteBook
+ * @author Diego Herrera López
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Tiffany Hernández Rodriguez
+ * @author Jonathan Alfaro Herrera
  */
 public class JIFMenu extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form JIFMenu
-     */
     Logic logic;
+
+    /**
+     * The JIFMenu constructor creates an instance of the Logic class,
+     * initializes GUI components and reads data from storage or inventory using
+     * business logic provided by the Logic class. then invokes a readMenu()
+     * method of the logic object and passes the jtAdminMenu parameter.
+     */
     public JIFMenu() {
-        logic=new Logic();
+        logic = new Logic();
         initComponents();
         logic.readMenu(jtAdminMenu);
     }
@@ -39,7 +44,7 @@ public class JIFMenu extends javax.swing.JInternalFrame {
         btnSavePlate = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Menu");
+        setTitle("Módulo de Menu");
 
         jtAdminMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -67,38 +72,46 @@ public class JIFMenu extends javax.swing.JInternalFrame {
         });
 
         btnDeletePlate.setText("Eliminar");
+        btnDeletePlate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletePlateActionPerformed(evt);
+            }
+        });
 
         btnSavePlate.setText("Guardar Plato");
+        btnSavePlate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSavePlateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(203, 203, 203))
+                .addContainerGap(134, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnAddPlate, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
+                        .addGap(57, 57, 57)
                         .addComponent(btnDeletePlate, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(btnSavePlate, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53))))
+                        .addGap(69, 69, 69)
+                        .addComponent(btnSavePlate, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(107, 107, 107))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDeletePlate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddPlate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDeletePlate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSavePlate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -117,11 +130,27 @@ public class JIFMenu extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Method called when the button to add a dish is clicked. Creates an
+     * instance of the FRMDialogAddPlate class, which is a dialog for adding a
+     * plate. Sets the dialog as modal and makes it visible.
+     *
+     * @param evt The action event generated by the add a plate button.
+     */
     private void btnAddPlateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPlateActionPerformed
-        FRMDialogAddPlate p= new FRMDialogAddPlate(null,true);
+        // Create an instance of the FRMDialogAddPlate class, which is a dialog for adding a plate
+        FRMDialogAddPlate p = new FRMDialogAddPlate(null, true);
+        // Set the dialog as modal and make it visible
         p.setVisible(true);
-        
     }//GEN-LAST:event_btnAddPlateActionPerformed
+
+    private void btnDeletePlateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePlateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeletePlateActionPerformed
+
+    private void btnSavePlateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePlateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSavePlateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
