@@ -1,6 +1,8 @@
 package Interface;
 
 import clases.User;
+import javax.swing.JDesktopPane;
+import javax.swing.plaf.DesktopPaneUI;
 import pos.Logic;
 
 /**
@@ -55,6 +57,7 @@ public class FRMAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menu.png"))); // NOI18N
         btnMenu.setText("Menu");
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +65,7 @@ public class FRMAdmin extends javax.swing.JFrame {
             }
         });
 
+        btnInventary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/inventory.png"))); // NOI18N
         btnInventary.setText("Inventario");
         btnInventary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,11 +73,21 @@ public class FRMAdmin extends javax.swing.JFrame {
             }
         });
 
+        btnTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/draft.png"))); // NOI18N
         btnTable.setText("Mesas");
 
+        btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/report.png"))); // NOI18N
         btnReport.setText("Reporte");
+        btnReport.setToolTipText("");
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
 
+        btnUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/users.png"))); // NOI18N
         btnUsers.setText("Usuario");
+        btnUsers.setToolTipText("");
         btnUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUsersActionPerformed(evt);
@@ -251,6 +265,10 @@ public class FRMAdmin extends javax.swing.JFrame {
         menu.setVisible(true);
         desktopAdmin.add(menu);
     }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReportActionPerformed
 
     /**
      * Java application entry point.

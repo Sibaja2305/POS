@@ -52,13 +52,11 @@ public class FRMWaiter extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jSplitPane1.setDividerSize(50);
-
         javax.swing.GroupLayout DesktopWaiterLayout = new javax.swing.GroupLayout(DesktopWaiter);
         DesktopWaiter.setLayout(DesktopWaiterLayout);
         DesktopWaiterLayout.setHorizontalGroup(
             DesktopWaiterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
+            .addGap(0, 683, Short.MAX_VALUE)
         );
         DesktopWaiterLayout.setVerticalGroup(
             DesktopWaiterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

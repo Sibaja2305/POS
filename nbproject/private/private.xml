@@ -2,6 +2,20 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Proyecto%20POS/POS/src/clases/Person.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Proyecto%20POS/POS/src/clases/Billing.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Proyecto%20POS/POS/src/Interface/FRMLogin.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Proyecto%20POS/POS/src/clases/Product.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Proyecto%20POS/POS/src/Interface/FRMWaiter.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Proyecto%20POS/POS/src/clases/Storage.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Proyecto%20POS/POS/src/pos/Pos.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Proyecto%20POS/POS/src/Interface/FRMAdmin.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Proyecto%20POS/POS/src/clases/Table.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Proyecto%20POS/POS/src/Interface/FRMChef.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Proyecto%20POS/POS/src/pos/Logic.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Proyecto%20POS/POS/src/clases/User.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Proyecto%20POS/POS/src/Interface/JIFMenu.java</file>
+        </group>
     </open-files>
 </project-private>

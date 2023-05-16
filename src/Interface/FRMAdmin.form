@@ -126,6 +126,9 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btnMenu">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/menu.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Menu"/>
                   </Properties>
                   <Events>
@@ -134,6 +137,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnInventary">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/inventory.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Inventario"/>
                   </Properties>
                   <Events>
@@ -142,17 +148,31 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnTable">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/draft.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Mesas"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnReport">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/report.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Reporte"/>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReportActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnUsers">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/users.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Usuario"/>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsersActionPerformed"/>

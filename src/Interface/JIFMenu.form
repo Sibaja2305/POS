@@ -50,7 +50,7 @@
                           <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                           <Component id="btnDeletePlate" min="-2" pref="99" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="btnSavePlate" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="btnUpdateMenu" min="-2" pref="132" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
@@ -66,7 +66,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnAddPlate" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
                       <Component id="btnDeletePlate" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
-                      <Component id="btnSavePlate" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="btnUpdateMenu" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="63" max="32767" attributes="0"/>
               </Group>
@@ -138,12 +138,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeletePlateActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnSavePlate">
+        <Component class="javax.swing.JButton" name="btnUpdateMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Guardar Plato"/>
+            <Property name="text" type="java.lang.String" value="Actualizar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSavePlateActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateMenuActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

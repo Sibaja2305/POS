@@ -41,7 +41,7 @@ public class JIFMenu extends javax.swing.JInternalFrame {
         jtAdminMenu = new javax.swing.JTable();
         btnAddPlate = new javax.swing.JButton();
         btnDeletePlate = new javax.swing.JButton();
-        btnSavePlate = new javax.swing.JButton();
+        btnUpdateMenu = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Módulo de Menu");
@@ -78,10 +78,10 @@ public class JIFMenu extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSavePlate.setText("Guardar Plato");
-        btnSavePlate.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdateMenu.setText("Actualizar");
+        btnUpdateMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSavePlateActionPerformed(evt);
+                btnUpdateMenuActionPerformed(evt);
             }
         });
 
@@ -98,7 +98,7 @@ public class JIFMenu extends javax.swing.JInternalFrame {
                         .addGap(57, 57, 57)
                         .addComponent(btnDeletePlate, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69)
-                        .addComponent(btnSavePlate, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnUpdateMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(107, 107, 107))
         );
         jPanel1Layout.setVerticalGroup(
@@ -110,7 +110,7 @@ public class JIFMenu extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddPlate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeletePlate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSavePlate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnUpdateMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
 
@@ -148,15 +148,15 @@ public class JIFMenu extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeletePlateActionPerformed
 
-    private void btnSavePlateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePlateActionPerformed
+    private void btnUpdateMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateMenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSavePlateActionPerformed
+    }//GEN-LAST:event_btnUpdateMenuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddPlate;
     private javax.swing.JButton btnDeletePlate;
-    private javax.swing.JButton btnSavePlate;
+    private javax.swing.JButton btnUpdateMenu;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtAdminMenu;

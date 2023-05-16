@@ -76,9 +76,6 @@
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JSplitPane" name="jSplitPane1">
-          <Properties>
-            <Property name="dividerSize" type="int" value="50"/>
-          </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
           <SubComponents>
@@ -114,7 +111,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="638" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="683" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">

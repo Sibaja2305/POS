@@ -66,7 +66,7 @@ public class JIFInventory extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtStorage);
 
-        btnAddStorage.setText("Agregar productos al inventario");
+        btnAddStorage.setText("Agregar producto");
         btnAddStorage.setActionCommand("btnAddStorage");
         btnAddStorage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,10 +118,12 @@ public class JIFInventory extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(btnAddStorage))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 807, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(btnAddStorage))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(0, 15, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(

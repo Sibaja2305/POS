@@ -1,1 +1,2 @@
-coma mierda,1,10.0,hola
+Sopa,1,10.0,-
+AlosPerro,1,100.0,sin pelo

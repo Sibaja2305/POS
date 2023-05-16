@@ -42,11 +42,14 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Component id="btnAddStorage" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jScrollPane1" alignment="0" pref="807" max="32767" attributes="0"/>
                               <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="btnAddStorage" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="15" max="32767" attributes="0"/>
                   </Group>
@@ -120,7 +123,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnAddStorage">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Agregar productos al inventario"/>
+        <Property name="text" type="java.lang.String" value="Agregar producto"/>
         <Property name="actionCommand" type="java.lang.String" value="btnAddStorage"/>
       </Properties>
       <Events>
