@@ -23,8 +23,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * In the Logic class users, storage, menu were instantiated in a LinkedList and
- * Creates an instance of DefaultTableModel for the table model.
+ * In the Logic class users, storage, inventory were instantiated in a
+ * LinkedList and Creates an instance of DefaultTableModel for the table model.
  *
  * @author Diego Herrera López
  * @author Kevin Sibaja Granados
@@ -36,7 +36,7 @@ public class Logic {
 
     public LinkedList<User> users;
     public LinkedList<Product> storage;
-    public LinkedList<Product> menu;
+    public LinkedList<Product> inventory;
     static DefaultTableModel model;
 
     /**
@@ -45,14 +45,15 @@ public class Logic {
      * storage. Creates an instance of DefaultTableModel for the table model.
      */
     public Logic() {
-        Storage st = new Storage();
-        st.getStorage();
-        menu = new LinkedList<>();
+        // Storage st = new Storage();
+        //st.getStorage();
+        storage=new LinkedList<>();
+        inventory = new LinkedList<>();
         users = new LinkedList<>();
-        storage = st.getStorage();
+        
         model = new DefaultTableModel();
 
-        st.setStorage(storage);
+        
     }
 
     /**
@@ -212,39 +213,6 @@ public class Logic {
     }
 
     /**
-     * This readMenu method which receives a tbMenu parameter. Read menu data
-     * from a text file and display it in a JTable. The file must be in the
-     * format "ID,Name,Price,Category" for each line. The data for each line is
-     * added as rows to the JTable using a DefaultTableModel. If any error
-     * occurs while reading the file, the exception is printed.
-     *
-     * @param tbMenu The JTable in which the menu data will be displayed.
-     */
-    public void readMenu(JTable tbMenu) {
-
-        model.addColumn("ID");
-        model.addColumn("Nombre");
-        model.addColumn("Precio");
-        model.addColumn("Categoria");
-
-        // Assign the DefaultTableModel to the JTable
-        tbMenu.setModel(model);
-
-        readMenuTxt();
-
-        for (Product product : menu) {
-            String[] row = new String[4];
-            row[0] = product.getId();
-            row[1] = product.getProductName();
-            row[2] = Double.toString(product.getPrice());
-            row[3] = product.getCategory();
-            model.addRow(row);
-
-        }
-
-    }
-
-    /**
      * This method evaluateUser which receives three parameters username,
      * password and role. Evaluates a user's login credentials and takes action
      * based on the result. If the credentials are valid, it displays a welcome
@@ -287,6 +255,147 @@ public class Logic {
         }
     }
 
+    public void deleteUser(JTable tbUsers) {
+        DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
+
+        int selectedRow = tbUsers.getSelectedRow();
+        if (selectedRow != -1) {
+            model.removeRow(selectedRow);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ningun usuario fue seleccionado");
+        }
+
+    }
+
+    public void loadUsersTable(JTable tbUsers) {
+        DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
+        users.clear();
+        for (int i = 0; i < model.getRowCount(); i++) {
+            String username = model.getValueAt(i, 0).toString();
+            String password = model.getValueAt(i, 1).toString();
+
+            String role = model.getValueAt(i, 2).toString();
+
+            addUser(username, password, role);
+        }
+    }
+
+    public void loadUserTable(JTable tbUsers) {
+        DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
+        model.setColumnCount(0);
+        model.setRowCount(0);
+        model.addColumn("Usuario");
+        model.addColumn("Contraseña");
+        model.addColumn("Role");
+
+        try (BufferedReader br = new BufferedReader(new FileReader("Usuario.txt"))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] row = line.split(",");
+                model.addRow(row);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //fin de la los metodos del login y registrar usuarios
+    /**
+     * This readMenu method which receives a tbMenu parameter. Read menu data
+     * from a text file and display it in a JTable. The file must be in the
+     * format "ID,Name,Price,Category" for each line. The data for each line is
+     * added as rows to the JTable using a DefaultTableModel. If any error
+     * occurs while reading the file, the exception is printed.
+     *
+     * @param tbMenu The JTable in which the inventory data will be displayed.
+     */
+    public void readMenu(JTable tbMenu) {
+
+        model.addColumn("ID");
+        model.addColumn("Nombre");
+        model.addColumn("Precio");
+        model.addColumn("Categoria");
+
+        // Assign the DefaultTableModel to the JTable
+        tbMenu.setModel(model);
+
+        readMenuTxt();
+
+        for (Product product : inventory) {
+            String[] row = new String[4];
+            row[0] = product.getId();
+            row[1] = product.getProductName();
+            row[2] = Double.toString(product.getPrice());
+            row[3] = product.getCategory();
+            model.addRow(row);
+
+        }
+
+    }
+    //metodos de orden
+
+    public void createTable(JDesktopPane DesktopWaiter) {
+        int x = 10;
+        int y = 10;
+        int i = 0;
+        JIFTable listTable[] = new JIFTable[10];
+        for (int j = 0; j < 10; j++) {
+            JIFTable window = new JIFTable();
+            window.setBounds(x, y, 220, 220);
+            window.setTitle("Mesa: " + (j + 1));
+
+            if (j == 4) {
+                y = y + 250;
+                x = 5;
+            } else {
+                x = x + 240;
+            }
+            listTable[j] = window;
+        }
+        for (JIFTable table : listTable) {
+
+            table.setVisible(true);
+            DesktopWaiter.add(table);
+        }
+
+    }
+
+    /**
+     * This saveOrder method passes 3 parameters where these are saved in a
+     * constructor of the Product class is loaded in the storage list, after
+     * saving in the constructor the saveOrderTxt method is used to save it in
+     * the txt of the assigned table.
+     *
+     * @param productName
+     * @param quantity
+     * @param price
+     * @param comment
+     */
+    public void saveOrder(String productName, int quantity, double price, String comment) {
+        Product product = new Product(productName, quantity, price, comment);
+
+        storage.add(product);
+        saveOrderTxt();
+        System.out.println("se añadio " + productName + " " + quantity + " " + price + " " + comment);
+    }
+
+    public void saveOrderTxt() {
+        int mesa = 1;
+        try {
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter("mesa" + mesa + ".txt"));
+            for (Product product : storage) {
+                writer.write(product.getProductName() + "," + product.getQuantity() + "," + product.getPrice() + "," + product.getComment());
+                writer.newLine();
+            }
+            writer.close();
+            JOptionPane.showMessageDialog(null, "pedido ingresado exitosamente");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "pedido no ingresado a la base de datos" + e);
+        }
+    }
+
     /**
      * The total to pay passes 3 parameters, what this method does is save, add
      * the multiplied price to know the total of the order and each time a data
@@ -307,6 +416,7 @@ public class Logic {
         }
         jlTotal.setText(String.format("%.2f", fullPay));
     }
+    //fin de metodos de orden
 
     /**
      * This readStorage method passes tbStorage as a JTable parameter where it
@@ -366,65 +476,15 @@ public class Logic {
         targetModel.addRow(row);
     }
 
-    /**
-     * This saveOrder method passes 3 parameters where these are saved in a
-     * constructor of the Product class is loaded in the storage list, after
-     * saving in the constructor the saveOrderTxt method is used to save it in
-     * the txt of the assigned table.
-     *
-     * @param productName
-     * @param quantity
-     * @param price
-     * @param comment
-     */
-    public void saveOrder(String productName, int quantity, double price, String comment) {
-        Product product = new Product(productName, quantity, price, comment);
-        storage.add(product);
-        saveOrderTxt();
-        System.out.println("se añadio " + productName + " " + quantity + " " + price + " " + comment);
-    }
-
-    public void saveOrderTxt() {
-        int mesa = 1;
-        try {
-
-            BufferedWriter writer = new BufferedWriter(new FileWriter("mesa" + mesa + ".txt"));
-            for (Product product : storage) {
-                writer.write(product.getProductName() + "," + product.getQuantity() + "," + product.getPrice() + "," + product.getComment());
-                writer.newLine();
-            }
-            writer.close();
-            JOptionPane.showMessageDialog(null, "pedido ingresado exitosamente");
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "pedido no ingresado a la base de datos" + e);
-        }
-    }
-
-    /**
-     * This registerPlate method saves the data in a list passing 3 parameters
-     * and these will be saved in the constructor of the Product class and that
-     * data is loaded in the menu list.
-     *
-     * @param productName
-     * @param quantity
-     * @param price
-     * @param category
-     */
-    public void registerPlate(String productName, int quantity, double price, String category) {
-        Product product = new Product(productName, quantity, price, category);
-        menu.add(product);
-
-    }
-
-    public void registerPlate2(String id, String productName, double price, String category) {
+    public void registerMenu(String id, String productName, double price, String category) {
         Product product = new Product(id, productName, price, category);
-        menu.add(product);
+        inventory.add(product);
 
     }
 
     /**
      * What this readMenuTxt method does is save the data in the method
-     * registerPlate to be able to save them in a list for use, you can Save
+     * registerInventory to be able to save them in a list for use, you can Save
      * each data separated by commas in an array and be able to separate it
      * from the other data.
      */
@@ -436,27 +496,44 @@ public class Logic {
                 String[] data = line.split(",");
                 String id = data[0];
                 String productName = data[1];
-                double price = Double.parseDouble(data[3]);
-                String category = data[4];
-                registerPlate2(id, productName, price, category);
+              double price = Double.parseDouble(data[3]);
+                String category = data[3];
+                registerMenu(id, productName, price, category);
             }
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-     public void readMenuTxt2() {
+
+    /**
+     * This registerInventory method saves the data in a list passing 3
+     * parameters and these will be saved in the constructor of the Product
+     * class and that data is loaded in the inventory list.
+     *
+     * @param productName
+     * @param quantity
+     * @param price
+     * @param category
+     */
+    public void registerInventory(String productName, int quantity, double price, String category) {
+        Product product = new Product(productName, quantity, price, category);
+        inventory.add(product);
+
+    }
+
+    public void readInventoryTxt() {
         try (BufferedReader br = new BufferedReader(new FileReader("Inventario.txt"))) {
             String line;
 
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-                
+
                 String productName = data[1];
-                int quantity =Integer.parseInt(data[2]);
+                int quantity = Integer.parseInt(data[2]);
                 double price = Double.parseDouble(data[3]);
                 String category = data[4];
-                registerPlate(productName, quantity, price, category);
+                registerInventory(productName, quantity, price, category);
             }
             br.close();
         } catch (IOException e) {
@@ -465,39 +542,40 @@ public class Logic {
     }
 
     /**
-     * This method addNewPlate has as parameters 3 attributes that are a String
-     * productName, a double price and a String category, this method is What it
-     * does is enter a condition where it would use the addNewPlateExist method
-     * and pass productName as a parameter, if this attribute is different from
-     * the other attributes that are in the list, it would register the plate in
-     * the registerPlate method and pass the 3 parameters to that method and
-     * then I would save it in the menu.txt with the savePlateToFile method
+     * This method addNewInventory has as parameters 3 attributes that are a
+     * String productName, a double price and a String category, this method is
+     * What it does is enter a condition where it would use the
+     * addNewInventoryExist method and pass productName as a parameter, if this
+     * attribute is different from the other attributes that are in the list, it
+     * would register the plate in the registerInventory method and pass the 3
+     * parameters to that method and then I would save it in the inventory.txt
+     * with the savePlateToFile method
      *
      * @param productName
      * @param price
      * @param category
      */
-    public void addNewPlate(String productName, int quantity, double price, String category) {
-        if (!addNewPlateExist(productName)) {
-            registerPlate(productName, quantity, price, category);
+    public void addNewInventory(String productName, int quantity, double price, String category) {
+        if (!addNewInventoryExist(productName)) {
+            registerInventory(productName, quantity, price, category);
             savePlateToFile(); // save dish to file
-            JOptionPane.showMessageDialog(null, "plato agregado exitosamente");
+            JOptionPane.showMessageDialog(null, "se ha agregado exitosamente");
         } else {
-            JOptionPane.showMessageDialog(null, "El nombre del plato ya existe");
+            JOptionPane.showMessageDialog(null, "El producto ya existe en el inventario");
         }
     }
 
     /**
-     * This method addNewPlateExist is passed as a parameter of a String
-     * productName it will enter the menu list and search the entire list if
-     * there is an equal name in the productName part, if it finds it, it
+     * This method addNewInventoryExist is passed as a parameter of a String
+     * productName it will enter the inventory list and search the entire list
+     * if there is an equal name in the productName part, if it finds it, it
      * returns true and if it does not find it, it returns false
      *
      * @param productName
      * @return
      */
-    public boolean addNewPlateExist(String productName) {
-        for (Product product : menu) {
+    public boolean addNewInventoryExist(String productName) {
+        for (Product product : inventory) {
             if (product.getProductName().equals(productName)) {
                 return true;
             }
@@ -506,16 +584,16 @@ public class Logic {
     }
 
     /**
-     * What this savePlateToFile method does is save the menu list in a txt
-     * called menu.txt where it writes by 4 parameters divided by a comma, and
-     * saves them that way to the txt, it is used in
+     * What this savePlateToFile method does is save the inventory list in a txt
+     * called inventory.txt where it writes by 4 parameters divided by a comma,
+     * and saves them that way to the txt, it is used in
      * bufferedWriter for this method
      */
     public void savePlateToFile() {
         int i = 1;
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("Inventario.txt"));
-            for (Product product : menu) {
+            for (Product product : inventory) {
                 writer.write(i + "," + product.getProductName() + "," + product.getQuantity() + "," + product.getPrice() + "," + product.getCategory());
                 writer.newLine();
                 i++;
@@ -526,76 +604,6 @@ public class Logic {
         } catch (IOException e) {
             System.out.println("Error al guardar los platos en el archivo." + e);
         }
-    }
-
-    public void loadUserTable(JTable tbUsers) {
-       DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
-        model.setColumnCount(0);
-        model.setRowCount(0);
-        model.addColumn("Usuario");
-        model.addColumn("Contraseña");
-        model.addColumn("Role");
-
-        try (BufferedReader br = new BufferedReader(new FileReader("Usuario.txt"))) {
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                String[] row = line.split(",");
-                model.addRow(row);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteUser(JTable tbUsers) {
-         DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
-
-        int selectedRow = tbUsers.getSelectedRow();
-        if (selectedRow != -1) {
-            model.removeRow(selectedRow);
-        } else {
-            JOptionPane.showMessageDialog(null, "Ningun usuario fue seleccionado");
-        }
-
-    }
-   public void loadUsersTable(JTable tbUsers){
-       DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
-       users.clear();
-        for (int i = 0; i < model.getRowCount(); i++) {
-            String username = model.getValueAt(i, 0).toString();
-            String password = model.getValueAt(i, 1).toString();
-            
-            String role = model.getValueAt(i, 2).toString();
-            
-           
-            addUser(username, password, role);
-   }
-   }
-    public void createTable(JDesktopPane DesktopWaiter) {
-        int x = 10;
-        int y = 10;
-        int i = 0;
-        JIFTable listTable[] = new JIFTable[10];
-        for (int j = 0; j < 10; j++) {
-            JIFTable window = new JIFTable();
-            window.setBounds(x, y, 220, 220);
-            window.setTitle("Mesa: " + (j + 1));
-
-            if (j == 4) {
-                y = y + 250;
-                x = 5;
-            } else {
-                x = x + 240;
-            }
-            listTable[j] = window;
-        }
-        for (JIFTable table : listTable) {
-
-            table.setVisible(true);
-            DesktopWaiter.add(table);
-        }
-
     }
 
 }

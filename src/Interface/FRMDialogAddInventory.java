@@ -180,8 +180,8 @@ public class FRMDialogAddInventory extends javax.swing.JDialog {
         double price = Double.parseDouble(txtPrice.getText());
         String category = (String) jcCategory.getSelectedItem();
         System.out.println(category);
-        logic.readMenuTxt2();
-        logic.addNewPlate(productName, quantity, price, category);
+        logic.readInventoryTxt();
+        logic.addNewInventory(productName, quantity, price, category);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     /**

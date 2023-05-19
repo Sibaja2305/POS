@@ -1,6 +1,0 @@
-1,AlosPerro,100.0,Consumible
-2,Sopa,10.0,Consumible
-3,Que cola,50.0,Almacenable
-4,sf,2.0,Almacenable
-5,hola,23.0,Consumible
-6,Chayote asado,20.0,Consumible

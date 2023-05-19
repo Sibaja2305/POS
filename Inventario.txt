@@ -1,6 +1,6 @@
-1,arroz blanco,1,1000.0,null
-2,adad,8,100.0,null
-3,wfeww,6,33.0,null
-4,hkhjuuj,23,21.0,null
-5,vbn,4,98.0,null
-6,ddvbhudhbfvbhdfhb,7,555.0,null
+1,arroz blanco,1,1000.0,almacenable
+2,adad,8,100.5,almacenable
+3,wfeww,6,33.2,almacenable
+4,hkhjuuj,23,21.4,almacenable
+5,vbn,4,98.0,consumible
+6,ddvbhudhbfvbhdfhb,7,555.0,almacenable

@@ -1,1 +1,4 @@
-Que cola,3,50.0,-
+vbn,1,98.0,-
+adad,1,100.5,-
+wfeww,1,33.2,-
+arroz blanco,1,1000.0,-
