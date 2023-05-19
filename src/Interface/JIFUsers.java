@@ -27,6 +27,7 @@ public class JIFUsers extends javax.swing.JInternalFrame {
         initComponents(); // Initialize the components of the graphical interface
         logic.loadUserTable(tbUsers); // Load the user data into a table
         model = new DefaultTableModel(); // empty table model
+        
     }
 
     /**
@@ -150,18 +151,7 @@ public class JIFUsers extends javax.swing.JInternalFrame {
 
     private void btnUpdateTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateTableActionPerformed
 
-        tbUsers.setModel(model);
-        int cantidad = model.getRowCount();
-        System.out.println(cantidad);
-        if (cantidad == 0) {
-            System.out.println("Entro");
-            model.setRowCount(0);
-            logic.loadUserTable(tbUsers);
-        } else {
-            System.out.println("Entro al else");
-            model.setRowCount(0);
-            logic.loadUserTable(tbUsers);
-        }
+        logic.loadUserTable(tbUsers);
 
     }//GEN-LAST:event_btnUpdateTableActionPerformed
     /**
@@ -172,6 +162,8 @@ public class JIFUsers extends javax.swing.JInternalFrame {
      */
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
         logic.deleteUser(tbUsers);
+        logic.loadUsersTable(tbUsers);
+        logic.saveUsersToFile();
     }//GEN-LAST:event_btnDeleteUserActionPerformed
 
 

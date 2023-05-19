@@ -51,7 +51,7 @@ public class Logic {
         users = new LinkedList<>();
         storage = st.getStorage();
         model = new DefaultTableModel();
-        
+
         st.setStorage(storage);
     }
 
@@ -233,7 +233,7 @@ public class Logic {
         readMenuTxt();
 
         for (Product product : menu) {
-            String [] row = new String[4];
+            String[] row = new String[4];
             row[0] = product.getId();
             row[1] = product.getProductName();
             row[2] = Double.toString(product.getPrice());
@@ -415,8 +415,8 @@ public class Logic {
         menu.add(product);
 
     }
-    
-    public void registerPlate2(String id,String productName, double price, String category) {
+
+    public void registerPlate2(String id, String productName, double price, String category) {
         Product product = new Product(id, productName, price, category);
         menu.add(product);
 
@@ -439,6 +439,24 @@ public class Logic {
                 double price = Double.parseDouble(data[3]);
                 String category = data[4];
                 registerPlate2(id, productName, price, category);
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+     public void readMenuTxt2() {
+        try (BufferedReader br = new BufferedReader(new FileReader("Inventario.txt"))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                
+                String productName = data[1];
+                int quantity =Integer.parseInt(data[2]);
+                double price = Double.parseDouble(data[3]);
+                String category = data[4];
+                registerPlate(productName, quantity, price, category);
             }
             br.close();
         } catch (IOException e) {
@@ -511,21 +529,19 @@ public class Logic {
     }
 
     public void loadUserTable(JTable tbUsers) {
+       DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
+        model.setColumnCount(0);
+        model.setRowCount(0);
         model.addColumn("Usuario");
         model.addColumn("Contraseña");
         model.addColumn("Role");
-
-        // Assign the DefaultTableModel to the JTable
-        tbUsers.setModel(model);
 
         try (BufferedReader br = new BufferedReader(new FileReader("Usuario.txt"))) {
             String line;
 
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
-
                 model.addRow(row);
-
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -533,7 +549,8 @@ public class Logic {
     }
 
     public void deleteUser(JTable tbUsers) {
-        tbUsers.setModel(model);
+         DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
+
         int selectedRow = tbUsers.getSelectedRow();
         if (selectedRow != -1) {
             model.removeRow(selectedRow);
@@ -542,7 +559,19 @@ public class Logic {
         }
 
     }
-
+   public void loadUsersTable(JTable tbUsers){
+       DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
+       users.clear();
+        for (int i = 0; i < model.getRowCount(); i++) {
+            String username = model.getValueAt(i, 0).toString();
+            String password = model.getValueAt(i, 1).toString();
+            
+            String role = model.getValueAt(i, 2).toString();
+            
+           
+            addUser(username, password, role);
+   }
+   }
     public void createTable(JDesktopPane DesktopWaiter) {
         int x = 10;
         int y = 10;
