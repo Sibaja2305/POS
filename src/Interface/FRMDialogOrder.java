@@ -21,6 +21,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
     static HashMap<Integer, Integer> addedRow;
     static int quantity = 0;
     static DefaultTableModel tmp;
+    String mesa="";
 
     /**
      * Constructor of the FRMDialogOrder class. Calls the constructor of the
@@ -31,7 +32,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
      * @param parent The main frame (parent window) that displays this dialog.
      * @param modal Specifies whether the dialog is modal or not.
      */
-    public FRMDialogOrder(java.awt.Frame parent, boolean modal) {
+    public FRMDialogOrder(java.awt.Frame parent, boolean modal, String mesa) {
         super(parent, modal);
         logic = new Logic(); // Initialize the Logic instance
 
@@ -39,7 +40,8 @@ public class FRMDialogOrder extends javax.swing.JDialog {
         logic.readMenu(jtMenu); // Read menu from logic and display it in jtMenu table
         addedRow = new HashMap<>(); // Initialize the addedRow map to track the rows added to the order
         tmp = (DefaultTableModel) jtOrder.getModel(); // Get the model from the jtOrder table and assign it to tmp
-
+        this.mesa= mesa;
+        System.out.println("Mesa en dialogo: " +mesa);
     }
 
     /**
@@ -429,7 +431,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FRMDialogOrder dialog = new FRMDialogOrder(new javax.swing.JFrame(), true);
+                FRMDialogOrder dialog = new FRMDialogOrder(new javax.swing.JFrame(), true, "");
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

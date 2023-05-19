@@ -1,6 +1,7 @@
 package clases;
 
 public class Product {
+    private String id;
     private double price;
     private int quantity;
     private String category;
@@ -12,10 +13,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productName, int quantity, String category) {
-        this.productName = productName;
+    public Product(String id, String productName, double price, int quantity, String category) {
+        this.id = id;
+        this.price = price;
         this.quantity = quantity;
         this.category = category;
+        this.productName = productName;
     }
 
     public Product(String productName,int quantity, double price, String comment) {
@@ -25,12 +28,34 @@ public class Product {
         this.comment = comment;
     }
 
-    public Product(String productName,double price, String category ) {
+    public Product(String id, String productName, double price, String category) {
+        this.id = id;
+        this.price = price;
+        this.category = category;
+        this.productName = productName;
+    }
+
+    public Product(String productName, double price, String category) {
         this.price = price;
         this.category = category;
         this.productName = productName;
     }
     
+    
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
     /**
      * @return the price
@@ -104,11 +129,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Storage{" + "price=" + price + ", quantity=" + quantity + ", category=" + category + ", comment=" + comment + ", productName=" + productName + '}';
+        return "Product{" + "id=" + id + ", price=" + price + ", quantity=" + quantity + ", category=" + category + ", comment=" + comment + ", productName=" + productName + '}';
     }
-    
-   
 
- 
-    
 }

@@ -249,7 +249,10 @@ public class FRMAdmin extends javax.swing.JFrame {
      */
     private void btnInventaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventaryActionPerformed
         JIFInventory ventana = new JIFInventory();
+        int x = 30;
+        int y = 30;
         ventana.setVisible(true);
+        ventana.setBounds(x, y, 800, 500);
         desktopAdmin.add(ventana);
     }//GEN-LAST:event_btnInventaryActionPerformed
 

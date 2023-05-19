@@ -95,10 +95,12 @@ public class JIFTable extends javax.swing.JInternalFrame {
      */
     private void btnCreateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateOrderActionPerformed
         // Crear una instancia de la clase FRMDialogOrder, que es un diálogo para crear un pedido
-        FRMDialogOrder dialogPedidos = new FRMDialogOrder(null, true);
+        FRMDialogOrder dialogPedidos = new FRMDialogOrder(null, true,this.getTitle());
 
         // Establecer el diálogo como modal y hacerlo visible
+   
         dialogPedidos.setVisible(true);
+        
     }//GEN-LAST:event_btnCreateOrderActionPerformed
 
 

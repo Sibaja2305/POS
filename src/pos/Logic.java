@@ -45,10 +45,14 @@ public class Logic {
      * storage. Creates an instance of DefaultTableModel for the table model.
      */
     public Logic() {
+        Storage st = new Storage();
+        st.getStorage();
         menu = new LinkedList<>();
         users = new LinkedList<>();
-        storage = new LinkedList<>();
+        storage = st.getStorage();
         model = new DefaultTableModel();
+        
+        st.setStorage(storage);
     }
 
     /**
@@ -226,17 +230,16 @@ public class Logic {
         // Assign the DefaultTableModel to the JTable
         tbMenu.setModel(model);
 
-        try (BufferedReader br = new BufferedReader(new FileReader("Menu.txt"))) {
-            String line;
+        readMenuTxt();
 
-            while ((line = br.readLine()) != null) {
-                String[] row = line.split(",");
+        for (Product product : menu) {
+            String [] row = new String[4];
+            row[0] = product.getId();
+            row[1] = product.getProductName();
+            row[2] = Double.toString(product.getPrice());
+            row[3] = product.getCategory();
+            model.addRow(row);
 
-                model.addRow(row);
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
     }
@@ -310,16 +313,18 @@ public class Logic {
      * is going to load the data that is in Inventory.txt to the
      * inventory table.
      *
-     * @param tbStorage
+     * @param tbInventory
      */
-    public void readStorage(JTable tbStorage) {
+    public void readInventory(JTable tbInventory) {
 
+        model.addColumn("ID");
         model.addColumn("Nombre");
         model.addColumn("Raciones");
+        model.addColumn("Precio");
         model.addColumn("Categoría");
 
         // Assign the DefaultTableModel to the JTable
-        tbStorage.setModel(model);
+        tbInventory.setModel(model);
 
         try (BufferedReader br = new BufferedReader(new FileReader("Inventario.txt"))) {
             String line;
@@ -343,16 +348,16 @@ public class Logic {
      *
      * @param jtSearchResult
      * @param txtSearch
-     * @param jtStorage
+     * @param jtInventory
      */
-    public void searchResult(JTable jtSearchResult, JTextField txtSearch, JTable jtStorage) {
+    public void searchResult(JTable jtSearchResult, JTextField txtSearch, JTable jtInventory) {
         String search = txtSearch.getText();
-        DefaultTableModel originalModel = (DefaultTableModel) jtStorage.getModel();
+        DefaultTableModel originalModel = (DefaultTableModel) jtInventory.getModel();
         DefaultTableModel targetModel = (DefaultTableModel) jtSearchResult.getModel();
         Object[] row = new Object[originalModel.getColumnCount()];
 
         for (int j = 0; j < originalModel.getRowCount(); j++) {
-            if (search.equals(originalModel.getValueAt(j, 0).toString())) {
+            if (search.equals(originalModel.getValueAt(j, 1).toString())) {
                 for (int i = 0; i < originalModel.getColumnCount(); i++) {
                     row[i] = originalModel.getValueAt(j, i);
                 }
@@ -401,11 +406,18 @@ public class Logic {
      * data is loaded in the menu list.
      *
      * @param productName
+     * @param quantity
      * @param price
      * @param category
      */
-    public void registerPlate(String productName, double price, String category) {
-        Product product = new Product(productName, price, category);
+    public void registerPlate(String productName, int quantity, double price, String category) {
+        Product product = new Product(productName, quantity, price, category);
+        menu.add(product);
+
+    }
+    
+    public void registerPlate2(String id,String productName, double price, String category) {
+        Product product = new Product(id, productName, price, category);
         menu.add(product);
 
     }
@@ -417,15 +429,16 @@ public class Logic {
      * from the other data.
      */
     public void readMenuTxt() {
-        try (BufferedReader br = new BufferedReader(new FileReader("Menu.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("Inventario.txt"))) {
             String line;
 
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
+                String id = data[0];
                 String productName = data[1];
-                double price = Double.parseDouble(data[2]);
-                String category = data[3];
-                registerPlate(productName, price, category);
+                double price = Double.parseDouble(data[3]);
+                String category = data[4];
+                registerPlate2(id, productName, price, category);
             }
             br.close();
         } catch (IOException e) {
@@ -446,9 +459,9 @@ public class Logic {
      * @param price
      * @param category
      */
-    public void addNewPlate(String productName, double price, String category) {
+    public void addNewPlate(String productName, int quantity, double price, String category) {
         if (!addNewPlateExist(productName)) {
-            registerPlate(productName, price, category);
+            registerPlate(productName, quantity, price, category);
             savePlateToFile(); // save dish to file
             JOptionPane.showMessageDialog(null, "plato agregado exitosamente");
         } else {
@@ -483,15 +496,15 @@ public class Logic {
     public void savePlateToFile() {
         int i = 1;
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("menu.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("Inventario.txt"));
             for (Product product : menu) {
-                writer.write(i + "," + product.getProductName() + "," + product.getPrice() + "," + product.getCategory());
+                writer.write(i + "," + product.getProductName() + "," + product.getQuantity() + "," + product.getPrice() + "," + product.getCategory());
                 writer.newLine();
                 i++;
             }
 
             writer.close();
-            System.out.println("plato guardados exitosamente en el archivo.");
+            System.out.println("Plato guardados exitosamente en el archivo.");
         } catch (IOException e) {
             System.out.println("Error al guardar los platos en el archivo." + e);
         }

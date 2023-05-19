@@ -1,2 +1,1 @@
-Sopa,1,10.0,-
-AlosPerro,1,100.0,sin pelo
+Que cola,3,50.0,-

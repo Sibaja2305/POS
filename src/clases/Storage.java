@@ -4,10 +4,10 @@ import java.util.LinkedList;
 
 public class Storage {
 
-   private LinkedList<Product> storage;
+   public LinkedList<Product> storage;
 
-    public Storage(LinkedList<Product> storage) {
-        this.storage = storage;
+    public Storage() {
+        
     }
 
    
