@@ -393,9 +393,11 @@ public class FRMDialogOrder extends javax.swing.JDialog {
             }
             
             // Save the order using the logic object and the returned values
-            logic.saveOrder(productName, count, price, comment);
-
+            logic.saveOrder(productName, count, price, comment, mesa.replaceAll("Mesa: ", ""));
+     
         }
+         JOptionPane.showMessageDialog(null, "pedido ingresado exitosamente");
+        dispose();
     }//GEN-LAST:event_btnconfirmOrderActionPerformed
 
     /**

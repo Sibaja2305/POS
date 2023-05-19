@@ -7,3 +7,5 @@
 7,7,Bartender
 8,8,Mesero
 9,9,Chef
+10,10,Mesero
+11,11,Administrador

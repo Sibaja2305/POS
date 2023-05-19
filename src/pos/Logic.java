@@ -47,13 +47,12 @@ public class Logic {
     public Logic() {
         // Storage st = new Storage();
         //st.getStorage();
-        storage=new LinkedList<>();
+        storage = new LinkedList<>();
         inventory = new LinkedList<>();
         users = new LinkedList<>();
-        
+
         model = new DefaultTableModel();
 
-        
     }
 
     /**
@@ -255,7 +254,7 @@ public class Logic {
         }
     }
 
-    public void deleteUser(JTable tbUsers) {
+    public void deleteTableUser(JTable tbUsers) {
         DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
 
         int selectedRow = tbUsers.getSelectedRow();
@@ -280,7 +279,7 @@ public class Logic {
         }
     }
 
-    public void loadUserTable(JTable tbUsers) {
+    public void loadUserTxt(JTable tbUsers) {
         DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
         model.setColumnCount(0);
         model.setRowCount(0);
@@ -320,7 +319,7 @@ public class Logic {
         // Assign the DefaultTableModel to the JTable
         tbMenu.setModel(model);
 
-        readMenuTxt();
+        readInventoryTxt();
 
         for (Product product : inventory) {
             String[] row = new String[4];
@@ -372,16 +371,16 @@ public class Logic {
      * @param price
      * @param comment
      */
-    public void saveOrder(String productName, int quantity, double price, String comment) {
+    public void saveOrder(String productName, int quantity, double price, String comment, String mesa) {
         Product product = new Product(productName, quantity, price, comment);
 
         storage.add(product);
-        saveOrderTxt();
+        saveOrderTxt(mesa);
         System.out.println("se añadio " + productName + " " + quantity + " " + price + " " + comment);
     }
 
-    public void saveOrderTxt() {
-        int mesa = 1;
+    public void saveOrderTxt(String mesa) {
+   
         try {
 
             BufferedWriter writer = new BufferedWriter(new FileWriter("mesa" + mesa + ".txt"));
@@ -390,7 +389,7 @@ public class Logic {
                 writer.newLine();
             }
             writer.close();
-            JOptionPane.showMessageDialog(null, "pedido ingresado exitosamente");
+           
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "pedido no ingresado a la base de datos" + e);
         }
@@ -426,7 +425,9 @@ public class Logic {
      * @param tbInventory
      */
     public void readInventory(JTable tbInventory) {
-
+     //  DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
+        model.setColumnCount(0);
+        model.setRowCount(0);
         model.addColumn("ID");
         model.addColumn("Nombre");
         model.addColumn("Raciones");
@@ -476,35 +477,6 @@ public class Logic {
         targetModel.addRow(row);
     }
 
-    public void registerMenu(String id, String productName, double price, String category) {
-        Product product = new Product(id, productName, price, category);
-        inventory.add(product);
-
-    }
-
-    /**
-     * What this readMenuTxt method does is save the data in the method
-     * registerInventory to be able to save them in a list for use, you can Save
-     * each data separated by commas in an array and be able to separate it
-     * from the other data.
-     */
-    public void readMenuTxt() {
-        try (BufferedReader br = new BufferedReader(new FileReader("Inventario.txt"))) {
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
-                String id = data[0];
-                String productName = data[1];
-              double price = Double.parseDouble(data[3]);
-                String category = data[3];
-                registerMenu(id, productName, price, category);
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * This registerInventory method saves the data in a list passing 3
@@ -517,11 +489,24 @@ public class Logic {
      * @param category
      */
     public void registerInventory(String productName, int quantity, double price, String category) {
-        Product product = new Product(productName, quantity, price, category);
+        int x = 1;
+        for (int i = 0; i < inventory.size(); i++) {
+            x++;
+        }
+ 
+        String id = String.valueOf(x);
+        Product product = new Product(id, productName, quantity, price, category);
+        System.out.println(product.toString());
         inventory.add(product);
 
     }
 
+    /**
+     * What this readinventoryTxt method does is save the data in the method
+     * registerInventory to be able to save them in a list for use, you can Save
+     * each data separated by commas in an array and be able to separate it
+     * from the other data.
+     */
     public void readInventoryTxt() {
         try (BufferedReader br = new BufferedReader(new FileReader("Inventario.txt"))) {
             String line;
@@ -590,13 +575,13 @@ public class Logic {
      * bufferedWriter for this method
      */
     public void savePlateToFile() {
-        int i = 1;
+        //  int i = 1;
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("Inventario.txt"));
             for (Product product : inventory) {
-                writer.write(i + "," + product.getProductName() + "," + product.getQuantity() + "," + product.getPrice() + "," + product.getCategory());
+                writer.write(product.getId() + "," + product.getProductName() + "," + product.getQuantity() + "," + product.getPrice() + "," + product.getCategory());
                 writer.newLine();
-                i++;
+                //         i++;
             }
 
             writer.close();
@@ -605,5 +590,30 @@ public class Logic {
             System.out.println("Error al guardar los platos en el archivo." + e);
         }
     }
+     public void deleteTableInventory(JTable jtInventory) {
+        DefaultTableModel model = (DefaultTableModel) jtInventory.getModel();
+
+        int selectedRow = jtInventory.getSelectedRow();
+        if (selectedRow != -1) {
+            model.removeRow(selectedRow);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ningun producto fue seleccionado");
+        }
+
+    }
+     public void loadInventoryTable(JTable jtInventory) {
+        DefaultTableModel model = (DefaultTableModel) jtInventory.getModel();
+        inventory.clear();
+        for (int i = 0; i < model.getRowCount(); i++) {
+
+            String id = model.getValueAt(i, 0).toString();
+            String productName = model.getValueAt(i, 1).toString();
+            int quantity = Integer.parseInt(model.getValueAt(i, 2).toString());
+            double price = Double.parseDouble(model.getValueAt(i, 3).toString());
+            String category = model.getValueAt(i, 4).toString();
+             registerInventory(productName, quantity, price, category);
+        }
+    }
+  
 
 }

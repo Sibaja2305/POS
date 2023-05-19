@@ -44,6 +44,7 @@ public class FRMDialogRegisterUser extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jcRegisterRole = new javax.swing.JComboBox<>();
         btnRegisterNewUser = new javax.swing.JButton();
+        btnCancelRegisterUser = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -77,6 +78,13 @@ public class FRMDialogRegisterUser extends javax.swing.JDialog {
             }
         });
 
+        btnCancelRegisterUser.setText("Cancelar");
+        btnCancelRegisterUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelRegisterUserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -98,10 +106,11 @@ public class FRMDialogRegisterUser extends javax.swing.JDialog {
                         .addGap(51, 51, 51)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(jcRegisterRole, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(271, 271, 271)
-                        .addComponent(btnRegisterNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnRegisterNewUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcRegisterRole, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addComponent(btnCancelRegisterUser, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(289, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -120,7 +129,9 @@ public class FRMDialogRegisterUser extends javax.swing.JDialog {
                     .addComponent(jLabel3)
                     .addComponent(jcRegisterRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
-                .addComponent(btnRegisterNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegisterNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelRegisterUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(130, Short.MAX_VALUE))
         );
 
@@ -169,7 +180,7 @@ public class FRMDialogRegisterUser extends javax.swing.JDialog {
         System.out.println("-------------------------");
         // Call the logic.addNewUser() method to add a new user with the input data
         logic.addNewUser(username, password, role);
-
+      dispose();
     }//GEN-LAST:event_btnRegisterNewUserActionPerformed
     /**
      * Handles the mouse click event on the password text field. Handles the
@@ -220,6 +231,10 @@ public class FRMDialogRegisterUser extends javax.swing.JDialog {
 
     }//GEN-LAST:event_txtRegisterPassMousePressed
 
+    private void btnCancelRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelRegisterUserActionPerformed
+      dispose();
+    }//GEN-LAST:event_btnCancelRegisterUserActionPerformed
+
     /**
      * Java application entry point.
      *
@@ -265,6 +280,7 @@ public class FRMDialogRegisterUser extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelRegisterUser;
     private javax.swing.JButton btnRegisterNewUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

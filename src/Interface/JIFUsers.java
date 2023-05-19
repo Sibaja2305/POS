@@ -25,7 +25,7 @@ public class JIFUsers extends javax.swing.JInternalFrame {
     public JIFUsers() {
         logic = new Logic(); // Instance of the Logic class for user business logic
         initComponents(); // Initialize the components of the graphical interface
-        logic.loadUserTable(tbUsers); // Load the user data into a table
+        logic.loadUserTxt(tbUsers); // Load the user data into a table
         model = new DefaultTableModel(); // empty table model
         
     }
@@ -151,7 +151,7 @@ public class JIFUsers extends javax.swing.JInternalFrame {
 
     private void btnUpdateTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateTableActionPerformed
 
-        logic.loadUserTable(tbUsers);
+        logic.loadUserTxt(tbUsers);
 
     }//GEN-LAST:event_btnUpdateTableActionPerformed
     /**
@@ -161,7 +161,7 @@ public class JIFUsers extends javax.swing.JInternalFrame {
      * @param evt The action event that fires the method.
      */
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
-        logic.deleteUser(tbUsers);
+        logic.deleteTableUser(tbUsers);
         logic.loadUsersTable(tbUsers);
         logic.saveUsersToFile();
     }//GEN-LAST:event_btnDeleteUserActionPerformed

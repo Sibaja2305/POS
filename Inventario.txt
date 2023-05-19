@@ -1,6 +1,9 @@
-1,arroz blanco,1,1000.0,almacenable
-2,adad,8,100.5,almacenable
-3,wfeww,6,33.2,almacenable
-4,hkhjuuj,23,21.4,almacenable
-5,vbn,4,98.0,consumible
-6,ddvbhudhbfvbhdfhb,7,555.0,almacenable
+1,wfeww,20,33.2,Comida
+2,hkhjuuj,23,21.4,Bebida
+3,e,2,4.0,Bebida
+4,i,6,5.0,Comida
+5,e,2,4.0,Bebida
+6,frijoles,57,34.0,Bebida
+7,hamburqueza,78,98.0,Comida
+8,arroz,4,7.0,Comida
+9,cola coca,5,9.0,Bebida

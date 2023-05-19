@@ -106,8 +106,18 @@ public class JIFInventory extends javax.swing.JInternalFrame {
         });
 
         btnDeleteInventory.setText("Eliminar");
+        btnDeleteInventory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteInventoryActionPerformed(evt);
+            }
+        });
 
         btnUpdateInventory.setText("Actualizar");
+        btnUpdateInventory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateInventoryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -223,6 +233,16 @@ public class JIFInventory extends javax.swing.JInternalFrame {
         // Remove the first row of the model from the table
         targetModel.removeRow(0);
     }//GEN-LAST:event_btnDeleteSearchActionPerformed
+
+    private void btnUpdateInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateInventoryActionPerformed
+       logic.readInventory(jtInventory);
+    }//GEN-LAST:event_btnUpdateInventoryActionPerformed
+
+    private void btnDeleteInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteInventoryActionPerformed
+        logic.deleteTableInventory(jtInventory);
+        logic.loadInventoryTable(jtInventory);
+        logic.savePlateToFile();
+    }//GEN-LAST:event_btnDeleteInventoryActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
