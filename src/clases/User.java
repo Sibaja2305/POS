@@ -4,10 +4,17 @@ public class User extends Person {
     private String userType;
     private String idUser;
     private String passwordUser;
+private static User instance;
 
-    public User() {
+    private User() {
     }
 
+      public static User getInstance() {
+        if (instance == null) {
+            instance = new User();
+        }
+        return instance;
+      }
     public User(String idUser, String passwordUser, String userType) {
         this.userType = userType;
         this.idUser = idUser;

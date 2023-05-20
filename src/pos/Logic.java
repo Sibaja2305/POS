@@ -38,6 +38,7 @@ public class Logic {
     public LinkedList<Product> storage;
     public LinkedList<Product> inventory;
     static DefaultTableModel model;
+    static User user;
 
     /**
      * Logic class. Initializes the data structures and models necessary for the
@@ -50,7 +51,7 @@ public class Logic {
         storage = new LinkedList<>();
         inventory = new LinkedList<>();
         users = new LinkedList<>();
-
+        user=User.getInstance();
         model = new DefaultTableModel();
 
     }
