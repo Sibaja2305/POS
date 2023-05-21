@@ -25,7 +25,7 @@ public class JIFUsers extends javax.swing.JInternalFrame {
     public JIFUsers() {
         logic = new Logic(); // Instance of the Logic class for user business logic
         initComponents(); // Initialize the components of the graphical interface
-        logic.loadUserTxt(tbUsers); // Load the user data into a table
+        logic.loadUserTxt(jtUsers); // Load the user data into a table
         model = new DefaultTableModel(); // empty table model
         
     }
@@ -41,7 +41,7 @@ public class JIFUsers extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         JScrollPane = new javax.swing.JScrollPane();
-        tbUsers = new javax.swing.JTable();
+        jtUsers = new javax.swing.JTable();
         btnRegisterUser = new javax.swing.JButton();
         btnDeleteUser = new javax.swing.JButton();
         btnUpdateTable = new javax.swing.JButton();
@@ -52,7 +52,7 @@ public class JIFUsers extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Módulo de Usuario");
 
-        tbUsers.setModel(new javax.swing.table.DefaultTableModel(
+        jtUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -60,7 +60,7 @@ public class JIFUsers extends javax.swing.JInternalFrame {
                 "Usuario", "Contraseña", "Role"
             }
         ));
-        JScrollPane.setViewportView(tbUsers);
+        JScrollPane.setViewportView(jtUsers);
 
         btnRegisterUser.setText("Registrar Usuario");
         btnRegisterUser.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +151,7 @@ public class JIFUsers extends javax.swing.JInternalFrame {
 
     private void btnUpdateTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateTableActionPerformed
 
-        logic.loadUserTxt(tbUsers);
+        logic.loadUserTxt(jtUsers);
 
     }//GEN-LAST:event_btnUpdateTableActionPerformed
     /**
@@ -161,8 +161,8 @@ public class JIFUsers extends javax.swing.JInternalFrame {
      * @param evt The action event that fires the method.
      */
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
-        logic.deleteTableUser(tbUsers);
-        logic.loadUsersTable(tbUsers);
+        logic.deleteTableUser(jtUsers);
+        logic.loadUsersTable(jtUsers);
         logic.saveUsersToFile();
     }//GEN-LAST:event_btnDeleteUserActionPerformed
 
@@ -176,6 +176,6 @@ public class JIFUsers extends javax.swing.JInternalFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTable tbUsers;
+    private javax.swing.JTable jtUsers;
     // End of variables declaration//GEN-END:variables
 }

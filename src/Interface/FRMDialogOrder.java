@@ -1,10 +1,15 @@
 package Interface;
 
+
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pos.Logic;
+
 
 /**
  * Dialogue to place an order. And Create new instances of the FRMDialogOrder
@@ -24,6 +29,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
     static DefaultTableModel tmp;
     String mesa = "";
     static JLabel labelStatus;
+    static boolean orderStatus;
     /**
      * Constructor of the FRMDialogOrder class. Calls the constructor of the
      * parent class (JDialog) passing the main frame and the mode flag. Call the
@@ -33,15 +39,16 @@ public class FRMDialogOrder extends javax.swing.JDialog {
      * @param parent The main frame (parent window) that displays this dialog.
      * @param modal Specifies whether the dialog is modal or not.
      */
-    public FRMDialogOrder(java.awt.Frame parent, boolean modal, String mesa,JLabel status) {
+    public FRMDialogOrder(java.awt.Frame parent, boolean modal, String mesa,JLabel status, boolean orderStatus)  {
         super(parent, modal);
         logic = new Logic(); // Initialize the Logic instance
-
+        
         initComponents();
         logic.readMenu(jtMenu); // Read menu from logic and display it in jtMenu table
         addedRow = new HashMap<>(); // Initialize the addedRow map to track the rows added to the order
         tmp = (DefaultTableModel) jtOrder.getModel(); // Get the model from the jtOrder table and assign it to tmp
         this.mesa = mesa;
+        this.orderStatus=orderStatus;
         this.labelStatus = status;
         System.out.println("Mesa en dialogo: " + mesa);
     }
@@ -405,6 +412,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
             logic.setStatusOcupado(Integer.parseInt(mesa.replaceAll("Mesa: ", ""))-1);
             labelStatus.setText("Estado: "+logic.listStatus.get(Integer.parseInt(mesa.replaceAll("Mesa: ", ""))-1));
             logic.saveStatusTxt();
+            orderStatus=true;
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Sin pedidos agregados");
@@ -445,14 +453,16 @@ public class FRMDialogOrder extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FRMDialogOrder dialog = new FRMDialogOrder(new javax.swing.JFrame(), true, "",null);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+               
+                    FRMDialogOrder dialog = new FRMDialogOrder(new javax.swing.JFrame(), true, "",null,false);
+                    dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosing(java.awt.event.WindowEvent e) {
+                            System.exit(0);
+                        }
+                    });
+                    dialog.setVisible(true);
+                
             }
         });
     }

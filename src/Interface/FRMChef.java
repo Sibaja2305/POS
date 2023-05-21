@@ -32,7 +32,7 @@ public class FRMChef extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbmenuFood = new javax.swing.JTable();
+        jtmenuFood = new javax.swing.JTable();
         btnorderDone = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -42,7 +42,7 @@ public class FRMChef extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tbmenuFood.setModel(new javax.swing.table.DefaultTableModel(
+        jtmenuFood.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,7 +53,7 @@ public class FRMChef extends javax.swing.JFrame {
                 "ID", "Nombre", "Cantidad", "Precio"
             }
         ));
-        jScrollPane1.setViewportView(tbmenuFood);
+        jScrollPane1.setViewportView(jtmenuFood);
 
         btnorderDone.setText("Listo");
 
@@ -186,6 +186,6 @@ public class FRMChef extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbmenuFood;
+    private javax.swing.JTable jtmenuFood;
     // End of variables declaration//GEN-END:variables
 }
