@@ -1,6 +1,9 @@
 package Interface;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pos.Logic;
 
@@ -323,10 +326,18 @@ public class FRMLogin extends javax.swing.JFrame {
         String password = new String(txtPass.getPassword());
         // Get the selected role from the JComboBox jcRole
         String role = (String) jcRole.getSelectedItem();
-        // Call the logic to evaluate the user with the provided data
-        logic.evaluateUser(username, password, role);
+        try {
+            // Call the logic to evaluate the user with the provided data
+            if (logic.login(username, password, role)) {
+                 logic.evaluateUser(username, password, role);
+                 dispose();
+            }
+           
+        } catch (IOException ex) {
+            Logger.getLogger(FRMLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // Close the current window (dispose() is a method of the JFrame class)
-        dispose();
+        
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed

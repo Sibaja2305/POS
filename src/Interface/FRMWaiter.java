@@ -1,6 +1,9 @@
 package Interface;
 
+import java.io.IOException;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pos.Logic;
 
 /**
@@ -15,17 +18,18 @@ import pos.Logic;
 public class FRMWaiter extends javax.swing.JFrame {
 
     private Logic logic;
-
+    
 
     /**
      * The FRMWaiter instantiates the Logic class, initializes the GUI
      * components, and calls the createTable() method to load the data into the
      * table as soon as you enter
      */
-    public FRMWaiter() {
+    public FRMWaiter() throws IOException {
         logic = new Logic();
         initComponents();
         logic.createTable(DesktopWaiter);
+        
     }
 
     /**
@@ -207,7 +211,11 @@ public class FRMWaiter extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FRMWaiter().setVisible(true);
+                try {
+                    new FRMWaiter().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(FRMWaiter.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

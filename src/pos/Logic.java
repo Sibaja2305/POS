@@ -33,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Jonathan Alfaro Herrera
  */
 public class Logic {
-
+    public LinkedList<String> listStatus = new LinkedList<>();
     public LinkedList<User> users;
     public LinkedList<Product> storage;
     public LinkedList<Product> inventory;
@@ -51,7 +51,7 @@ public class Logic {
         storage = new LinkedList<>();
         inventory = new LinkedList<>();
         users = new LinkedList<>();
-        user=User.getInstance();
+        user = User.getInstance();
         model = new DefaultTableModel();
 
     }
@@ -97,8 +97,9 @@ public class Logic {
             if (user.getIdUser().equals(username) && user.getPasswordUser().equals(password) && user.getUserType().equals(role)) {
                 return true;
             }
-
+       
         }
+         JOptionPane.showMessageDialog(null, "Nombre de usuario, contraseña o rol incorrectos");
         return false;
 
     }
@@ -224,8 +225,8 @@ public class Logic {
      * @param role the role of the user (Administrator, Chef, Waiter and
      * Bartender)
      */
-    public void evaluateUser(String username, String password, String role) {
-        if (login(username, password, role)) {
+    public void evaluateUser(String username, String password, String role) throws IOException {
+  //      if (login(username, password, role)) {
             JOptionPane.showMessageDialog(null, "¡Bienvenido " + username + "!");
             if (role.equals("Administrador")) {
                 // Open the admin interface
@@ -246,13 +247,13 @@ public class Logic {
                 // Open the server interface
                 FRMWaiter meseroFrame = new FRMWaiter();
                 meseroFrame.setVisible(true);
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "Nombre de usuario, contraseña o rol incorrectos");
+             
             }
+     
 
-        }
+      //  }else{
+  //          JOptionPane.showMessageDialog(null, "Nombre de usuario, contraseña o rol incorrectos");
+   //     }
     }
 
     public void deleteTableUser(JTable tbUsers) {
@@ -335,7 +336,7 @@ public class Logic {
     }
     //metodos de orden
 
-    public void createTable(JDesktopPane DesktopWaiter) {
+    public void createTable(JDesktopPane DesktopWaiter) throws IOException {
         int x = 10;
         int y = 10;
         int i = 0;
@@ -352,13 +353,82 @@ public class Logic {
                 x = x + 240;
             }
             listTable[j] = window;
+
         }
+
         for (JIFTable table : listTable) {
 
             table.setVisible(true);
             DesktopWaiter.add(table);
         }
 
+    }
+    public void setStatusOcupado(int index){
+        System.out.println(index);
+    listStatus.set(index, "Ocupado");
+        System.out.println(index);
+}
+    public void saveStatusTxt(){
+         try {
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter("Estados.txt"));
+            for (String status : listStatus) {
+                writer.write(status);
+                writer.newLine();
+            }
+            writer.close();
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "estado no ingresado a la base de datos" + e);
+        }
+    }
+
+    public void readStatus() {
+        try (BufferedReader br = new BufferedReader(new FileReader("Estados.txt"))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                for (int i = 0; i < data.length; i++) {
+
+                    listStatus.add(data[i]);
+                }
+
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int readIndexStatus() {
+        int index = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader("indexMesa.txt"))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                index = Integer.parseInt(line);
+
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return index;
+
+    }
+
+    public void writeIndexStatus(int index) throws IOException {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("indexMesa.txt"));
+            String x = String.valueOf(index);
+            writer.write(x);
+           
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("Error al guardar index." + e);
+        }
     }
 
     /**
@@ -381,7 +451,7 @@ public class Logic {
     }
 
     public void saveOrderTxt(String mesa) {
-   
+
         try {
 
             BufferedWriter writer = new BufferedWriter(new FileWriter("mesa" + mesa + ".txt"));
@@ -390,7 +460,7 @@ public class Logic {
                 writer.newLine();
             }
             writer.close();
-           
+
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "pedido no ingresado a la base de datos" + e);
         }
@@ -426,7 +496,7 @@ public class Logic {
      * @param tbInventory
      */
     public void readInventory(JTable tbInventory) {
-     //  DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
+        //  DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
         model.setColumnCount(0);
         model.setRowCount(0);
         model.addColumn("ID");
@@ -478,7 +548,6 @@ public class Logic {
         targetModel.addRow(row);
     }
 
-
     /**
      * This registerInventory method saves the data in a list passing 3
      * parameters and these will be saved in the constructor of the Product
@@ -494,7 +563,7 @@ public class Logic {
         for (int i = 0; i < inventory.size(); i++) {
             x++;
         }
- 
+
         String id = String.valueOf(x);
         Product product = new Product(id, productName, quantity, price, category);
         System.out.println(product.toString());
@@ -591,7 +660,8 @@ public class Logic {
             System.out.println("Error al guardar los platos en el archivo." + e);
         }
     }
-     public void deleteTableInventory(JTable jtInventory) {
+
+    public void deleteTableInventory(JTable jtInventory) {
         DefaultTableModel model = (DefaultTableModel) jtInventory.getModel();
 
         int selectedRow = jtInventory.getSelectedRow();
@@ -602,7 +672,8 @@ public class Logic {
         }
 
     }
-     public void loadInventoryTable(JTable jtInventory) {
+
+    public void loadInventoryTable(JTable jtInventory) {
         DefaultTableModel model = (DefaultTableModel) jtInventory.getModel();
         inventory.clear();
         for (int i = 0; i < model.getRowCount(); i++) {
@@ -612,9 +683,8 @@ public class Logic {
             int quantity = Integer.parseInt(model.getValueAt(i, 2).toString());
             double price = Double.parseDouble(model.getValueAt(i, 3).toString());
             String category = model.getValueAt(i, 4).toString();
-             registerInventory(productName, quantity, price, category);
+            registerInventory(productName, quantity, price, category);
         }
     }
-  
 
 }

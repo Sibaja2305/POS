@@ -1,5 +1,9 @@
 package Interface;
 
+import java.io.IOException;
+import java.util.LinkedList;
+import pos.Logic;
+
 /**
  *
  * @author Diego Herrera López
@@ -12,13 +16,29 @@ public class JIFTable extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form JIFTable
-     * 
+     *
      */
-    public JIFTable() {
-        initComponents();
-        lblStatus.setText(lblStatus.getText() + " " + "Disponible");
-        btnCreateOrder.setContentAreaFilled(false);
+    static int index;
+    Logic logic;
+    
+
+    public JIFTable() throws IOException {
         
+        logic = new Logic();
+        initComponents();
+        logic.readStatus();
+
+        index = logic.readIndexStatus();
+
+        lblStatus.setText(lblStatus.getText() + " " + logic.listStatus.get(index));
+        index = index + 1;
+        if (index > 9) {
+            index = 0;
+        }
+
+        logic.writeIndexStatus(index);
+
+        btnCreateOrder.setContentAreaFilled(false);
 
     }
 
@@ -95,12 +115,11 @@ public class JIFTable extends javax.swing.JInternalFrame {
      */
     private void btnCreateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateOrderActionPerformed
         // Crear una instancia de la clase FRMDialogOrder, que es un diálogo para crear un pedido
-        FRMDialogOrder dialogPedidos = new FRMDialogOrder(null, true,this.getTitle());
+        FRMDialogOrder dialogPedidos = new FRMDialogOrder(null, true, this.getTitle(), this.lblStatus);
 
         // Establecer el diálogo como modal y hacerlo visible
-   
         dialogPedidos.setVisible(true);
-        
+
     }//GEN-LAST:event_btnCreateOrderActionPerformed
 
 
