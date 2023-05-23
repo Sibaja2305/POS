@@ -27,7 +27,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
     static HashMap<Integer, Integer> addedRow;
     static int quantity = 0;
     static DefaultTableModel tmp;
-    String mesa = "";
+    String table = "";
     static JLabel labelStatus;
     static boolean orderStatus;
     /**
@@ -39,7 +39,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
      * @param parent The main frame (parent window) that displays this dialog.
      * @param modal Specifies whether the dialog is modal or not.
      */
-    public FRMDialogOrder(java.awt.Frame parent, boolean modal, String mesa,JLabel status, boolean orderStatus)  {
+    public FRMDialogOrder(java.awt.Frame parent, boolean modal, String table,JLabel status, boolean orderStatus)  {
         super(parent, modal);
         logic = new Logic(); // Initialize the Logic instance
         
@@ -47,10 +47,10 @@ public class FRMDialogOrder extends javax.swing.JDialog {
         logic.readMenu(jtMenu); // Read menu from logic and display it in jtMenu table
         addedRow = new HashMap<>(); // Initialize the addedRow map to track the rows added to the order
         tmp = (DefaultTableModel) jtOrder.getModel(); // Get the model from the jtOrder table and assign it to tmp
-        this.mesa = mesa;
+        this.table = table;
         this.orderStatus=orderStatus;
         this.labelStatus = status;
-        System.out.println("Mesa en dialogo: " + mesa);
+        System.out.println("Mesa en dialogo: " + table);
     }
 
     /**
@@ -403,14 +403,14 @@ public class FRMDialogOrder extends javax.swing.JDialog {
                 }
 
                 // Save the order using the logic object and the returned values
-                logic.saveOrder(productName, count, price, comment, mesa.replaceAll("Mesa: ", ""));
+                logic.saveOrder(productName, count, price, comment, table.replaceAll("Mesa: ", ""));
 
             }
             JOptionPane.showMessageDialog(null, "pedido ingresado exitosamente");
             
             logic.readStatus();
-            logic.setStatusOcupado(Integer.parseInt(mesa.replaceAll("Mesa: ", ""))-1);
-            labelStatus.setText("Estado: "+logic.listStatus.get(Integer.parseInt(mesa.replaceAll("Mesa: ", ""))-1));
+            logic.setStatusOcupado(Integer.parseInt(table.replaceAll("Mesa: ", ""))-1);
+            labelStatus.setText("Estado: "+logic.listStatus.get(Integer.parseInt(table.replaceAll("Mesa: ", ""))-1));
             logic.saveStatusTxt();
             orderStatus=true;
             dispose();

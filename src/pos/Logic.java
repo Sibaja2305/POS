@@ -33,10 +33,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Jonathan Alfaro Herrera
  */
 public class Logic {
+
     public LinkedList<String> listStatus = new LinkedList<>();
     public LinkedList<User> users;
     public LinkedList<Product> storage;
     public LinkedList<Product> inventory;
+    public LinkedList<Product> tableOrder;
     static DefaultTableModel model;
     static User user;
 
@@ -51,6 +53,7 @@ public class Logic {
         storage = new LinkedList<>();
         inventory = new LinkedList<>();
         users = new LinkedList<>();
+        tableOrder = new LinkedList<>();
         user = User.getInstance();
         model = new DefaultTableModel();
 
@@ -97,9 +100,9 @@ public class Logic {
             if (user.getIdUser().equals(username) && user.getPasswordUser().equals(password) && user.getUserType().equals(role)) {
                 return true;
             }
-       
+
         }
-         JOptionPane.showMessageDialog(null, "Nombre de usuario, contraseña o rol incorrectos");
+        JOptionPane.showMessageDialog(null, "Nombre de usuario, contraseña o rol incorrectos");
         return false;
 
     }
@@ -226,34 +229,33 @@ public class Logic {
      * Bartender)
      */
     public void evaluateUser(String username, String password, String role) throws IOException {
-  //      if (login(username, password, role)) {
-            JOptionPane.showMessageDialog(null, "¡Bienvenido " + username + "!");
-            if (role.equals("Administrador")) {
-                // Open the admin interface
-                FRMAdmin adminFrame = new FRMAdmin();
-                adminFrame.setVisible(true);
+        //      if (login(username, password, role)) {
+        JOptionPane.showMessageDialog(null, "¡Bienvenido " + username + "!");
+        if (role.equals("Administrador")) {
+            // Open the admin interface
+            FRMAdmin adminFrame = new FRMAdmin();
+            adminFrame.setVisible(true);
 
-            } else if (role.equals("Bartender")) {
-                // Open the bartender interface
-                FRMBartender bartenderFrame = new FRMBartender();
-                bartenderFrame.setVisible(true);
+        } else if (role.equals("Bartender")) {
+            // Open the bartender interface
+            FRMBartender bartenderFrame = new FRMBartender();
+            bartenderFrame.setVisible(true);
 
-            } else if (role.equals("Chef")) {
-                // Open the chef interface
-                FRMChef chefFrame = new FRMChef();
-                chefFrame.setVisible(true);
+        } else if (role.equals("Chef")) {
+            // Open the chef interface
+            FRMChef chefFrame = new FRMChef();
+            chefFrame.setVisible(true);
 
-            } else if (role.equals("Mesero")) {
-                // Open the server interface
-                FRMWaiter meseroFrame = new FRMWaiter();
-                meseroFrame.setVisible(true);
-             
-            }
-     
+        } else if (role.equals("Mesero")) {
+            // Open the server interface
+            FRMWaiter meseroFrame = new FRMWaiter();
+            meseroFrame.setVisible(true);
 
-      //  }else{
-  //          JOptionPane.showMessageDialog(null, "Nombre de usuario, contraseña o rol incorrectos");
-   //     }
+        }
+
+        //  }else{
+        //          JOptionPane.showMessageDialog(null, "Nombre de usuario, contraseña o rol incorrectos");
+        //     }
     }
 
     public void deleteTableUser(JTable tbUsers) {
@@ -363,13 +365,15 @@ public class Logic {
         }
 
     }
-    public void setStatusOcupado(int index){
+
+    public void setStatusOcupado(int index) {
         System.out.println(index);
-    listStatus.set(index, "Ocupado");
+        listStatus.set(index, "Ocupado");
         System.out.println(index);
-}
-    public void saveStatusTxt(){
-         try {
+    }
+
+    public void saveStatusTxt() {
+        try {
 
             BufferedWriter writer = new BufferedWriter(new FileWriter("Estados.txt"));
             for (String status : listStatus) {
@@ -423,7 +427,7 @@ public class Logic {
             BufferedWriter writer = new BufferedWriter(new FileWriter("indexMesa.txt"));
             String x = String.valueOf(index);
             writer.write(x);
-           
+
             writer.close();
 
         } catch (IOException e) {
@@ -496,7 +500,7 @@ public class Logic {
      * @param tbInventory
      */
     public void readInventory(JTable tbInventory) {
-        //  DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
+        
         model.setColumnCount(0);
         model.setRowCount(0);
         model.addColumn("ID");
@@ -589,6 +593,7 @@ public class Logic {
                 double price = Double.parseDouble(data[3]);
                 String category = data[4];
                 registerInventory(productName, quantity, price, category);
+
             }
             br.close();
         } catch (IOException e) {
@@ -684,6 +689,55 @@ public class Logic {
             double price = Double.parseDouble(model.getValueAt(i, 3).toString());
             String category = model.getValueAt(i, 4).toString();
             registerInventory(productName, quantity, price, category);
+        }
+    }
+
+    public void readTable(String mesa) {
+        try (BufferedReader br = new BufferedReader(new FileReader("mesa" + mesa + ".txt"))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+
+                if (data.length > 1) {
+                    String productName = data[0];
+                    int quantity = Integer.parseInt(data[1]);
+                    double price = Double.parseDouble(data[2]);
+                    String comment = data[3];
+                    Product product = new Product(productName, quantity, price, comment);
+                    tableOrder.add(product);
+                }
+
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void viewTableOrder(JTable jtViewOrder) {
+        
+        model.setColumnCount(0);
+        model.setRowCount(0);
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio");
+        model.addColumn("Comentario");
+        
+
+        // Assign the DefaultTableModel to the JTable
+       jtViewOrder.setModel(model);
+
+        
+
+        for (Product product : tableOrder) {
+            String[] row = new String[4];
+            row[0] = product.getProductName();
+            row[1] = Integer.toString(product.getQuantity()) ;
+            row[2] = Double.toString(product.getPrice());
+            row[3] = product.getComment();
+            model.addRow(row);
+
         }
     }
 
