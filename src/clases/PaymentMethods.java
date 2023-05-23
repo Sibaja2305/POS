@@ -2,5 +2,5 @@ package clases;
 
 public enum PaymentMethods {
 
-    SinpeMovil, dinero, tarjeta
+    SinpeMovil, efectivo, tarjeta
 }

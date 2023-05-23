@@ -83,9 +83,9 @@ public class FRMLogin extends javax.swing.JFrame {
         Backgroud.setBackground(new java.awt.Color(255, 255, 255));
         Backgroud.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Ilustration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Sibaja.png"))); // NOI18N
+        Ilustration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Sibaja Chef.png"))); // NOI18N
         Ilustration.setText("jLabel1");
-        Backgroud.add(Ilustration, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 290, 500));
+        Backgroud.add(Ilustration, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 290, 430));
 
         Login.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         Login.setForeground(new java.awt.Color(51, 51, 51));
@@ -103,7 +103,7 @@ public class FRMLogin extends javax.swing.JFrame {
         Backgroud.add(nameLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 530, -1));
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
-        Backgroud.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, -1, 160));
+        Backgroud.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 20, -1, 170));
 
         txtUser.setBackground(new java.awt.Color(255, 255, 255));
         txtUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -172,7 +172,7 @@ public class FRMLogin extends javax.swing.JFrame {
 
         blueBackgroud.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blue Backgroud.jpg"))); // NOI18N
         blueBackgroud.setText("jLabel2");
-        Backgroud.add(blueBackgroud, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 0, 250, -1));
+        Backgroud.add(blueBackgroud, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 0, 250, -1));
 
         toolbar.setBackground(new java.awt.Color(255, 255, 255));
         toolbar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
