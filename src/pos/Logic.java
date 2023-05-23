@@ -500,7 +500,7 @@ public class Logic {
      * @param tbInventory
      */
     public void readInventory(JTable tbInventory) {
-        
+
         model.setColumnCount(0);
         model.setRowCount(0);
         model.addColumn("ID");
@@ -666,6 +666,14 @@ public class Logic {
         }
     }
 
+    /**
+     *
+     * This method contains a parameter to a JTable called jtInventory, which
+     * which deletes the selected row, then that product, which was saved in the
+     * table, will be deleted.
+     *
+     * @param jtInventory
+     */
     public void deleteTableInventory(JTable jtInventory) {
         DefaultTableModel model = (DefaultTableModel) jtInventory.getModel();
 
@@ -678,6 +686,14 @@ public class Logic {
 
     }
 
+    /**
+     * The loadInventoryTable method passes as a parameter a JTable jtInventory
+     * which this method cleans the inventory list and saves the data of each
+     * row of the jtInventory table which is stored in the registerInventory
+     * method each row.
+     *
+     * @param jtInventory
+     */
     public void loadInventoryTable(JTable jtInventory) {
         DefaultTableModel model = (DefaultTableModel) jtInventory.getModel();
         inventory.clear();
@@ -692,8 +708,18 @@ public class Logic {
         }
     }
 
-    public void readTable(String mesa) {
-        try (BufferedReader br = new BufferedReader(new FileReader("mesa" + mesa + ".txt"))) {
+    /**
+     *
+     * This readTable method passes as a parameter a String table to know the
+     * table number being worked on, then loads the list of the table that is at
+     * that moment and if the txt is greater than 1 save the products in
+     * constructor containing productName, quantity, price and comment and saves
+     * them in the tableOrder list.
+     *
+     * @param table
+     */
+    public void readTable(String table) {
+        try (BufferedReader br = new BufferedReader(new FileReader("mesa" + table + ".txt"))) {
             String line;
 
             while ((line = br.readLine()) != null) {
@@ -715,25 +741,29 @@ public class Logic {
         }
     }
 
+    /**
+     * The viewTableOrder method passes as a parameter a JTable jtViewOrder
+     * where the table is added and each column is assigned to the table and in
+     * a for each it saves each part to the table so that the waiter can see it.
+     *
+     * @param jtViewOrder
+     */
     public void viewTableOrder(JTable jtViewOrder) {
-        
+
         model.setColumnCount(0);
         model.setRowCount(0);
         model.addColumn("Nombre");
         model.addColumn("Cantidad");
         model.addColumn("Precio");
         model.addColumn("Comentario");
-        
 
         // Assign the DefaultTableModel to the JTable
-       jtViewOrder.setModel(model);
-
-        
+        jtViewOrder.setModel(model);
 
         for (Product product : tableOrder) {
             String[] row = new String[4];
             row[0] = product.getProductName();
-            row[1] = Integer.toString(product.getQuantity()) ;
+            row[1] = Integer.toString(product.getQuantity());
             row[2] = Double.toString(product.getPrice());
             row[3] = product.getComment();
             model.addRow(row);

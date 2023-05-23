@@ -194,7 +194,7 @@ public class FRMAdmin extends javax.swing.JFrame {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("jMenu3");
+        jMenu3.setText("ayuda");
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
