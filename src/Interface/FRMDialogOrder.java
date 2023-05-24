@@ -320,6 +320,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
         if (selectedRow != -1) { // Se ha seleccionado una row
             DefaultTableModel originalModel = (DefaultTableModel) jtMenu.getModel();
             DefaultTableModel targetModel = (DefaultTableModel) jtOrder.getModel();
+            jtOrder.setDefaultEditor(Object.class, null);
 
             Object[] row = new Object[originalModel.getColumnCount()];
 

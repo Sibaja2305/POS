@@ -283,8 +283,10 @@ public class Logic {
         }
     }
 
-    public void loadUserTxt(JTable tbUsers) {
-        DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
+    public void loadUserTxt(JTable jtUsers) {
+        DefaultTableModel model = (DefaultTableModel) jtUsers.getModel();
+       //tbUsers.setEnabled(false);
+       jtUsers.setDefaultEditor(Object.class, null);
         model.setColumnCount(0);
         model.setRowCount(0);
         model.addColumn("Usuario");
@@ -311,18 +313,18 @@ public class Logic {
      * added as rows to the JTable using a DefaultTableModel. If any error
      * occurs while reading the file, the exception is printed.
      *
-     * @param tbMenu The JTable in which the inventory data will be displayed.
+     * @param jtMenu The JTable in which the inventory data will be displayed.
      */
-    public void readMenu(JTable tbMenu) {
+    public void readMenu(JTable jtMenu) {
 
         model.addColumn("ID");
         model.addColumn("Nombre");
         model.addColumn("Precio");
         model.addColumn("Categoria");
-
+        
         // Assign the DefaultTableModel to the JTable
-        tbMenu.setModel(model);
-
+        jtMenu.setModel(model);
+        jtMenu.setDefaultEditor(Object.class, null);
         readInventoryTxt();
 
         for (Product product : inventory) {
@@ -508,7 +510,7 @@ public class Logic {
         model.addColumn("Raciones");
         model.addColumn("Precio");
         model.addColumn("Categoría");
-
+         tbInventory.setDefaultEditor(Object.class, null);
         // Assign the DefaultTableModel to the JTable
         tbInventory.setModel(model);
 
@@ -756,7 +758,7 @@ public class Logic {
         model.addColumn("Cantidad");
         model.addColumn("Precio");
         model.addColumn("Comentario");
-
+        jtViewOrder.setDefaultEditor(Object.class, null);
         // Assign the DefaultTableModel to the JTable
         jtViewOrder.setModel(model);
 
