@@ -14,15 +14,18 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
      */
     Logic logic;
     static String table="";
+    static JLabel labelStatus;
     public FRMDialogViewOrder(java.awt.Frame parent, boolean modal,String table,JLabel status) {
         super(parent, modal);
         logic=new Logic();
         initComponents();
         this.table = table;
+        this.labelStatus=status;
+        
         logic.tableOrder.clear();
         
         logic.readTable(table.replaceAll("Mesa: ", ""));
-        
+       
         logic.viewTableOrder(jtViewOrder);
     }
 
@@ -113,8 +116,9 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinalizeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizeOrderActionPerformed
-        FRMDialogBill dialogBill =new FRMDialogBill(null,true);
+        FRMDialogBill dialogBill =new FRMDialogBill(null,true,this.table,this.labelStatus);
         dialogBill.setVisible(true);
+        
     }//GEN-LAST:event_btnFinalizeOrderActionPerformed
 
     /**
