@@ -1,16 +1,14 @@
-package clases;
+package classes;
 
 import java.util.LinkedList;
 
 public class Storage {
 
-   public LinkedList<Product> storage;
+    public LinkedList<Product> storage;
 
     public Storage() {
-        
-    }
 
-   
+    }
 
     /**
      * @return the storage
@@ -30,6 +28,5 @@ public class Storage {
     public String toString() {
         return "Storage{" + "storage=" + storage + '}';
     }
-   
-   
+
 }

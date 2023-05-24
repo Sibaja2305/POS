@@ -1,20 +1,22 @@
-package clases;
+package classes;
 
 public class User extends Person {
+
     private String userType;
     private String idUser;
     private String passwordUser;
-private static User instance;
+    private static User instance;
 
     private User() {
     }
 
-      public static User getInstance() {
+    public static User getInstance() {
         if (instance == null) {
             instance = new User();
         }
         return instance;
-      }
+    }
+
     public User(String idUser, String passwordUser, String userType) {
         this.userType = userType;
         this.idUser = idUser;
@@ -72,8 +74,7 @@ private static User instance;
 
     @Override
     public String toString() {
-        return super.toString()+"User{" + "userType=" + userType + ", idUser=" + idUser + ", passwordUser=" + passwordUser + '}';
+        return super.toString() + "User{" + "userType=" + userType + ", idUser=" + idUser + ", passwordUser=" + passwordUser + '}';
     }
-    
-    
+
 }

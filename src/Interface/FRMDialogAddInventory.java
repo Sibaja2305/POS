@@ -1,6 +1,5 @@
 package Interface;
 
-import javax.swing.JTable;
 import pos.Logic;
 
 /**

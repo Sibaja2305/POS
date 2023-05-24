@@ -1,49 +1,41 @@
-package clases;
+package classes;
 
 import java.util.Date;
 
 public class Billing {
 
     private Order order;
-
     private Double totalPrice;
-
     private String billingNumber;
-
     private Date date;
-    
-    
-     public Billing(Builder builder) {
+    private double change;
+    private double cash;
+    private Client client;
+
+    private Billing(Builder builder) {
         this.order = builder.order;
         this.totalPrice = builder.totalPrice;
         this.billingNumber = builder.billingNumber;
         this.date = builder.date;
+        this.change = builder.change;
+        this.cash = builder.cash;
+        this.client = builder.client;
     }
 
-    public Order getOrder() {
-        return order;
-    }
+    // Métodos getter para los atributos de Billing
 
-    public Double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public String getBillingNumber() {
-        return billingNumber;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-     public static class Builder {
+    public static class Builder {
         private Order order;
         private Double totalPrice;
         private String billingNumber;
         private Date date;
+        private double change;
+        private double cash;
+        private Client client;
 
-        public Builder order(Order order) {
+        public Builder(Order order, Client client) {
             this.order = order;
-            return this;
+            this.client = client;
         }
 
         public Builder totalPrice(Double totalPrice) {
@@ -61,10 +53,18 @@ public class Billing {
             return this;
         }
 
+        public Builder change(double change) {
+            this.change = change;
+            return this;
+        }
+
+        public Builder cash(double cash) {
+            this.cash = cash;
+            return this;
+        }
+
         public Billing build() {
             return new Billing(this);
         }
     }
-     
-
 }

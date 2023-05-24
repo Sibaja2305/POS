@@ -1,7 +1,7 @@
 package pos;
 
 import Interface.FRMLogin;
-import clases.User;
+import classes.User;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.LinkedList;
@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * entire screen, and displaying it. It also instantiates User as an
  * administrator and adds it to a LinkedList User .
  *
- *@author Diego Herrera López
+ * @author Diego Herrera López
  * @author Kevin Sibaja Granados
  * @author Yordany Navarro Hernandez
  * @author Tiffany Hernández Rodriguez

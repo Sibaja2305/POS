@@ -6,9 +6,8 @@ import Interface.FRMChef;
 import Interface.FRMLogin;
 import Interface.FRMWaiter;
 import Interface.JIFTable;
-import clases.Product;
-import clases.Storage;
-import clases.User;
+import classes.Product;
+import classes.User;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -285,8 +284,8 @@ public class Logic {
 
     public void loadUserTxt(JTable jtUsers) {
         DefaultTableModel model = (DefaultTableModel) jtUsers.getModel();
-       //tbUsers.setEnabled(false);
-       jtUsers.setDefaultEditor(Object.class, null);
+        //tbUsers.setEnabled(false);
+        jtUsers.setDefaultEditor(Object.class, null);
         model.setColumnCount(0);
         model.setRowCount(0);
         model.addColumn("Usuario");
@@ -321,7 +320,7 @@ public class Logic {
         model.addColumn("Nombre");
         model.addColumn("Precio");
         model.addColumn("Categoria");
-        
+
         // Assign the DefaultTableModel to the JTable
         jtMenu.setModel(model);
         jtMenu.setDefaultEditor(Object.class, null);
@@ -510,7 +509,7 @@ public class Logic {
         model.addColumn("Raciones");
         model.addColumn("Precio");
         model.addColumn("Categoría");
-         tbInventory.setDefaultEditor(Object.class, null);
+        tbInventory.setDefaultEditor(Object.class, null);
         // Assign the DefaultTableModel to the JTable
         tbInventory.setModel(model);
 

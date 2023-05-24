@@ -1,19 +1,18 @@
-package clases;
+package classes;
 
 public class Product {
+
     private String id;
     private double price;
     private int quantity;
     private String category;
     private String comment;
     private String productName;
-    
-    
 
     public Product() {
     }
 
-    public Product(String id, String productName,  int quantity,double price, String category) {
+    public Product(String id, String productName, int quantity, double price, String category) {
         this.id = id;
         this.price = price;
         this.quantity = quantity;
@@ -21,7 +20,7 @@ public class Product {
         this.productName = productName;
     }
 
-    public Product(String productName,int quantity, double price, String comment) {
+    public Product(String productName, int quantity, double price, String comment) {
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
@@ -40,10 +39,6 @@ public class Product {
         this.category = category;
         this.productName = productName;
     }
-
-   
-    
-    
 
     /**
      * @return the id

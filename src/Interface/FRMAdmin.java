@@ -1,6 +1,6 @@
 package Interface;
 
-import clases.User;
+import classes.User;
 import javax.swing.JDesktopPane;
 import javax.swing.plaf.DesktopPaneUI;
 import pos.Logic;

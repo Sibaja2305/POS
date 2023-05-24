@@ -1,7 +1,6 @@
 package Interface;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pos.Logic;

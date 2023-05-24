@@ -1,11 +1,9 @@
-package clases;
+package classes;
 
 public class Person {
 
     private String name;
-
     private String id;
-
     private String mail;
 
     public Person() {
@@ -63,5 +61,5 @@ public class Person {
     public String toString() {
         return "Person{" + "name=" + name + ", id=" + id + ", mail=" + mail + '}';
     }
-    
+
 }
