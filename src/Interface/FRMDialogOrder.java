@@ -338,7 +338,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
                 quantity++; // Increase the quantity
 
                 targetModel.setValueAt(quantity, rowIndex, 1); // Update the quantity in the target JTable
-                logic.totalPay(jtOrder, jltotalBill, quantity); // Calculate the total to pay
+                logic.totalPay(jtOrder, jltotalBill); // Calculate the total to pay
             } else {
                 addedRow.put(selectedRow, targetModel.getRowCount());
                 row[1] = 1; // Set the initial amount to 1
@@ -347,7 +347,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
 
                 quantity = 1;
                 targetModel.setValueAt("-", addedRow.get(selectedRow), 3); // Set the "Remarks" field to "-"
-                logic.totalPay(jtOrder, jltotalBill, quantity); // Calculate the total to pay
+                logic.totalPay(jtOrder, jltotalBill); // Calculate the total to pay
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ninguna fila del menu fue agregada");

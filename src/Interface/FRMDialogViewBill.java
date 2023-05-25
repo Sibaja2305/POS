@@ -4,7 +4,8 @@
  */
 package Interface;
 
-import javax.swing.JLabel;
+import static Interface.FRMDialogOrder.quantity;
+
 import pos.Logic;
 
 /**
@@ -25,9 +26,9 @@ public class FRMDialogViewBill extends javax.swing.JDialog {
     static double totalPrice;
     static double change;
     static double cash;
-
+     static String table="";
     public FRMDialogViewBill(java.awt.Frame parent, boolean modal, String billingNumber, String date, String name, String idCustomer, 
-            String email, double totalPrice, double change, double cash) {
+            String email, double totalPrice, double change, double cash, String table) {
         super(parent, modal);
         logic = new Logic();
         initComponents();
@@ -39,10 +40,18 @@ public class FRMDialogViewBill extends javax.swing.JDialog {
         this.totalPrice=totalPrice;
         this.change=change;
         this.cash=cash;
-        System.out.println(billingNumber);
+        this.table=table;
+       
         logic.billingSave(billingNumber, date, name, idCustomer, email, totalPrice, change, cash);
         logic.viewBill(lblBillingNumber, lblCash, lblChange, lblDate, lblEmail,
                 lblIdClient, lblNameCustomer, lblTotalPrice);
+         logic.tableOrder.clear();
+        
+        logic.readTable(table.replaceAll("Mesa: ", ""));
+       
+        logic.viewTableOrder(jtbillingTable);
+         
+        
 
     }
 
@@ -58,7 +67,7 @@ public class FRMDialogViewBill extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         lblBillingNumber = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtbillingTable = new javax.swing.JTable();
         lblTotalPrice = new javax.swing.JLabel();
         lblChange = new javax.swing.JLabel();
         lblCash = new javax.swing.JLabel();
@@ -74,7 +83,7 @@ public class FRMDialogViewBill extends javax.swing.JDialog {
 
         jPanel1.setForeground(new java.awt.Color(0, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtbillingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -93,9 +102,7 @@ public class FRMDialogViewBill extends javax.swing.JDialog {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-
-        lblCash.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(jtbillingTable);
 
         jLabel5.setText("Efectivo:");
 
@@ -214,7 +221,7 @@ public class FRMDialogViewBill extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FRMDialogViewBill dialog = new FRMDialogViewBill(new javax.swing.JFrame(), true, "", "", "", "", "", 0.0, 0.0, 0.0);
+                FRMDialogViewBill dialog = new FRMDialogViewBill(new javax.swing.JFrame(), true, "", "", "", "", "", 0.0, 0.0, 0.0, "");
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -232,7 +239,7 @@ public class FRMDialogViewBill extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jtbillingTable;
     private javax.swing.JLabel lblBillingNumber;
     private javax.swing.JLabel lblCash;
     private javax.swing.JLabel lblChange;

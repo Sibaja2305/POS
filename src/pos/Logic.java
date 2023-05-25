@@ -59,7 +59,7 @@ public class Logic {
         inventory = new LinkedList<>();
         users = new LinkedList<>();
         tableOrder = new LinkedList<>();
-        listBilling=new LinkedList<>();
+        listBilling = new LinkedList<>();
         user = User.getInstance();
         model = new DefaultTableModel();
 
@@ -487,12 +487,12 @@ public class Logic {
      * @param jlTotal
      * @param quantity
      */
-    public void totalPay(JTable jtOrder, JLabel jlTotal, int quantity) {
+    public void totalPay(JTable jtOrder, JLabel jlTotal) {
         double fullPay = 0.00;
         int numFila = jtOrder.getRowCount();
         for (int i = 0; i < numFila; i++) {
             double cal = Double.parseDouble(String.valueOf(jtOrder.getModel().getValueAt(i, 2)));
-            quantity = Integer.parseInt(jtOrder.getValueAt(i, 1).toString());
+            int quantity = Integer.parseInt(jtOrder.getValueAt(i, 1).toString());
 
             fullPay += cal * quantity;
         }
@@ -778,37 +778,37 @@ public class Logic {
 
         }
     }
-    public void billingSave (String billingNumber, String date, String name,String idClient,String mail, double totalPrice,double change,double cash){
-        Client client=new Client(name,idClient,mail);
-       Builder builder = new Billing.Builder();
-     builder.totalPrice(totalPrice)
-       .billingNumber(billingNumber)
-       .date(date)
-       .change(change)
-       .cash(cash)
-      .client(client);
 
-    Billing billing = builder.build();
+    public void billingSave(String billingNumber, String date, String name, String idClient, String mail, double totalPrice, double change, double cash) {
+        Client client = new Client(name, idClient, mail);
+        Builder builder = new Billing.Builder();
+        builder.totalPrice(totalPrice)
+                .billingNumber(billingNumber)
+                .date(date)
+                .change(change)
+                .cash(cash)
+                .client(client);
+
+        Billing billing = builder.build();
         listBilling.add(billing);
-        
+
     }
-    public void viewBill (JLabel lblBillingNumber,JLabel lblCash,JLabel lblChange,JLabel lblDate,JLabel lblEmail,JLabel 
-            lblIdClient,JLabel lblNameCustomer,JLabel lblTotalPrice){
-        
-        
-       lblBillingNumber.setText(listBilling.get(0).getBillingNumber());
-       lblCash.setText(String.valueOf(listBilling.get(0).getCash()));
-       lblChange.setText(String.valueOf(listBilling.get(0).getChange()));
-       lblDate.setText(listBilling.get(0).getDate());
+
+    public void viewBill(JLabel lblBillingNumber, JLabel lblCash, JLabel lblChange, JLabel lblDate, JLabel lblEmail, JLabel lblIdClient, JLabel lblNameCustomer, JLabel lblTotalPrice) {
+
+        lblBillingNumber.setText(listBilling.get(0).getBillingNumber());
+        lblCash.setText(String.valueOf(listBilling.get(0).getCash()));
+        lblChange.setText(String.valueOf(listBilling.get(0).getChange()));
+        lblDate.setText(listBilling.get(0).getDate());
         System.out.println("hhuhiuhi");
-      lblEmail.setText(listBilling.get(0).getClient().getMail());
-     lblIdClient.setText(listBilling.get(0).getClient().getId());
-       lblNameCustomer.setText(listBilling.get(0).getClient().getName());
-       lblTotalPrice.setText(String.valueOf(listBilling.get(0).getTotalPrice()));
+        lblEmail.setText(listBilling.get(0).getClient().getMail());
+        lblIdClient.setText(listBilling.get(0).getClient().getId());
+        lblNameCustomer.setText(listBilling.get(0).getClient().getName());
+        lblTotalPrice.setText(String.valueOf(listBilling.get(0).getTotalPrice()));
     }
-    
-     public String actualDate() {
-        
+
+    public String actualDate() {
+
         Date updateDate = new Date();
 
         // Crear un formato para mostrar la fecha
@@ -817,8 +817,16 @@ public class Logic {
         // Formatear la fecha actual como cadena de texto
         String resetDate = formatDate.format(updateDate);
 
-       return resetDate;
+        return resetDate;
     }
 
+    public double totalChange(double total, double cash) {
+        double change = 0;
+        if (cash > total) {
+            change = cash - total;
+
+        }
+        return change;
+    }
 
 }

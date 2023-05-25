@@ -10,36 +10,36 @@ import pos.Logic;
  *
  * @author user
  */
-
 public class FRMDialogBill extends javax.swing.JDialog {
 
     /**
      * Creates new form FRMDialogBill
      */
     Logic logic;
-    static String table="";
+    static String table = "";
     static JLabel labelStatus;
-    public FRMDialogBill(java.awt.Frame parent, boolean modal,String table,JLabel status) {
+
+    public FRMDialogBill(java.awt.Frame parent, boolean modal, String table, JLabel status) {
         super(parent, modal);
-        logic=new Logic();
+        logic = new Logic();
         initComponents();
         this.table = table;
-        this.labelStatus=status;
-       
-        
-        System.out.println(table);
+        this.labelStatus = status;
+
         logic.tableOrder.clear();
-        
+
         logic.readTable(table.replaceAll("Mesa: ", ""));
-       
+
         logic.viewTableOrder(jtOrder);
+        logic.totalPay(jtOrder, lblTotalBillAmount);
+
         lblTotalBill.setVisible(true);
         lblTotalBillAmount.setVisible(true);
         lblCash.setVisible(false);
         txtCash.setVisible(false);
         lblChange.setVisible(false);
         lblChangeAmount.setVisible(false);
-        
+
     }
 
     /**
@@ -72,6 +72,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
         lblChange = new javax.swing.JLabel();
         lblTotalBillAmount = new javax.swing.JLabel();
         lblChangeAmount = new javax.swing.JLabel();
+        btnchange = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -149,11 +150,20 @@ public class FRMDialogBill extends javax.swing.JDialog {
 
         lblCash.setText("EFECTIVO");
 
+        txtCash.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                txtCashComponentAdded(evt);
+            }
+        });
+
         lblChange.setText("CAMBIO");
 
-        lblTotalBillAmount.setText("1");
-
-        lblChangeAmount.setText("2");
+        btnchange.setText("Listo");
+        btnchange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnchangeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,7 +188,9 @@ public class FRMDialogBill extends javax.swing.JDialog {
                                     .addComponent(lblChangeAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(lblTotalBillAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(lblTotalBillAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnchange)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(75, 75, 75)
@@ -218,13 +230,8 @@ public class FRMDialogBill extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75)
-                        .addComponent(btnfinishBill, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtBillNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblBillNumber))
@@ -251,12 +258,19 @@ public class FRMDialogBill extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCash, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCash, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblChange, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblChangeAmount))
-                        .addGap(61, 61, 61))))
+                            .addComponent(txtCash, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblChange, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblChangeAmount))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnchange)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnfinishBill, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -290,11 +304,11 @@ public class FRMDialogBill extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCostumerGmailActionPerformed
 
     /**
-     * If the seletion of the "jcPaymentMethod" matches with the payment method 
-     * "Cash", it turns visible another section where you can enter the amount 
+     * If the seletion of the "jcPaymentMethod" matches with the payment method
+     * "Cash", it turns visible another section where you can enter the amount
      * to cancel the bill.
-     * 
-     * @param evt 
+     *
+     * @param evt
      */
     private void jcPaymentMethodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcPaymentMethodActionPerformed
 
@@ -320,17 +334,34 @@ public class FRMDialogBill extends javax.swing.JDialog {
 
     private void btnfinishBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfinishBillActionPerformed
         String billingNumber = txtBillNumber.getText();
-        String date=logic.actualDate();
-        String name=txtCostumerName.getText();
-        String idCustomer=txtCostumerId.getText();
-        String email=txtCostumerGmail.getText();
-        double totalPrice=Double.parseDouble(lblTotalBillAmount.getText());
-        double cash= Double.parseDouble(txtCash.getText());
-        double change=Double.parseDouble(lblChangeAmount.getText());
+        String date = logic.actualDate();
+        String name = txtCostumerName.getText();
+        String idCustomer = txtCostumerId.getText();
+        String email = txtCostumerGmail.getText();
+        double totalPrice = Double.parseDouble(lblTotalBillAmount.getText());
+        double cash = Double.parseDouble(txtCash.getText());
+        double change = Double.parseDouble(lblChangeAmount.getText());
         logic.billingSave(billingNumber, date, name, idCustomer, email, totalPrice, change, cash);
-        FRMDialogViewBill viewBill=new FRMDialogViewBill(null,true,billingNumber, date, name, idCustomer, email, totalPrice, change, cash);
+        FRMDialogViewBill viewBill = new FRMDialogViewBill(null, true, billingNumber, date, name, idCustomer, email, totalPrice, change, cash, table);
         viewBill.setVisible(true);
+
     }//GEN-LAST:event_btnfinishBillActionPerformed
+
+    private void txtCashComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_txtCashComponentAdded
+//        double total=Double.parseDouble(lblTotalBillAmount.getText());
+//        double cash=Double.parseDouble(txtCash.getText());
+//        double change=0;
+//        change=logic.totalChange(total, cash);
+//        lblChangeAmount.setText(String.valueOf(change));
+    }//GEN-LAST:event_txtCashComponentAdded
+
+    private void btnchangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchangeActionPerformed
+        double total = Double.parseDouble(lblTotalBillAmount.getText());
+        double cash = Double.parseDouble(txtCash.getText());
+        double change = 0;
+        change = logic.totalChange(total, cash);
+        lblChangeAmount.setText(String.valueOf(change));
+    }//GEN-LAST:event_btnchangeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,7 +393,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FRMDialogBill dialog = new FRMDialogBill(new javax.swing.JFrame(), true,"",null);
+                FRMDialogBill dialog = new FRMDialogBill(new javax.swing.JFrame(), true, "", null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -375,6 +406,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnchange;
     private javax.swing.JButton btnfinishBill;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
