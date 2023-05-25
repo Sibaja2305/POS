@@ -829,4 +829,39 @@ public class Logic {
         return change;
     }
 
+    public void loadChefTable(JTable jtChefTables) {
+        model.addColumn("Mesas");
+        jtChefTables.setModel(model);
+        String row[] = new String[1];
+        for (int i = 0; i < listStatus.size(); i++) {
+            if (listStatus.get(i).equals("Ocupado")) {
+                row[0] = "mesa" + (i + 1);
+                model.addRow(row);
+            }
+
+        }
+    }
+    public void loadTableChef(JTable jtChefOrder,String table){
+//      try (BufferedReader br = new BufferedReader(new FileReader(table))) {
+//            String line;
+//
+//            while ((line = br.readLine()) != null) {
+//                String[] data = line.split(",");
+//
+//                if (data.length > 1) {
+//                    String productName = data[0];
+//                    int quantity = Integer.parseInt(data[1]);
+//                    double price = Double.parseDouble(data[2]);
+//                    String comment = data[3];
+//                    Product product = new Product(productName, quantity, price, comment);
+//                    tableOrder.add(product);
+//                }
+//
+//            }
+//            br.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+    }
+
 }
