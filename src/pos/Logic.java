@@ -6,6 +6,9 @@ import Interface.FRMChef;
 import Interface.FRMLogin;
 import Interface.FRMWaiter;
 import Interface.JIFTable;
+import classes.Billing;
+import classes.Billing.Builder;
+import classes.Client;
 import classes.Product;
 import classes.User;
 import java.io.BufferedReader;
@@ -13,6 +16,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -38,6 +43,7 @@ public class Logic {
     public LinkedList<Product> storage;
     public LinkedList<Product> inventory;
     public LinkedList<Product> tableOrder;
+    public LinkedList<Billing> listBilling;
     static DefaultTableModel model;
     static User user;
 
@@ -53,6 +59,7 @@ public class Logic {
         inventory = new LinkedList<>();
         users = new LinkedList<>();
         tableOrder = new LinkedList<>();
+        listBilling=new LinkedList<>();
         user = User.getInstance();
         model = new DefaultTableModel();
 
@@ -771,8 +778,36 @@ public class Logic {
 
         }
     }
-    public void Billing (){
-        
+    public void billingSave (String billingNumber, String date, String name,String idClient,String mail, double totalPrice,double change,double cash){
+        Client client=new Client(name,idClient,mail);
+       Billing.Builder builder = new Billing.Builder();
+     builder.totalPrice(totalPrice)
+       .billingNumber(billingNumber)
+       .date(date)
+       .change(change)
+       .cash(cash)
+      .client(client);
+
+    Billing billing = builder.build();
+        listBilling.add(billing);
+        for (Billing billing1 : listBilling) {
+            
+            System.out.println(billing1);
+            
+        }
     }
+     public String actualDate() {
+        
+        Date updateDate = new Date();
+
+        // Crear un formato para mostrar la fecha
+        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+
+        // Formatear la fecha actual como cadena de texto
+        String resetDate = formatDate.format(updateDate);
+
+       return resetDate;
+    }
+
 
 }

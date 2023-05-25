@@ -3,40 +3,61 @@ package classes;
 import java.util.Date;
 
 public class Billing {
-
-    private Order order;
     private Double totalPrice;
     private String billingNumber;
-    private Date date;
+    private String date;
     private double change;
     private double cash;
     private Client client;
 
     private Billing(Builder builder) {
-        this.order = builder.order;
         this.totalPrice = builder.totalPrice;
         this.billingNumber = builder.billingNumber;
-        this.date = builder.date;
+        this.date=builder.date;
         this.change = builder.change;
         this.cash = builder.cash;
         this.client = builder.client;
     }
 
-    // Métodos getter para los atributos de Billing
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
 
+    public String getBillingNumber() {
+        return billingNumber;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public double getChange() {
+        return change;
+    }
+
+    public double getCash() {
+        return cash;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+    
+
+    
     public static class Builder {
-        private Order order;
         private Double totalPrice;
         private String billingNumber;
-        private Date date;
+        private String date;
         private double change;
         private double cash;
         private Client client;
 
-        public Builder(Order order, Client client) {
-            this.order = order;
-            this.client = client;
+        public Builder() {
+           
         }
+
+        
 
         public Builder totalPrice(Double totalPrice) {
             this.totalPrice = totalPrice;
@@ -48,7 +69,7 @@ public class Billing {
             return this;
         }
 
-        public Builder date(Date date) {
+        public Builder date(String date) {
             this.date = date;
             return this;
         }
@@ -66,5 +87,10 @@ public class Billing {
         public Billing build() {
             return new Billing(this);
         }
+
+        public void client(Client client) {
+        }
     }
+
+  
 }
