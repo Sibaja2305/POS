@@ -780,7 +780,7 @@ public class Logic {
     }
     public void billingSave (String billingNumber, String date, String name,String idClient,String mail, double totalPrice,double change,double cash){
         Client client=new Client(name,idClient,mail);
-       Billing.Builder builder = new Billing.Builder();
+       Builder builder = new Billing.Builder();
      builder.totalPrice(totalPrice)
        .billingNumber(billingNumber)
        .date(date)
@@ -790,12 +790,23 @@ public class Logic {
 
     Billing billing = builder.build();
         listBilling.add(billing);
-        for (Billing billing1 : listBilling) {
-            
-            System.out.println(billing1);
-            
-        }
+        
     }
+    public void viewBill (JLabel lblBillingNumber,JLabel lblCash,JLabel lblChange,JLabel lblDate,JLabel lblEmail,JLabel 
+            lblIdClient,JLabel lblNameCustomer,JLabel lblTotalPrice){
+        
+        
+       lblBillingNumber.setText(listBilling.get(0).getBillingNumber());
+       lblCash.setText(String.valueOf(listBilling.get(0).getCash()));
+       lblChange.setText(String.valueOf(listBilling.get(0).getChange()));
+       lblDate.setText(listBilling.get(0).getDate());
+        System.out.println("hhuhiuhi");
+      lblEmail.setText(listBilling.get(0).getClient().getMail());
+     lblIdClient.setText(listBilling.get(0).getClient().getId());
+       lblNameCustomer.setText(listBilling.get(0).getClient().getName());
+       lblTotalPrice.setText(String.valueOf(listBilling.get(0).getTotalPrice()));
+    }
+    
      public String actualDate() {
         
         Date updateDate = new Date();

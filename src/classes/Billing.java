@@ -10,6 +10,10 @@ public class Billing {
     private double cash;
     private Client client;
 
+    public Billing() {
+    }
+
+     
     private Billing(Builder builder) {
         this.totalPrice = builder.totalPrice;
         this.billingNumber = builder.billingNumber;
@@ -42,6 +46,12 @@ public class Billing {
     public Client getClient() {
         return client;
     }
+
+    @Override
+    public String toString() {
+        return "Billing{" + "totalPrice=" + totalPrice + ", billingNumber=" + billingNumber + ", date=" + date + ", change=" + change + ", cash=" + cash + ", client=" + client + '}';
+    }
+    
     
 
     
@@ -88,9 +98,12 @@ public class Billing {
             return new Billing(this);
         }
 
-        public void client(Client client) {
+        public Builder client(Client client) {
+            this.client=client;
+            return this;
         }
     }
+    
 
   
 }

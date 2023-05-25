@@ -328,7 +328,8 @@ public class FRMDialogBill extends javax.swing.JDialog {
         double cash= Double.parseDouble(txtCash.getText());
         double change=Double.parseDouble(lblChangeAmount.getText());
         logic.billingSave(billingNumber, date, name, idCustomer, email, totalPrice, change, cash);
-        
+        FRMDialogViewBill viewBill=new FRMDialogViewBill(null,true,billingNumber, date, name, idCustomer, email, totalPrice, change, cash);
+        viewBill.setVisible(true);
     }//GEN-LAST:event_btnfinishBillActionPerformed
 
     /**
