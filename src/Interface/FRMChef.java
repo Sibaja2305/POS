@@ -23,7 +23,7 @@ public class FRMChef extends javax.swing.JFrame {
         initComponents();
         logic = new Logic();
         logic.readStatus();
-        logic.loadChefView(jtChefTables);
+        logic.loadChefBartView(jtChefTables);
     }
 
     /**
@@ -208,12 +208,12 @@ public class FRMChef extends javax.swing.JFrame {
     private void btnDetailsTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsTableActionPerformed
       
         int selectedRow = jtChefTables.getSelectedRow();
-        System.out.println(selectedRow);
+   
          table = jtChefTables.getValueAt(selectedRow, 0).toString();
         
-        logic.listTableChef.clear();
+        logic.listTableChefBart.clear();
      
-        logic.loadTableChef(table);
+        logic.loadTableChefBart(table);
          
        
         logic.loadListToTableChef(jtChefOrder);
@@ -232,11 +232,12 @@ public class FRMChef extends javax.swing.JFrame {
             String productName = jtChefOrder.getValueAt(selectedRow, 0).toString();
             logic.donePlate(productName);
             
-            logic.saveOrderChef(table.replaceAll("mesa", ""));
+            logic.saveOrderChefBart(table.replaceAll("mesa", ""));
             logic.loadListToTableChef(jtChefOrder);
             
-        }else
+        }else{
             JOptionPane.showMessageDialog(null, "Ningun pedido seleccionado");
+        }
     }//GEN-LAST:event_btnOrderDoneActionPerformed
 
     /**

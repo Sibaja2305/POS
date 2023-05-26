@@ -1,0 +1,8 @@
+wfeww,1,33.2,-,En espera,Comida
+hkhjuuj,1,21.4,-,En espera,Bebida
+e,1,4.0,-,En espera,Bebida
+i,1,5.0,-,En espera,Comida
+frijoles,1,34.0,-,En espera,Bebida
+hamburqueza,1,98.0,-,En espera,Comida
+arroz,1,7.0,-,En espera,Comida
+cola coca,1,9.0,-,En espera,Bebida

@@ -231,7 +231,10 @@ public class JIFInventory extends javax.swing.JInternalFrame {
         // Get the default table model of the jtSearchResult
         DefaultTableModel targetModel = (DefaultTableModel) jtSearchResult.getModel();
         // Remove the first row of the model from the table
-        targetModel.removeRow(0);
+        if (targetModel.getRowCount()>0) {
+             targetModel.removeRow(0);
+        }
+       
     }//GEN-LAST:event_btnDeleteSearchActionPerformed
 
     private void btnUpdateInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateInventoryActionPerformed

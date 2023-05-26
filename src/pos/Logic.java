@@ -43,7 +43,7 @@ public class Logic {
     public LinkedList<Product> storage;
     public LinkedList<Product> inventory;
     public LinkedList<Product> tableOrder;
-    public LinkedList<Product> listTableChef;
+    public LinkedList<Product> listTableChefBart;
     public LinkedList<Billing> listBilling;
     static DefaultTableModel model;
     static User user;
@@ -57,7 +57,7 @@ public class Logic {
         // Storage st = new Storage();
         //st.getStorage();
         storage = new LinkedList<>();
-        listTableChef = new LinkedList<>();
+        listTableChefBart = new LinkedList<>();
         inventory = new LinkedList<>();
         users = new LinkedList<>();
         tableOrder = new LinkedList<>();
@@ -460,8 +460,21 @@ public class Logic {
         Product product = new Product(productName, quantity, price, comment, plateState, category);
 
         storage.add(product);
+        subtractQuantity(inventory, product);
         saveOrderTxt(mesa);
         System.out.println("se añadio " + productName + " " + quantity + " " + price + " " + comment);
+    }
+    public void subtractQuantity(LinkedList<Product> inventory, Product product) {
+        for (Product productInventory : inventory) {
+            if (productInventory.getProductName().equals(product.getProductName())) {
+                int remainingQuantity = productInventory.getQuantity() - product.getQuantity();
+                productInventory.setQuantity(remainingQuantity);
+               savePlateToFile();
+
+            }
+            
+        }
+        
     }
 
     public void saveOrderTxt(String mesa) {
@@ -528,6 +541,9 @@ public class Logic {
 
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
+                if (Integer.parseInt(row [2])<=5) {
+                     JOptionPane.showMessageDialog(null, "El producto "+row[1]+" Tiene menos de 5 raciones");
+                }
                 model.addRow(row);
             }
         } catch (IOException e) {
@@ -832,9 +848,9 @@ public class Logic {
         return change;
     }
 
-    public void loadChefView(JTable jtChefTables) {
+    public void loadChefBartView(JTable jtTables) {
         model.addColumn("Mesas");
-        jtChefTables.setModel(model);
+        jtTables.setModel(model);
         String row[] = new String[1];
         for (int i = 0; i < listStatus.size(); i++) {
             if (listStatus.get(i).equals("Ocupado")) {
@@ -844,8 +860,9 @@ public class Logic {
 
         }
     }
+   
 
-    public void loadTableChef(String table) {
+    public void loadTableChefBart(String table) {
         try (BufferedReader br = new BufferedReader(new FileReader(table + ".txt"))) {
             String line;
 
@@ -860,7 +877,7 @@ public class Logic {
                     String plateState = data[4];
                     String category = data[5];
                     Product product = new Product(productName, quantity, price, comment, plateState, category);
-                    listTableChef.add(product);
+                    listTableChefBart.add(product);
                 }
 
             }
@@ -881,7 +898,7 @@ public class Logic {
         jtChefOrder.setDefaultEditor(Object.class, null);
         // Assign the DefaultTableModel to the JTable
 
-        for (Product product : listTableChef) {
+        for (Product product : listTableChefBart) {
 
             if (product.getCategory().equals("Comida")) {
                 String[] row = new String[4];
@@ -894,10 +911,33 @@ public class Logic {
         }
 
     }
+    public void loadListToTableBart(JTable jtBartOrder){
+         DefaultTableModel model = (DefaultTableModel) jtBartOrder.getModel();
+        model.setColumnCount(0);
+        model.setRowCount(0);
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Comentario");
+        model.addColumn("Estado");
+        jtBartOrder.setDefaultEditor(Object.class, null);
+        // Assign the DefaultTableModel to the JTable
+
+        for (Product product : listTableChefBart) {
+
+            if (product.getCategory().equals("Bebida")) {
+                String[] row = new String[4];
+                row[0] = product.getProductName();
+                row[1] = Integer.toString(product.getQuantity());
+                row[2] = product.getComment();
+                row[3] = product.getPlateState();
+                model.addRow(row);
+            }
+        }
+    }
 
     public void donePlate(String productName) {
 
-        for (Product product : listTableChef) {
+        for (Product product : listTableChefBart) {
             if (productName.equals(product.getProductName())) {
                 if (product.getPlateState().equals("En espera")) {     
                     product.setPlateState("Listo");
@@ -909,11 +949,11 @@ public class Logic {
 
     }
 
-    public void saveOrderChef(String table) {
+    public void saveOrderChefBart(String table) {
         try {
 
             BufferedWriter writer = new BufferedWriter(new FileWriter("mesa" + table + ".txt"));
-            for (Product product : listTableChef) {
+            for (Product product : listTableChefBart) {
                 writer.write(product.getProductName() + "," + product.getQuantity() + "," + product.getPrice()
                         + "," + product.getComment() + "," + product.getPlateState() + "," + product.getCategory());
                 writer.newLine();
