@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pos.Logic;
 
-
 /**
  * Dialogue to place an order. And Create new instances of the FRMDialogOrder
  * class
@@ -26,6 +25,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
     String table = "";
     static JLabel labelStatus;
     static boolean orderStatus;
+
     /**
      * Constructor of the FRMDialogOrder class. Calls the constructor of the
      * parent class (JDialog) passing the main frame and the mode flag. Call the
@@ -35,16 +35,16 @@ public class FRMDialogOrder extends javax.swing.JDialog {
      * @param parent The main frame (parent window) that displays this dialog.
      * @param modal Specifies whether the dialog is modal or not.
      */
-    public FRMDialogOrder(java.awt.Frame parent, boolean modal, String table,JLabel status, boolean orderStatus)  {
+    public FRMDialogOrder(java.awt.Frame parent, boolean modal, String table, JLabel status, boolean orderStatus) {
         super(parent, modal);
         logic = new Logic(); // Initialize the Logic instance
-        
+
         initComponents();
         logic.readMenu(jtMenu); // Read menu from logic and display it in jtMenu table
         addedRow = new HashMap<>(); // Initialize the addedRow map to track the rows added to the order
         tmp = (DefaultTableModel) jtOrder.getModel(); // Get the model from the jtOrder table and assign it to tmp
         this.table = table;
-        this.orderStatus=orderStatus;
+        this.orderStatus = orderStatus;
         this.labelStatus = status;
         System.out.println("Mesa en dialogo: " + table);
     }
@@ -108,11 +108,11 @@ public class FRMDialogOrder extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Nombre", "Cantidad", "Precio", "Comentario"
+                "Nombre", "Cantidad", "Precio", "Categoría", "Comentario"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -139,10 +139,10 @@ public class FRMDialogOrder extends javax.swing.JDialog {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 5, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 10, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(btnconfirmOrder)
@@ -152,11 +152,11 @@ public class FRMDialogOrder extends javax.swing.JDialog {
                                         .addComponent(btnAddComment)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnDeleteComment))))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtComment, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addContainerGap(17, Short.MAX_VALUE))))
+                            .addComponent(txtComment))
+                        .addGap(23, 23, 23))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,12 +321,14 @@ public class FRMDialogOrder extends javax.swing.JDialog {
             Object[] row = new Object[originalModel.getColumnCount()];
 
             // Copy the values of the selected row to the array row
-            for (int i = 0; i < originalModel.getColumnCount() - 1; i++) {
+            for (int i = 0; i < originalModel.getColumnCount(); i++) {
                 if (i == 0) {
                     row[i] = originalModel.getValueAt(selectedRow, i + 1);
+
                 } else {
                     row[i] = originalModel.getValueAt(selectedRow, i);
                 }
+
             }
 
             // Check if the row has already been added previously
@@ -346,7 +348,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
                 targetModel.addRow(row); // Add the row to the destination JTable
 
                 quantity = 1;
-                targetModel.setValueAt("-", addedRow.get(selectedRow), 3); // Set the "Remarks" field to "-"
+                targetModel.setValueAt("-", addedRow.get(selectedRow), 4); // Set the "Remarks" field to "-"
                 logic.totalPay(jtOrder, jltotalBill); // Calculate the total to pay
             }
         } else {
@@ -378,7 +380,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "ESCRIBA UN COMENTARIO");
         } else {
             // Get the value of the comment field and assign it to the "Comment" column of the selected row in jtOrder
-            tmp.setValueAt(txtComment.getText(), jtOrder.getSelectedRow(), 3);
+            tmp.setValueAt(txtComment.getText(), jtOrder.getSelectedRow(), 4);
             // Clear the comment field
             txtComment.setText("");
             // Clear the selection in the jtOrder table
@@ -406,25 +408,26 @@ public class FRMDialogOrder extends javax.swing.JDialog {
                 String productName = tmp.getValueAt(i, 0).toString();
                 int count = Integer.parseInt(tmp.getValueAt(i, 1).toString());
                 double price = Double.parseDouble(tmp.getValueAt(i, 2).toString());
-                String comment = tmp.getValueAt(i, 3).toString();
+                String comment = tmp.getValueAt(i, 4).toString();
+                String category = tmp.getValueAt(i, 3).toString();
 
                 // Check if the comment is empty and assign "-" instead
                 if (comment.isEmpty()) {
 
                     comment = "-";
                 }
-
+                String plateState = "En espera";
                 // Save the order using the logic object and the returned values
-                logic.saveOrder(productName, count, price, comment, table.replaceAll("Mesa: ", ""));
+                logic.saveOrder(productName, count, price, comment, table.replaceAll("Mesa: ", ""), plateState, category);
 
             }
             JOptionPane.showMessageDialog(null, "pedido ingresado exitosamente");
-            
+
             logic.readStatus();
-            logic.setStatusOcupado(Integer.parseInt(table.replaceAll("Mesa: ", ""))-1);
-            labelStatus.setText("Estado: "+logic.listStatus.get(Integer.parseInt(table.replaceAll("Mesa: ", ""))-1));
+            logic.setStatusOcupado(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1);
+            labelStatus.setText("Estado: " + logic.listStatus.get(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1));
             logic.saveStatusTxt();
-            orderStatus=true;
+            
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Sin pedidos agregados");
@@ -465,16 +468,16 @@ public class FRMDialogOrder extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
-                    FRMDialogOrder dialog = new FRMDialogOrder(new javax.swing.JFrame(), true, "",null,false);
-                    dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                        @Override
-                        public void windowClosing(java.awt.event.WindowEvent e) {
-                            System.exit(0);
-                        }
-                    });
-                    dialog.setVisible(true);
-                
+
+                FRMDialogOrder dialog = new FRMDialogOrder(new javax.swing.JFrame(), true, "", null, false);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+
             }
         });
     }

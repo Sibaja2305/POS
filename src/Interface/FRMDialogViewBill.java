@@ -50,6 +50,7 @@ public class FRMDialogViewBill extends javax.swing.JDialog {
         logic.readTable(table.replaceAll("Mesa: ", ""));
        
         logic.viewTableOrder(jtbillingTable);
+         logic.deleteTable(table.replaceAll("Mesa: ", ""));
          
         
 

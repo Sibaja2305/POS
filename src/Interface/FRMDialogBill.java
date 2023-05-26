@@ -3,6 +3,7 @@ package Interface;
 import classes.PaymentMethods;
 import java.util.Date;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import pos.Logic;
 
@@ -342,17 +343,23 @@ public class FRMDialogBill extends javax.swing.JDialog {
         double cash = Double.parseDouble(txtCash.getText());
         double change = Double.parseDouble(lblChangeAmount.getText());
         logic.billingSave(billingNumber, date, name, idCustomer, email, totalPrice, change, cash);
-        FRMDialogViewBill viewBill = new FRMDialogViewBill(null, true, billingNumber, date, name, idCustomer, email, totalPrice, change, cash, table);
+        if (cash>=totalPrice) {
+            logic.readStatus();
+             logic.setStatusDisponible(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1);
+             logic.saveStatusTxt();
+            labelStatus.setText("Estado: " + logic.listStatus.get(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1));
+            dispose();
+            FRMDialogViewBill viewBill = new FRMDialogViewBill(null, true, billingNumber, date, name, idCustomer, email, totalPrice, change, cash, table);
         viewBill.setVisible(true);
-
+       
+        }else{
+            JOptionPane.showMessageDialog(null, "Dinero insuficiente");
+        }
+        
     }//GEN-LAST:event_btnfinishBillActionPerformed
 
     private void txtCashComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_txtCashComponentAdded
-//        double total=Double.parseDouble(lblTotalBillAmount.getText());
-//        double cash=Double.parseDouble(txtCash.getText());
-//        double change=0;
-//        change=logic.totalChange(total, cash);
-//        lblChangeAmount.setText(String.valueOf(change));
+
     }//GEN-LAST:event_txtCashComponentAdded
 
     private void btnchangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchangeActionPerformed

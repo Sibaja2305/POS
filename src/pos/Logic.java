@@ -43,6 +43,7 @@ public class Logic {
     public LinkedList<Product> storage;
     public LinkedList<Product> inventory;
     public LinkedList<Product> tableOrder;
+    public LinkedList<Product> listTableChef;
     public LinkedList<Billing> listBilling;
     static DefaultTableModel model;
     static User user;
@@ -56,6 +57,7 @@ public class Logic {
         // Storage st = new Storage();
         //st.getStorage();
         storage = new LinkedList<>();
+        listTableChef = new LinkedList<>();
         inventory = new LinkedList<>();
         users = new LinkedList<>();
         tableOrder = new LinkedList<>();
@@ -259,9 +261,7 @@ public class Logic {
 
         }
 
-        //  }else{
-        //          JOptionPane.showMessageDialog(null, "Nombre de usuario, contraseña o rol incorrectos");
-        //     }
+
     }
 
     public void deleteTableUser(JTable tbUsers) {
@@ -375,9 +375,11 @@ public class Logic {
     }
 
     public void setStatusOcupado(int index) {
-        System.out.println(index);
         listStatus.set(index, "Ocupado");
-        System.out.println(index);
+    }
+    
+    public void setStatusDisponible(int index){
+        listStatus.set(index, "Disponible");
     }
 
     public void saveStatusTxt() {
@@ -454,8 +456,8 @@ public class Logic {
      * @param price
      * @param comment
      */
-    public void saveOrder(String productName, int quantity, double price, String comment, String mesa) {
-        Product product = new Product(productName, quantity, price, comment);
+    public void saveOrder(String productName, int quantity, double price, String comment, String mesa, String plateState, String category) {
+        Product product = new Product(productName, quantity, price, comment, plateState, category);
 
         storage.add(product);
         saveOrderTxt(mesa);
@@ -468,7 +470,8 @@ public class Logic {
 
             BufferedWriter writer = new BufferedWriter(new FileWriter("mesa" + mesa + ".txt"));
             for (Product product : storage) {
-                writer.write(product.getProductName() + "," + product.getQuantity() + "," + product.getPrice() + "," + product.getComment());
+                writer.write(product.getProductName() + "," + product.getQuantity() + "," + product.getPrice()
+                        + "," + product.getComment() + "," + product.getPlateState() + "," + product.getCategory());
                 writer.newLine();
             }
             writer.close();
@@ -829,7 +832,7 @@ public class Logic {
         return change;
     }
 
-    public void loadChefTable(JTable jtChefTables) {
+    public void loadChefView(JTable jtChefTables) {
         model.addColumn("Mesas");
         jtChefTables.setModel(model);
         String row[] = new String[1];
@@ -841,27 +844,103 @@ public class Logic {
 
         }
     }
-    public void loadTableChef(JTable jtChefOrder,String table){
-//      try (BufferedReader br = new BufferedReader(new FileReader(table))) {
-//            String line;
-//
-//            while ((line = br.readLine()) != null) {
-//                String[] data = line.split(",");
-//
-//                if (data.length > 1) {
-//                    String productName = data[0];
-//                    int quantity = Integer.parseInt(data[1]);
-//                    double price = Double.parseDouble(data[2]);
-//                    String comment = data[3];
-//                    Product product = new Product(productName, quantity, price, comment);
-//                    tableOrder.add(product);
-//                }
-//
-//            }
-//            br.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
+    public void loadTableChef(String table) {
+        try (BufferedReader br = new BufferedReader(new FileReader(table + ".txt"))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+
+                if (data.length > 1) {
+                    String productName = data[0];
+                    int quantity = Integer.parseInt(data[1]);
+                    double price = Double.parseDouble(data[2]);
+                    String comment = data[3];
+                    String plateState = data[4];
+                    String category = data[5];
+                    Product product = new Product(productName, quantity, price, comment, plateState, category);
+                    listTableChef.add(product);
+                }
+
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public void loadListToTableChef(JTable jtChefOrder) {
+        DefaultTableModel model = (DefaultTableModel) jtChefOrder.getModel();
+        model.setColumnCount(0);
+        model.setRowCount(0);
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Comentario");
+        model.addColumn("Estado");
+        jtChefOrder.setDefaultEditor(Object.class, null);
+        // Assign the DefaultTableModel to the JTable
+
+        for (Product product : listTableChef) {
+
+            if (product.getCategory().equals("Comida")) {
+                String[] row = new String[4];
+                row[0] = product.getProductName();
+                row[1] = Integer.toString(product.getQuantity());
+                row[2] = product.getComment();
+                row[3] = product.getPlateState();
+                model.addRow(row);
+            }
+        }
+
+    }
+
+    public void donePlate(String productName) {
+
+        for (Product product : listTableChef) {
+            if (productName.equals(product.getProductName())) {
+                if (product.getPlateState().equals("En espera")) {     
+                    product.setPlateState("Listo");
+                }else{
+                    product.setPlateState("En espera");
+                }
+            }
+        }
+
+    }
+
+    public void saveOrderChef(String table) {
+        try {
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter("mesa" + table + ".txt"));
+            for (Product product : listTableChef) {
+                writer.write(product.getProductName() + "," + product.getQuantity() + "," + product.getPrice()
+                        + "," + product.getComment() + "," + product.getPlateState() + "," + product.getCategory());
+                writer.newLine();
+            }
+            writer.close();
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "pedido no ingresado a la base de datos" + e);
+        }
+    }
+    public void deleteTable(String table){
+          
+
+        try {
+            // Crea un BufferedWriter con un FileWriter en modo de escritura
+            BufferedWriter writer = new BufferedWriter(new FileWriter("mesa"+table+".txt"));
+
+            // Escribe una cadena vacía en el archivo
+            writer.write("");
+
+            // Cierra el BufferedWriter
+            writer.close();
+
+            System.out.println("Contenido del archivo eliminado correctamente.");
+        } catch (IOException e) {
+            System.out.println("Ocurrió un error al intentar borrar el contenido del archivo.");
+            e.printStackTrace();
+        }
+    }
 }

@@ -8,7 +8,7 @@ public class Product {
     private String category;
     private String comment;
     private String productName;
-
+    private String plateState;
     public Product() {
     }
 
@@ -38,6 +38,30 @@ public class Product {
         this.price = price;
         this.category = category;
         this.productName = productName;
+    }
+
+    public Product(String productName,int quantity,double price, String comment,  String plateState, String category) {
+        this.quantity = quantity;
+        this.category = category;
+        this.comment = comment;
+        this.productName = productName;
+        this.plateState = plateState;
+        this.price = price;
+    }
+    
+
+    /**
+     * @return the plateState
+     */
+    public String getPlateState() {
+        return plateState;
+    }
+
+    /**
+     * @param plateState the plateState to set
+     */
+    public void setPlateState(String plateState) {
+        this.plateState = plateState;
     }
 
     /**
@@ -126,7 +150,9 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", price=" + price + ", quantity=" + quantity + ", category=" + category + ", comment=" + comment + ", productName=" + productName + '}';
+        return "Product{" + "id=" + id + ", price=" + price + ", quantity=" + quantity + ", category=" + category + ", comment=" + comment + ", productName=" + productName + ", plateState=" + plateState + '}';
     }
+
+   
 
 }

@@ -116,8 +116,10 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinalizeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizeOrderActionPerformed
+        dispose();
         FRMDialogBill dialogBill =new FRMDialogBill(null,true,this.table,this.labelStatus);
         dialogBill.setVisible(true);
+        
         
     }//GEN-LAST:event_btnFinalizeOrderActionPerformed
 

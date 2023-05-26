@@ -1,5 +1,6 @@
 package Interface;
 
+import javax.swing.JOptionPane;
 import pos.Logic;
 
 /**
@@ -15,12 +16,14 @@ public class FRMChef extends javax.swing.JFrame {
     /**
      * Creates new form FRMChef
      */
+    static String table = "";
     Logic logic;
+
     public FRMChef() {
         initComponents();
         logic = new Logic();
         logic.readStatus();
-         logic.loadChefTable (jtChefTables);
+        logic.loadChefView(jtChefTables);
     }
 
     /**
@@ -61,20 +64,22 @@ public class FRMChef extends javax.swing.JFrame {
             new String [] {
                 "Mesas"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane2.setViewportView(jtChefTables);
 
         btnDetailsTable.setText("Ver pedido");
+        btnDetailsTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetailsTableActionPerformed(evt);
+            }
+        });
 
         btnLockOut.setText("Cerrar sesión");
+        btnLockOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLockOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -130,6 +135,11 @@ public class FRMChef extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jtChefOrder);
 
         btnOrderDone.setText("Listo");
+        btnOrderDone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderDoneActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -194,6 +204,40 @@ public class FRMChef extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDetailsTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsTableActionPerformed
+      
+        int selectedRow = jtChefTables.getSelectedRow();
+        System.out.println(selectedRow);
+         table = jtChefTables.getValueAt(selectedRow, 0).toString();
+        
+        logic.listTableChef.clear();
+     
+        logic.loadTableChef(table);
+         
+       
+        logic.loadListToTableChef(jtChefOrder);
+        
+    }//GEN-LAST:event_btnDetailsTableActionPerformed
+
+    private void btnLockOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockOutActionPerformed
+  logic.lockOut();
+  dispose();
+    }//GEN-LAST:event_btnLockOutActionPerformed
+
+    private void btnOrderDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderDoneActionPerformed
+  int selectedRow = jtChefOrder.getSelectedRow();
+  
+        if (selectedRow != -1) {
+            String productName = jtChefOrder.getValueAt(selectedRow, 0).toString();
+            logic.donePlate(productName);
+            
+            logic.saveOrderChef(table.replaceAll("mesa", ""));
+            logic.loadListToTableChef(jtChefOrder);
+            
+        }else
+            JOptionPane.showMessageDialog(null, "Ningun pedido seleccionado");
+    }//GEN-LAST:event_btnOrderDoneActionPerformed
 
     /**
      * @param args the command line arguments
