@@ -824,13 +824,13 @@ public class Logic {
      * bufferedWriter for this method
      */
     public void savePlateToFile() {
-        //  int i = 1;
+       
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("Inventario.txt"));
             for (Product product : inventory) {
                 writer.write(product.getId() + "," + product.getProductName() + "," + product.getQuantity() + "," + product.getPrice() + "," + product.getCategory());
                 writer.newLine();
-                //         i++;
+               
             }
 
             writer.close();
@@ -1011,10 +1011,10 @@ public class Logic {
 
         Date updateDate = new Date();
 
-        // Crear un formato para mostrar la fecha
+        // Create a format to display the date
         SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
 
-        // Formatear la fecha actual como cadena de texto
+        // Format current date as text string
         String resetDate = formatDate.format(updateDate);
 
         return resetDate;
@@ -1210,13 +1210,13 @@ public class Logic {
     public void deleteTable(String table) {
 
         try {
-            // Crea un BufferedWriter con un FileWriter en modo de escritura
+            // Create a BufferedWriter with a FileWriter in write mode
             BufferedWriter writer = new BufferedWriter(new FileWriter("mesa" + table + ".txt"));
 
-            // Escribe una cadena vacía en el archivo
+            // Write an empty string to the file
             writer.write("");
 
-            // Cierra el BufferedWriter
+            // Close the BufferedWriter
             writer.close();
 
             System.out.println("Contenido del archivo eliminado correctamente.");
@@ -1238,7 +1238,7 @@ public class Logic {
      */
     public void readHelpTxt(String nameFrame, JTextArea jtaHelpText) throws IOException {
 
-        // Lee el contenido del archivo y guárdalo en un StringBuilder
+        // Read the content of the file and save it in a StringBuilder
         try {
             BufferedReader reader = new BufferedReader(new FileReader(nameFrame + ".txt"));
             StringBuilder sb = new StringBuilder();
@@ -1247,7 +1247,7 @@ public class Logic {
                 sb.append(line).append("\n");
             }
             reader.close();
-            // Establece el contenido del StringBuilder en el JTextArea
+            // Sets the content of the StringBuilder in the JTextArea
             jtaHelpText.setText(sb.toString());
         } catch (IOException iOException) {
             JOptionPane.showMessageDialog(null, "Error al leer el archivo" + iOException);

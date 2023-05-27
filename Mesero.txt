@@ -1,4 +1,4 @@
-Bienvenido ayuda de de mesero:
+Bienvenido ayuda de mesero:
 Cuando ingrese a la parte mesero se le desplegara automaticamente las mesas del restaurante con su estado disponible,
  cuando se hace click a cualquier mesa se mostrara la parte de crear pedido, donde saldra el menu y la tabla de pedido,
  para ingresar un dato al pedido nada mas selecciona un producto del menu y le da click en agregar y automaticamente
