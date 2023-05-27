@@ -1,3 +1,0 @@
-hkhjuuj,1,21.4,-,En espera,Bebida
-i,1,5.0,-,En espera,Comida
-arroz,1,7.0,-,En espera,Comida

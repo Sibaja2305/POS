@@ -30,16 +30,15 @@ public class Pos {
      */
     public static void main(String[] args) {
         // Get screen size
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double width = screenSize.getWidth();
-        double height = screenSize.getHeight();
+
+        double width = 800;
+        double height = 500;
 
         //Create an instance of FRMLogin (login interface)
         FRMLogin pos = new FRMLogin();
 
         // Set the window size to fill the entire screen
-        pos.setBounds(0, 0, ((int) width), ((int) height));
-
+//        pos.setBounds(0, 0, ((int) width), ((int) height));
         // Show login window
         pos.setVisible(true);
 

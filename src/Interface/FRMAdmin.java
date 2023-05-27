@@ -21,6 +21,10 @@ public class FRMAdmin extends javax.swing.JFrame {
 
     private Logic logic; // Instance of the Logic class to handle the manager logic
 
+    private JIFMenu menu;
+    private JIFInventory inventoryWindow;
+    private JIFUsers userWindow;
+
     /**
      * Constructor of the FRMAdmin class. Create a new instance of the Logic
      * class and call the initComponents() method to initialize the window
@@ -233,11 +237,15 @@ public class FRMAdmin extends javax.swing.JFrame {
      * @param evt The action event associated with the "btnRegisterUser" button.
      */
     private void btnUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersActionPerformed
-        
-        JIFUsers ventana = new JIFUsers();
-        ventana.setVisible(true);
-        desktopAdmin.add(ventana);
-       
+
+        if (userWindow == null || !userWindow.isShowing()) {
+
+            userWindow = new JIFUsers();
+            userWindow.setVisible(true);
+            desktopAdmin.add(userWindow);
+
+        }
+
     }//GEN-LAST:event_btnUsersActionPerformed
 
     /**
@@ -248,12 +256,15 @@ public class FRMAdmin extends javax.swing.JFrame {
      * @param evt The action event associated with the "btnInventary" button.
      */
     private void btnInventaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventaryActionPerformed
-        JIFInventory ventana = new JIFInventory();
-        int x = 30;
-        int y = 30;
-        ventana.setVisible(true);
-        ventana.setBounds(x, y, 800, 500);
-        desktopAdmin.add(ventana);
+        if (inventoryWindow == null || !inventoryWindow.isShowing()) {
+            inventoryWindow = new JIFInventory();
+            int x = 30;
+            int y = 30;
+            inventoryWindow.setVisible(true);
+            inventoryWindow.setBounds(x, y, 800, 500);
+            desktopAdmin.add(inventoryWindow);
+
+        }
     }//GEN-LAST:event_btnInventaryActionPerformed
 
     /**
@@ -264,9 +275,11 @@ public class FRMAdmin extends javax.swing.JFrame {
      * @param evt The action event associated with the "btnMenu" button.
      */
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        JIFMenu menu = new JIFMenu();
-        menu.setVisible(true);
-        desktopAdmin.add(menu);
+        if (menu == null || !menu.isVisible()) {
+            menu = new JIFMenu();
+            menu.setVisible(true);
+            desktopAdmin.add(menu);
+        }
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
@@ -276,7 +289,7 @@ public class FRMAdmin extends javax.swing.JFrame {
     private void jmHelpAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpAdminMouseClicked
         try {
             String nameFrame = "Admin";
-            FRMDialogHelp dialogHelp = new FRMDialogHelp(null,true,nameFrame);
+            FRMDialogHelp dialogHelp = new FRMDialogHelp(null, true, nameFrame);
             dialogHelp.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(FRMAdmin.class.getName()).log(Level.SEVERE, null, ex);
