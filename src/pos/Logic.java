@@ -261,7 +261,6 @@ public class Logic {
 
         }
 
-
     }
 
     public void deleteTableUser(JTable tbUsers) {
@@ -377,8 +376,8 @@ public class Logic {
     public void setStatusOcupado(int index) {
         listStatus.set(index, "Ocupado");
     }
-    
-    public void setStatusDisponible(int index){
+
+    public void setStatusDisponible(int index) {
         listStatus.set(index, "Disponible");
     }
 
@@ -464,17 +463,18 @@ public class Logic {
         saveOrderTxt(mesa);
         System.out.println("se añadio " + productName + " " + quantity + " " + price + " " + comment);
     }
+
     public void subtractQuantity(LinkedList<Product> inventory, Product product) {
         for (Product productInventory : inventory) {
             if (productInventory.getProductName().equals(product.getProductName())) {
                 int remainingQuantity = productInventory.getQuantity() - product.getQuantity();
                 productInventory.setQuantity(remainingQuantity);
-               savePlateToFile();
+                savePlateToFile();
 
             }
-            
+
         }
-        
+
     }
 
     public void saveOrderTxt(String mesa) {
@@ -541,8 +541,8 @@ public class Logic {
 
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
-                if (Integer.parseInt(row [2])<=5) {
-                     JOptionPane.showMessageDialog(null, "El producto "+row[1]+" Tiene menos de 5 raciones");
+                if (Integer.parseInt(row[2]) <= 5) {
+                    JOptionPane.showMessageDialog(null, "El producto " + row[1] + " Tiene menos de 5 raciones");
                 }
                 model.addRow(row);
             }
@@ -648,7 +648,14 @@ public class Logic {
             savePlateToFile(); // save dish to file
             JOptionPane.showMessageDialog(null, "se ha agregado exitosamente");
         } else {
-            JOptionPane.showMessageDialog(null, "El producto ya existe en el inventario");
+            for (Product product : inventory) {
+                if (product.getProductName().equals(productName)) {
+                    product.setQuantity(product.getQuantity() + quantity);
+                    break;
+                }
+            }
+            savePlateToFile();
+            JOptionPane.showMessageDialog(null, "se ha agregado cantidad a producto existente");
         }
     }
 
@@ -860,7 +867,6 @@ public class Logic {
 
         }
     }
-   
 
     public void loadTableChefBart(String table) {
         try (BufferedReader br = new BufferedReader(new FileReader(table + ".txt"))) {
@@ -911,8 +917,9 @@ public class Logic {
         }
 
     }
-    public void loadListToTableBart(JTable jtBartOrder){
-         DefaultTableModel model = (DefaultTableModel) jtBartOrder.getModel();
+
+    public void loadListToTableBart(JTable jtBartOrder) {
+        DefaultTableModel model = (DefaultTableModel) jtBartOrder.getModel();
         model.setColumnCount(0);
         model.setRowCount(0);
         model.addColumn("Nombre");
@@ -939,9 +946,9 @@ public class Logic {
 
         for (Product product : listTableChefBart) {
             if (productName.equals(product.getProductName())) {
-                if (product.getPlateState().equals("En espera")) {     
+                if (product.getPlateState().equals("En espera")) {
                     product.setPlateState("Listo");
-                }else{
+                } else {
                     product.setPlateState("En espera");
                 }
             }
@@ -964,12 +971,12 @@ public class Logic {
             JOptionPane.showMessageDialog(null, "pedido no ingresado a la base de datos" + e);
         }
     }
-    public void deleteTable(String table){
-          
+
+    public void deleteTable(String table) {
 
         try {
             // Crea un BufferedWriter con un FileWriter en modo de escritura
-            BufferedWriter writer = new BufferedWriter(new FileWriter("mesa"+table+".txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("mesa" + table + ".txt"));
 
             // Escribe una cadena vacía en el archivo
             writer.write("");

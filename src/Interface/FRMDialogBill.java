@@ -53,8 +53,6 @@ public class FRMDialogBill extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblBillNumber = new javax.swing.JLabel();
-        txtBillNumber = new javax.swing.JTextField();
         lblCostumerName = new javax.swing.JLabel();
         txtCostumerName = new javax.swing.JTextField();
         lblCostumerId = new javax.swing.JLabel();
@@ -76,15 +74,6 @@ public class FRMDialogBill extends javax.swing.JDialog {
         btnchange = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        lblBillNumber.setText("Número de factura");
-
-        txtBillNumber.setToolTipText("");
-        txtBillNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBillNumberActionPerformed(evt);
-            }
-        });
 
         lblCostumerName.setText("Nombre:");
 
@@ -178,7 +167,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(119, 119, 119)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblCash, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                            .addComponent(lblCash, javax.swing.GroupLayout.PREFERRED_SIZE, 58, Short.MAX_VALUE)
                             .addComponent(lblTotalBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblChange, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,11 +186,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
                 .addGap(75, 75, 75)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblBillNumber)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtBillNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 14, Short.MAX_VALUE)
                         .addComponent(lblCostumerName)
                         .addGap(65, 65, 65)
                         .addComponent(txtCostumerName, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -230,13 +215,9 @@ public class FRMDialogBill extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addGap(73, 73, 73)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtBillNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblBillNumber))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCostumerName)
                             .addComponent(txtCostumerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -288,10 +269,6 @@ public class FRMDialogBill extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtBillNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBillNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBillNumberActionPerformed
-
     private void txtCostumerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostumerNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCostumerNameActionPerformed
@@ -334,7 +311,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
     }//GEN-LAST:event_jcPaymentMethodActionPerformed
 
     private void btnfinishBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfinishBillActionPerformed
-        String billingNumber = txtBillNumber.getText();
+        String billingNumber = String.valueOf((int)(Math.random()*999999999));
         String date = logic.actualDate();
         String name = txtCostumerName.getText();
         String idCustomer = txtCostumerId.getText();
@@ -420,7 +397,6 @@ public class FRMDialogBill extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jcPaymentMethod;
     private javax.swing.JTable jtOrder;
-    private javax.swing.JLabel lblBillNumber;
     private javax.swing.JLabel lblCash;
     private javax.swing.JLabel lblChange;
     private javax.swing.JLabel lblChangeAmount;
@@ -430,7 +406,6 @@ public class FRMDialogBill extends javax.swing.JDialog {
     private javax.swing.JLabel lblPaymentMethod;
     private javax.swing.JLabel lblTotalBill;
     private javax.swing.JLabel lblTotalBillAmount;
-    private javax.swing.JTextField txtBillNumber;
     private javax.swing.JTextField txtCash;
     private javax.swing.JTextField txtCostumerGmail;
     private javax.swing.JTextField txtCostumerId;

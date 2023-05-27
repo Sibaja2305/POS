@@ -1,3 +1,0 @@
-wfeww,20,33.2,-,En espera,Comida
-hamburqueza,2,98.0,-,En espera,Comida
-arroz,3,7.0,-,En espera,Comida
