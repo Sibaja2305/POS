@@ -4,15 +4,13 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar2">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
+        <Menu class="javax.swing.JMenu" name="jmHelpChef">
           <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="text" type="java.lang.String" value="Ayuda"/>
           </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
-          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jmHelpChefMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
@@ -162,7 +160,7 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="btnDetailsTable">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Ver pedido"/>
+                    <Property name="text" type="java.lang.String" value="Ver detalles"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDetailsTableActionPerformed"/>

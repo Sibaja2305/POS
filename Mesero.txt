@@ -1,0 +1,13 @@
+Bienvenido ayuda de de mesero:
+Cuando ingrese a la parte mesero se le desplegara automaticamente las mesas del restaurante con su estado disponible,
+ cuando se hace click a cualquier mesa se mostrara la parte de crear pedido, donde saldra el menu y la tabla de pedido,
+ para ingresar un dato al pedido nada mas selecciona un producto del menu y le da click en agregar y automaticamente
+ lo pasara a pedido y si quiere ingresar el mismo nada mas lo selecciona y la cantidad se sumara uno mas, tendra
+ una parte donde usted le da click en la tabla de pedido para ingresarle un comentario y nada mas ingresa lo que
+ necesita comentar y le da click al boton de agregar, para confirmar pedido, nada mas le da click a la boton confirmar
+ pedido y se ingresara automaticamente.
+Cuando ya cree el pedido el estado de la mesa pasara a ocupado y la si le da click otra vez en el boton de la mesa
+ autometicamente puede ver el pedido que se hizo en esa mesa, en ese misma pagina ahi un boton de finalizar pedido
+ donde lo llevara a la parte de facturacion y podra hacer la factura del cliente, ingresa todos los datos de la factura
+ y le da click en el boton listo, para terminar la factura y se muestre la factura le da click en el boton de terminar
+ factura y ya la mesa borrara el pedido y se pasara a disponible para utilizarla otra vez.

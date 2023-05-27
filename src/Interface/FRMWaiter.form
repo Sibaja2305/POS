@@ -4,20 +4,13 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="btnHelp">
+        <Menu class="javax.swing.JMenu" name="jmHelpWaiter">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ayuda"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jmHelpWaiterMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>

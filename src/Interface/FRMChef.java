@@ -1,5 +1,8 @@
 package Interface;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pos.Logic;
 
@@ -47,8 +50,7 @@ public class FRMChef extends javax.swing.JFrame {
         jtChefOrder = new javax.swing.JTable();
         btnOrderDone = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        jmHelpChef = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,7 +69,7 @@ public class FRMChef extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jtChefTables);
 
-        btnDetailsTable.setText("Ver pedido");
+        btnDetailsTable.setText("Ver detalles");
         btnDetailsTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDetailsTableActionPerformed(evt);
@@ -179,11 +181,13 @@ public class FRMChef extends javax.swing.JFrame {
                 .addComponent(jSplitPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jMenu3.setText("File");
-        jMenuBar2.add(jMenu3);
-
-        jMenu4.setText("Edit");
-        jMenuBar2.add(jMenu4);
+        jmHelpChef.setText("Ayuda");
+        jmHelpChef.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmHelpChefMouseClicked(evt);
+            }
+        });
+        jMenuBar2.add(jmHelpChef);
 
         setJMenuBar(jMenuBar2);
 
@@ -240,6 +244,16 @@ public class FRMChef extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnOrderDoneActionPerformed
 
+    private void jmHelpChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpChefMouseClicked
+        try {
+            String nameFrame = "Chef";
+            FRMDialogHelp dialogHelp = new FRMDialogHelp(null,true,nameFrame);
+            dialogHelp.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(FRMChef.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jmHelpChefMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -279,8 +293,6 @@ public class FRMChef extends javax.swing.JFrame {
     private javax.swing.JButton btnDetailsTable;
     private javax.swing.JButton btnLockOut;
     private javax.swing.JButton btnOrderDone;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
@@ -288,6 +300,7 @@ public class FRMChef extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JMenu jmHelpChef;
     private javax.swing.JTable jtChefOrder;
     private javax.swing.JTable jtChefTables;
     // End of variables declaration//GEN-END:variables

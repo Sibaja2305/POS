@@ -1,0 +1,9 @@
+Bienvenido a la ayuda de Bartender:
+Cuando ingreses a la parte de Bartender podras ver 2 tablas, una llamada mesa donde se mostraran 
+las mesas que estan ocupadas, pero solo las que tienen bebida. Abajo tiene un boton de ver detalle, donde podras ver
+el detalle del pedido de esa mesa selecionada. Entonces el detalle de esa mesa se mostrara en la otra tabla de la derecha 
+en la cual aparecera el nombre, cantidad, comentario y el estado del pedido. El estado va a parecer en espera por defecto,
+para cambiar el estado del pedido se tiene que selecionar la fila a la cual quieras cambiar el estado y darle clic al botón
+Listo, esto para cambiar el estadode la bebida a Listo. Por último, en la parte inferio izquierda hay un boton cerrar sesion,
+la acción que se ejecutara a la hora de darle clic sobre ese botón sera que se cierra la ventana de Bartender y se abrira el login.
+

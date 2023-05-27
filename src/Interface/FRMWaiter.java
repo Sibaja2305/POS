@@ -49,9 +49,7 @@ public class FRMWaiter extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        btnHelp = new javax.swing.JMenu();
+        jmHelpWaiter = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,14 +139,13 @@ public class FRMWaiter extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        btnHelp.setText("Ayuda");
-        jMenuBar1.add(btnHelp);
+        jmHelpWaiter.setText("Ayuda");
+        jmHelpWaiter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmHelpWaiterMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jmHelpWaiter);
 
         setJMenuBar(jMenuBar1);
 
@@ -178,6 +175,16 @@ public class FRMWaiter extends javax.swing.JFrame {
         // Close the current window (dispose() is a method of the JFrame class)
         dispose();
     }//GEN-LAST:event_btnSignOffActionPerformed
+
+    private void jmHelpWaiterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpWaiterMouseClicked
+        try {
+            String nameFrame = "Mesero";
+            FRMDialogHelp dialogHelp = new FRMDialogHelp(null,true,nameFrame);
+            dialogHelp.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(FRMWaiter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jmHelpWaiterMouseClicked
 
     /**
      * @param args the command line arguments
@@ -221,16 +228,14 @@ public class FRMWaiter extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DesktopWaiter;
-    private javax.swing.JMenu btnHelp;
     private javax.swing.JButton btnSignOff;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JMenu jmHelpWaiter;
     // End of variables declaration//GEN-END:variables
 }

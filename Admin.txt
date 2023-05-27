@@ -1,0 +1,15 @@
+Bienvenido a ayuda de Administrador:
+Cuando ingrese a la parte de administrador, se encontrara varios botones a la izquierda y a la derecha
+ un escritorio, el boton de menu si le da click se le mostrara en una tabla el menu que ahorita se esta
+ usando en el restaurante, el boton de inventario si le da click se le mostrara una pagina con 2 tablas,
+ la primera puede ver todos los productos que contenga el restaurante con las comidas y bebidas, abajo
+ de la primera tabla tiene un boton de agregar producto donde saldra una pagina que pueda digitar el
+ producto nuevo y le da click en agregar, si el producto ya existe entonces le sumara la cantidad que
+ tiene con la nueva. para eliminar un producto seleccionamos la fila del producto que queremos eliminar
+ en la tabla de arriba y le da eliminar y despues le damos click en el boton de actualizar para que la
+ tabla de actualice, la tabla de abajo lo que hace es buscar un producto que este en la lista, si el
+ producto es en la lista lo a encontrar en esa tabla. el boton de mesas y reporte estan en mantenimiento.
+ En el boton de usuario usted ingresa ahi y puede ver una tabla de usurios que pueden ingresar al POS,
+ contiene 3 botones, el de actualizar, que sirve para actualizar la tabla, el registrar usuario le desplega
+ una pagina donde puede ingresar un nuevo usuario y para eliminar seleccionamos el usuarios que queremos
+ eliminar, le damos click en el boton de eliminar y actualizamos la tabla para que se actualice los usuarios.

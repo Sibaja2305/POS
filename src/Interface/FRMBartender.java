@@ -1,5 +1,8 @@
 package Interface;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pos.Logic;
 
@@ -46,8 +49,7 @@ public class FRMBartender extends javax.swing.JFrame {
         jtBartOrder = new javax.swing.JTable();
         btnOrderDone = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jmHelpBart = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,7 +68,7 @@ public class FRMBartender extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jtBartTables);
 
-        btnDetailsTableBart.setText("Ver pedido");
+        btnDetailsTableBart.setText("Ver detalles");
         btnDetailsTableBart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDetailsTableBartActionPerformed(evt);
@@ -158,11 +160,13 @@ public class FRMBartender extends javax.swing.JFrame {
 
         jSplitPane1.setRightComponent(jPanel3);
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jmHelpBart.setText("Ayuda");
+        jmHelpBart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmHelpBartMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jmHelpBart);
 
         setJMenuBar(jMenuBar1);
 
@@ -216,6 +220,16 @@ public class FRMBartender extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnOrderDoneActionPerformed
 
+    private void jmHelpBartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpBartMouseClicked
+        try {
+            String nameFrame = "Bartender";
+            FRMDialogHelp dialogHelp = new FRMDialogHelp(null,true,nameFrame);
+            dialogHelp.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(FRMBartender.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jmHelpBartMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -255,14 +269,13 @@ public class FRMBartender extends javax.swing.JFrame {
     private javax.swing.JButton btnDetailsTableBart;
     private javax.swing.JButton btnLockOut;
     private javax.swing.JButton btnOrderDone;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JMenu jmHelpBart;
     private javax.swing.JTable jtBartOrder;
     private javax.swing.JTable jtBartTables;
     // End of variables declaration//GEN-END:variables

@@ -1,6 +1,9 @@
 package Interface;
 
 import classes.User;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.plaf.DesktopPaneUI;
 import pos.Logic;
@@ -51,9 +54,7 @@ public class FRMAdmin extends javax.swing.JFrame {
         desktopAdmin = new javax.swing.JDesktopPane();
         jPanel2 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        jmHelpAdmin = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,7 +113,7 @@ public class FRMAdmin extends javax.swing.JFrame {
                     .addComponent(btnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnInventary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                    .addComponent(btnUsers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLockOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
         );
@@ -188,14 +189,13 @@ public class FRMAdmin extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("ayuda");
-        jMenuBar1.add(jMenu3);
+        jmHelpAdmin.setText("Ayuda");
+        jmHelpAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmHelpAdminMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jmHelpAdmin);
 
         setJMenuBar(jMenuBar1);
 
@@ -273,6 +273,16 @@ public class FRMAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnReportActionPerformed
 
+    private void jmHelpAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpAdminMouseClicked
+        try {
+            String nameFrame = "Admin";
+            FRMDialogHelp dialogHelp = new FRMDialogHelp(null,true,nameFrame);
+            dialogHelp.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(FRMAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jmHelpAdminMouseClicked
+
     /**
      * Java application entry point.
      *
@@ -318,14 +328,12 @@ public class FRMAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnTable;
     private javax.swing.JButton btnUsers;
     private javax.swing.JDesktopPane desktopAdmin;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JMenu jmHelpAdmin;
     // End of variables declaration//GEN-END:variables
 }

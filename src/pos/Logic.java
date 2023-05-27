@@ -23,6 +23,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -989,5 +990,24 @@ public class Logic {
             System.out.println("Ocurrió un error al intentar borrar el contenido del archivo.");
             e.printStackTrace();
         }
+    }
+
+    public void readHelpTxt(String nameFrame, JTextArea jtaHelpText ) throws IOException {
+
+        // Lee el contenido del archivo y guárdalo en un StringBuilder
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(nameFrame + ".txt"));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+            reader.close();
+            // Establece el contenido del StringBuilder en el JTextArea
+            jtaHelpText.setText(sb.toString());
+        } catch (IOException iOException) {
+            JOptionPane.showMessageDialog(null, "Error al leer el archivo" + iOException );
+        }
+
     }
 }
