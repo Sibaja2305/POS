@@ -28,8 +28,10 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * In the Logic class users, storage, inventory were instantiated in a
- * LinkedList and Creates an instance of DefaultTableModel for the table model.
+ * Logic class. Initializes the data structures and models necessary for the
+ * program logic. Create LinkedList instances to store the state of tables,
+ * patrons, and inventory. Creates an instance of DefaultTableModel for the
+ * table model.
  *
  * @author Diego Herrera López
  * @author Kevin Sibaja Granados
@@ -50,9 +52,10 @@ public class Logic {
     static User user;
 
     /**
-     * Logic class. Initializes the data structures and models necessary for the
-     * program logic. Create LinkedList instances to store the menu, users, and
-     * storage. Creates an instance of DefaultTableModel for the table model.
+     * Constructor of the Logic class. Initializes the data structures and
+     * models necessary for the program logic. Create LinkedList instances to
+     * store the state of tables, patrons, and inventory. Creates an instance of
+     * DefaultTableModel for the table model.
      */
     public Logic() {
         // Storage st = new Storage();
@@ -264,11 +267,28 @@ public class Logic {
 
     }
 
+    /**
+     * The "deleteTableUser" method that has tbUsers as parameter allows
+     * deleting a selected row from a users table. To do this, the user table
+     * (JTable) from which the row will be removed must be passed as a
+     * parameter. Gets the selected row using int selectedRow =
+     * tbUsers.getSelectedRow(). If selectedRow has a value other than -1, it
+     * indicates that a valid row has been selected. Inside the if, you use
+     * model.removeRow(selectedRow); to remove the selected row of the model
+     * from the table. In case it has not been no rows selected, a warning
+     * dialog is displayed using JOptionPane.showMessageDialog
+     *
+     * @param tbUsers The users table (JTable) from which the row will be
+     * removed.
+     */
     public void deleteTableUser(JTable tbUsers) {
+        // Get the model of the table
         DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
 
+        // Get the selected row
         int selectedRow = tbUsers.getSelectedRow();
         if (selectedRow != -1) {
+            // If a valid row has been selected, it is removed from the table model
             model.removeRow(selectedRow);
         } else {
             JOptionPane.showMessageDialog(null, "Ningun usuario fue seleccionado");
@@ -276,22 +296,51 @@ public class Logic {
 
     }
 
+    /**
+     * The "loadUsersTable" method that has tbUsers as a parameter is
+     * responsible for loading user data from a table (JTable) into a list of
+     * users. This is done by getting the values for each row in the table and
+     * adding those values as a new user to the list. The method begins by
+     * getting the model of the table using the line of code DefaultTableModel
+     * model = (DefaultTableModel) tbUsers.getModel(); . This is done to be able
+     * to access the data stored in the table. The existing user list is cleared
+     * using users.clear(). the "addUser" method is called passing the values
+     * obtained from the table as parameters.
+     *
+     * @param tbUsers The users table (JTable) from which the data will be
+     * loaded.
+     */
     public void loadUsersTable(JTable tbUsers) {
+        // Get the model of the table
         DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
+
+        // Clear the list of users
         users.clear();
         for (int i = 0; i < model.getRowCount(); i++) {
+
+            // Get the values of each column of the current row
             String username = model.getValueAt(i, 0).toString();
             String password = model.getValueAt(i, 1).toString();
-
             String role = model.getValueAt(i, 2).toString();
 
+            // Add the user to the user list
             addUser(username, password, role);
         }
     }
 
+    /**
+     * This loadUserTxt method with jtUsers as parameter loads user data from a
+     * text file into a table. Cell editing is disabled in the table, the table
+     * model is reset, the necessary columns are added, and each line of the
+     * text file is read to add it as a new row in the table model.
+     *
+     * @param jtUsers The user table (JTable) into which the data will be
+     * loaded.
+     */
     public void loadUserTxt(JTable jtUsers) {
         DefaultTableModel model = (DefaultTableModel) jtUsers.getModel();
-        //tbUsers.setEnabled(false);
+
+        // Configuración inicial de la tabla
         jtUsers.setDefaultEditor(Object.class, null);
         model.setColumnCount(0);
         model.setRowCount(0);
@@ -304,6 +353,8 @@ public class Logic {
 
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
+
+                // Agrega la fila a la tabla
                 model.addRow(row);
             }
         } catch (IOException e) {
@@ -346,26 +397,41 @@ public class Logic {
     }
     //metodos de orden
 
+    /**
+     * The "createTable" method is responsible for creating and displaying a
+     * series of table windows in a JDesktopPane. The method receives as a
+     * parameter the JDesktopPane "DesktopWaiter" in which the table windows
+     * will be displayed. The windows are positioned in a grid and configured
+     * with specific titles. Table windows are created using the JIFTable class.
+     *
+     * @param DesktopWaiter The JDesktopPane in which to display the desktop
+     * windows.
+     * @throws IOException If an input/output error occurs.
+     */
     public void createTable(JDesktopPane DesktopWaiter) throws IOException {
         int x = 10;
         int y = 10;
         int i = 0;
         JIFTable listTable[] = new JIFTable[10];
+
+        // Create and configure the table windows
         for (int j = 0; j < 10; j++) {
             JIFTable window = new JIFTable();
             window.setBounds(x, y, 220, 220);
             window.setTitle("Mesa: " + (j + 1));
 
+            // Update the position coordinates of the windows
             if (j == 4) {
                 y = y + 250;
                 x = 5;
             } else {
                 x = x + 240;
             }
+            // Add the table window to the list
             listTable[j] = window;
 
         }
-
+        // Show the table windows in the JDesktopPane
         for (JIFTable table : listTable) {
 
             table.setVisible(true);
@@ -374,22 +440,49 @@ public class Logic {
 
     }
 
+    /**
+     * The "setStatusOccupado" method, which takes index as parameter, is used
+     * to establish the status of a table as "Occupied". Inside the method, the
+     * list "listStatus" is accessed and the "set" method is used to replace the
+     * value at the specified index with "Busy".
+     *
+     * @param index The index of the table whose state will be updated.
+     */
     public void setStatusOcupado(int index) {
         listStatus.set(index, "Ocupado");
     }
 
+    /**
+     * The "setStatusDisponible" method is used to set the status of a table as
+     * "Available". It receives as a parameter the index of the table (in the
+     * "listStatus" list) whose status is to be updated. Inside the method, the
+     * list "listStatus" is accessed and the "set" method is used to replace the
+     * value at the specified index with "Available".
+     *
+     * @param index The index of the table whose state will be updated.
+     */
     public void setStatusDisponible(int index) {
         listStatus.set(index, "Disponible");
     }
 
+    /**
+     * It saves the states of the tables in a text file called "Estados.txt".
+     * The statuses are obtained from the "listStatus" list. in case If an I/O
+     * exception occurs, an error message is displayed using
+     * JOptionPane.showMessageDialog.
+     */
     public void saveStatusTxt() {
         try {
 
+            // Create a BufferedWriter to write to the file "States.txt"
             BufferedWriter writer = new BufferedWriter(new FileWriter("Estados.txt"));
+
+            // Write each table state to a new line in the file
             for (String status : listStatus) {
                 writer.write(status);
                 writer.newLine();
             }
+            // Close the BufferedWriter
             writer.close();
 
         } catch (IOException e) {
@@ -397,6 +490,12 @@ public class Logic {
         }
     }
 
+    /**
+     * The "readStatus" method is responsible for reading the table statuses
+     * from the "Estados.txt" text file and adds them to the "listStatus" list.
+     * Inside the method, a BufferedReader object is used to read the file
+     * "States.txt" using a FileReader.
+     */
     public void readStatus() {
         try (BufferedReader br = new BufferedReader(new FileReader("Estados.txt"))) {
             String line;
@@ -415,6 +514,15 @@ public class Logic {
         }
     }
 
+    /**
+     * The "readIndexStatus" method is responsible for reading the table status
+     * index from the text file "indexMesa.txt" and returns it as a integer
+     * value. Within the method, the variable "index" is initialized with the
+     * value 0. A BufferedReader object is used to read the file "indexMesa.txt"
+     * using a FileReader.
+     *
+     * @return The table state index read from the file.
+     */
     public int readIndexStatus() {
         int index = 0;
         try (BufferedReader br = new BufferedReader(new FileReader("indexMesa.txt"))) {
@@ -432,9 +540,19 @@ public class Logic {
 
     }
 
+    /**
+     * The "writeIndexStatus" method is used to write the table status index to
+     * the "indexMesa.txt" text file. The method receives as a parameter the
+     * table state index to write. Inside the method, a BufferedWriter object is
+     * created to write to the file "indexMesa.txt" using a FileWriter.
+     *
+     * @param index The table state index to write to.
+     * @throws IOException If an I/O error occurs while writing to the file.
+     */
     public void writeIndexStatus(int index) throws IOException {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("indexMesa.txt"));
+            // Convert the index to a string and write it to the file
             String x = String.valueOf(index);
             writer.write(x);
 
@@ -465,11 +583,25 @@ public class Logic {
         System.out.println("se añadio " + productName + " " + quantity + " " + price + " " + comment);
     }
 
+    /**
+     * The "subtractQuantity" method is used to subtract the quantity of a
+     * product from inventory. It receives as parameters a linked list of
+     * products "inventory" and the product "product" whose quantity will be
+     * subtracted from the inventory.
+     *
+     * @param inventory The linked list of inventory products.
+     * @param product The product whose quantity will be subtracted from
+     * inventory.
+     */
     public void subtractQuantity(LinkedList<Product> inventory, Product product) {
         for (Product productInventory : inventory) {
             if (productInventory.getProductName().equals(product.getProductName())) {
+
+                // Calculate the remaining quantity by subtracting the quantity of the product from inventory
                 int remainingQuantity = productInventory.getQuantity() - product.getQuantity();
                 productInventory.setQuantity(remainingQuantity);
+
+                // Save the changes to the products file
                 savePlateToFile();
 
             }
@@ -478,6 +610,13 @@ public class Logic {
 
     }
 
+    /**
+     * This method passes a String table parameter, what it does is write back
+     * the txt of the table with all its data that this order needs so that it
+     * is saved in each table in which the order is being made.
+     *
+     * @param mesa
+     */
     public void saveOrderTxt(String mesa) {
 
         try {
@@ -558,7 +697,7 @@ public class Logic {
      * text Field writes the product in the inventory then an array of the
      * Object class is created and it looks for what you wrote with column 0
      * that has the name and you can see if it is already has that product
-     * added in inventory
+     * added in inventory.
      *
      * @param jtSearchResult
      * @param txtSearch
@@ -581,7 +720,7 @@ public class Logic {
     }
 
     /**
-     * This registerInventory method saves the data in a list passing 3
+     * This registerInventory method saves the data in a list passing 4
      * parameters and these will be saved in the constructor of the Product
      * class and that data is loaded in the inventory list.
      *
@@ -630,14 +769,14 @@ public class Logic {
     }
 
     /**
-     * This method addNewInventory has as parameters 3 attributes that are a
-     * String productName, a double price and a String category, this method is
-     * What it does is enter a condition where it would use the
+     * This method addNewInventory has as parameters 4 attributes that are a
+     * String productName, a double price, a String category and int quantity.
+     * This method is What it does is enter a condition where it would use the
      * addNewInventoryExist method and pass productName as a parameter, if this
      * attribute is different from the other attributes that are in the list, it
      * would register the plate in the registerInventory method and pass the 3
      * parameters to that method and then I would save it in the inventory.txt
-     * with the savePlateToFile method
+     * with the savePlateToFile method.
      *
      * @param productName
      * @param price
@@ -806,6 +945,20 @@ public class Logic {
         }
     }
 
+    /**
+     * This method billingSave writes to the client class and the builder class
+     * the data that contained the invoice and then they are saved in the data
+     * in a list called listBilling.
+     *
+     * @param billingNumber
+     * @param date
+     * @param name
+     * @param idClient
+     * @param mail
+     * @param totalPrice
+     * @param change
+     * @param cash
+     */
     public void billingSave(String billingNumber, String date, String name, String idClient, String mail, double totalPrice, double change, double cash) {
         Client client = new Client(name, idClient, mail);
         Builder builder = new Billing.Builder();
@@ -821,6 +974,20 @@ public class Logic {
 
     }
 
+    /**
+     * This method viewBill passes as parameters 8 parameters of type JLabel
+     * which assigns to it a data from the invoice to each one and they are
+     * saved in that JLabel to be used the impression of the invoice.
+     *
+     * @param lblBillingNumber
+     * @param lblCash
+     * @param lblChange
+     * @param lblDate
+     * @param lblEmail
+     * @param lblIdClient
+     * @param lblNameCustomer
+     * @param lblTotalPrice
+     */
     public void viewBill(JLabel lblBillingNumber, JLabel lblCash, JLabel lblChange, JLabel lblDate, JLabel lblEmail, JLabel lblIdClient, JLabel lblNameCustomer, JLabel lblTotalPrice) {
 
         lblBillingNumber.setText(listBilling.get(0).getBillingNumber());
@@ -834,6 +1001,12 @@ public class Logic {
         lblTotalPrice.setText(String.valueOf(listBilling.get(0).getTotalPrice()));
     }
 
+    /**
+     * What this method actualDate does is write the current system date which
+     * it does a format and passes them to String and returns a resetDate.
+     *
+     * @return
+     */
     public String actualDate() {
 
         Date updateDate = new Date();
@@ -847,6 +1020,15 @@ public class Logic {
         return resetDate;
     }
 
+    /**
+     * This method totalChange passes as parameters a double total and a double
+     * cash which which means that if the cash is greater than the total, it
+     * subtracts the cash from the total and returns the change.
+     *
+     * @param total
+     * @param cash
+     * @return
+     */
     public double totalChange(double total, double cash) {
         double change = 0;
         if (cash > total) {
@@ -856,6 +1038,13 @@ public class Logic {
         return change;
     }
 
+    /**
+     * This method loadChefBartView passes as a parameter a JTable jtTables
+     * which writes all the tables that are occupied in a table so that the
+     * bartender or chef can be shown.
+     *
+     * @param jtTables
+     */
     public void loadChefBartView(JTable jtTables) {
         model.addColumn("Mesas");
         jtTables.setModel(model);
@@ -869,6 +1058,13 @@ public class Logic {
         }
     }
 
+    /**
+     * This method loadTableChefBart passes a String table as a parameter, what
+     * it does is load the data of the selected table that the chef or bartender
+     * selected and saves it in a listTableChefBart.
+     *
+     * @param table
+     */
     public void loadTableChefBart(String table) {
         try (BufferedReader br = new BufferedReader(new FileReader(table + ".txt"))) {
             String line;
@@ -894,6 +1090,14 @@ public class Logic {
         }
     }
 
+    /**
+     * This method loadListToTableChef passes a JTable jtChefOrder as
+     * parameters, what it does is load the table order in the chef table where
+     * the columns are added, and load the data in the table but only the orders
+     * of the table that are food.
+     *
+     * @param jtChefOrder
+     */
     public void loadListToTableChef(JTable jtChefOrder) {
         DefaultTableModel model = (DefaultTableModel) jtChefOrder.getModel();
         model.setColumnCount(0);
@@ -919,6 +1123,14 @@ public class Logic {
 
     }
 
+    /**
+     * This method loadListToTableBart passes as a parameter JTable jtBartOrder
+     * to load the order of the table only the drinks of the table, then it adds
+     * the columns, and loop through listTableChefBart to add them to the table
+     * but only drinks.
+     *
+     * @param jtBartOrder
+     */
     public void loadListToTableBart(JTable jtBartOrder) {
         DefaultTableModel model = (DefaultTableModel) jtBartOrder.getModel();
         model.setColumnCount(0);
@@ -943,6 +1155,13 @@ public class Logic {
         }
     }
 
+    /**
+     * This method donePlate passes as a parameter a String of productName which
+     * what it does is to search the list for the product that is the same and
+     * if the dish is on hold, it will be makes a set to pass it to ready.
+     *
+     * @param productName
+     */
     public void donePlate(String productName) {
 
         for (Product product : listTableChefBart) {
@@ -957,6 +1176,13 @@ public class Logic {
 
     }
 
+    /**
+     * This method saveOrderChefBart passes a String table as parameters, what
+     * it does is write in the txt the new data to the table of the part of the
+     * chef or bartender, since the status of the dish is changed to ready.
+     *
+     * @param table
+     */
     public void saveOrderChefBart(String table) {
         try {
 
@@ -973,6 +1199,14 @@ public class Logic {
         }
     }
 
+    /**
+     * This method deleteTable passes a String table as a parameter and what it
+     * does is write to the table in which an empty space is located so that the
+     * order of that table and can be cleaned to be used again after it is
+     * finished The Billing.
+     *
+     * @param table
+     */
     public void deleteTable(String table) {
 
         try {
@@ -992,7 +1226,17 @@ public class Logic {
         }
     }
 
-    public void readHelpTxt(String nameFrame, JTextArea jtaHelpText ) throws IOException {
+    /**
+     * This method readHelpTxt takes as parameters a String of nameFrame, a
+     * JtextArea, what it does is load the content in a specific help txt so
+     * that is written to in a textArea called jtahelpText and the user can see
+     * the help of the part in which it is of the page.
+     *
+     * @param nameFrame
+     * @param jtaHelpText
+     * @throws IOException
+     */
+    public void readHelpTxt(String nameFrame, JTextArea jtaHelpText) throws IOException {
 
         // Lee el contenido del archivo y guárdalo en un StringBuilder
         try {
@@ -1006,7 +1250,7 @@ public class Logic {
             // Establece el contenido del StringBuilder en el JTextArea
             jtaHelpText.setText(sb.toString());
         } catch (IOException iOException) {
-            JOptionPane.showMessageDialog(null, "Error al leer el archivo" + iOException );
+            JOptionPane.showMessageDialog(null, "Error al leer el archivo" + iOException);
         }
 
     }

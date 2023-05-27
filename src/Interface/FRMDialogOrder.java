@@ -432,7 +432,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(null, "Sin pedidos agregados");
         }
-
+  
     }//GEN-LAST:event_btnconfirmOrderActionPerformed
 
     /**

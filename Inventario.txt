@@ -1,8 +1,8 @@
-1,wfeww,3,33.2,Comida
-2,hkhjuuj,19,21.4,Bebida
-3,e,21,4.0,Bebida
+1,wfeww,1,33.2,Comida
+2,hkhjuuj,18,21.4,Bebida
+3,e,20,4.0,Bebida
 4,i,4,5.0,Comida
-5,frijoles,19,34.0,Bebida
+5,frijoles,17,34.0,Bebida
 6,hamburqueza,17,98.0,Comida
 7,arroz,5,7.0,Comida
 8,cola coca,19,9.0,Bebida

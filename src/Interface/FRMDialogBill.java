@@ -307,32 +307,38 @@ public class FRMDialogBill extends javax.swing.JDialog {
             txtCash.setVisible(false);
             lblChange.setVisible(false);
             lblChangeAmount.setVisible(false);
+            txtCash.setText(lblTotalBillAmount.getText());
         }
     }//GEN-LAST:event_jcPaymentMethodActionPerformed
 
     private void btnfinishBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfinishBillActionPerformed
-        String billingNumber = String.valueOf((int)(Math.random()*999999999));
+        String billingNumber = String.valueOf((int) (Math.random() * 999999999));
         String date = logic.actualDate();
         String name = txtCostumerName.getText();
         String idCustomer = txtCostumerId.getText();
         String email = txtCostumerGmail.getText();
-        double totalPrice = Double.parseDouble(lblTotalBillAmount.getText());
-        double cash = Double.parseDouble(txtCash.getText());
-        double change = Double.parseDouble(lblChangeAmount.getText());
-        logic.billingSave(billingNumber, date, name, idCustomer, email, totalPrice, change, cash);
-        if (cash>=totalPrice) {
-            logic.readStatus();
-             logic.setStatusDisponible(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1);
-             logic.saveStatusTxt();
-            labelStatus.setText("Estado: " + logic.listStatus.get(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1));
-            dispose();
-            FRMDialogViewBill viewBill = new FRMDialogViewBill(null, true, billingNumber, date, name, idCustomer, email, totalPrice, change, cash, table);
-        viewBill.setVisible(true);
-       
-        }else{
-            JOptionPane.showMessageDialog(null, "Dinero insuficiente");
+        try {
+            double totalPrice = Double.parseDouble(lblTotalBillAmount.getText());
+            double cash = Double.parseDouble(txtCash.getText());
+            double change = 0;
+            change = logic.totalChange(totalPrice, cash);
+            logic.billingSave(billingNumber, date, name, idCustomer, email, totalPrice, change, cash);
+            if (cash >= totalPrice) {
+                logic.readStatus();
+                logic.setStatusDisponible(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1);
+                logic.saveStatusTxt();
+                labelStatus.setText("Estado: " + logic.listStatus.get(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1));
+                dispose();
+                FRMDialogViewBill viewBill = new FRMDialogViewBill(null, true, billingNumber, date, name, idCustomer, email, totalPrice, change, cash, table);
+                viewBill.setVisible(true);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Dinero insuficiente");
+            }
+        } catch (NumberFormatException numberFormatException) {
+            JOptionPane.showMessageDialog(null, "Caracteres invalidos");
         }
-        
+
     }//GEN-LAST:event_btnfinishBillActionPerformed
 
     private void txtCashComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_txtCashComponentAdded
@@ -340,11 +346,15 @@ public class FRMDialogBill extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCashComponentAdded
 
     private void btnchangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchangeActionPerformed
-        double total = Double.parseDouble(lblTotalBillAmount.getText());
-        double cash = Double.parseDouble(txtCash.getText());
-        double change = 0;
-        change = logic.totalChange(total, cash);
-        lblChangeAmount.setText(String.valueOf(change));
+        try {
+            double total = Double.parseDouble(lblTotalBillAmount.getText());
+            double cash = Double.parseDouble(txtCash.getText());
+            double change = 0;
+            change = logic.totalChange(total, cash);
+            lblChangeAmount.setText(String.valueOf(change));
+        } catch (NumberFormatException numberFormatException) {
+            JOptionPane.showMessageDialog(null, "Caracteres invalidos");
+        }
     }//GEN-LAST:event_btnchangeActionPerformed
 
     /**
