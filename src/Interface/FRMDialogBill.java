@@ -353,6 +353,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
             change = logic.totalChange(total, cash);
             lblChangeAmount.setText(String.valueOf(change));
         } catch (NumberFormatException numberFormatException) {
+            System.out.println("ERROR");
             JOptionPane.showMessageDialog(null, "Caracteres invalidos");
         }
     }//GEN-LAST:event_btnchangeActionPerformed
