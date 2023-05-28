@@ -268,30 +268,30 @@ public class Logic {
     }
 
     /**
-     * The "deleteTableUser" method that has tbUsers as parameter allows
-     * deleting a selected row from a users table. To do this, the user table
-     * (JTable) from which the row will be removed must be passed as a
+     * The "deleteTableRow" method that has tbUsers as parameter allows
+     * deleting a selected row from a table. To do this, the table
+     *  from which the row will be removed must be passed as a
      * parameter. Gets the selected row using int selectedRow =
-     * tbUsers.getSelectedRow(). If selectedRow has a value other than -1, it
+     * getSelectedRow(). If selectedRow has a value other than -1, it
      * indicates that a valid row has been selected. Inside the if, you use
      * model.removeRow(selectedRow); to remove the selected row of the model
      * from the table. In case it has not been no rows selected, a warning
      * dialog is displayed using JOptionPane.showMessageDialog
      *
-     * @param tbUsers The users table (JTable) from which the row will be
+     * @param jtTable The users table (JTable) from which the row will be
      * removed.
      */
-    public void deleteTableUser(JTable tbUsers) {
+    public void deleteTableRow(JTable jtTable) {
         // Get the model of the table
-        DefaultTableModel model = (DefaultTableModel) tbUsers.getModel();
+        DefaultTableModel model = (DefaultTableModel) jtTable.getModel();
 
         // Get the selected row
-        int selectedRow = tbUsers.getSelectedRow();
+        int selectedRow = jtTable.getSelectedRow();
         if (selectedRow != -1) {
             // If a valid row has been selected, it is removed from the table model
             model.removeRow(selectedRow);
         } else {
-            JOptionPane.showMessageDialog(null, "Ningun usuario fue seleccionado");
+            JOptionPane.showMessageDialog(null, "Ninguna fila fue seleccionada");
         }
 
     }

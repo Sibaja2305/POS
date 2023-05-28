@@ -1,5 +1,6 @@
 package Interface;
 
+import java.awt.Color;
 import java.io.IOException;
 import pos.Logic;
 
@@ -38,7 +39,12 @@ public class JIFTable extends javax.swing.JInternalFrame {
         logic.writeIndexStatus(index);
 
         btnCreateOrder.setContentAreaFilled(false);
-
+        if (lblStatus.getText().equals("Estado: Ocupado")) {
+          jpBackgroundTable.setBackground(new java.awt.Color(255,102,102));   
+        }else{
+             jpBackgroundTable.setBackground(new java.awt.Color(153, 255, 153));
+        }
+        
     }
 
     /**
@@ -50,13 +56,13 @@ public class JIFTable extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jpBackgroundTable = new javax.swing.JPanel();
         lblStatus = new javax.swing.JLabel();
         btnCreateOrder = new javax.swing.JButton();
 
         setTitle("Módulo de mesas");
 
-        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        jpBackgroundTable.setBackground(new java.awt.Color(255, 102, 102));
 
         lblStatus.setText("Estado:");
 
@@ -68,22 +74,22 @@ public class JIFTable extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpBackgroundTableLayout = new javax.swing.GroupLayout(jpBackgroundTable);
+        jpBackgroundTable.setLayout(jpBackgroundTableLayout);
+        jpBackgroundTableLayout.setHorizontalGroup(
+            jpBackgroundTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpBackgroundTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpBackgroundTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCreateOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jpBackgroundTableLayout.createSequentialGroup()
                         .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 61, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jpBackgroundTableLayout.setVerticalGroup(
+            jpBackgroundTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpBackgroundTableLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -95,11 +101,11 @@ public class JIFTable extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpBackgroundTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpBackgroundTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -120,14 +126,14 @@ public class JIFTable extends javax.swing.JInternalFrame {
         logic.readTable(this.getTitle().replaceAll("Mesa: ", ""));
 
         if (logic.tableOrder.isEmpty()) {
-            FRMDialogOrder dialogPedidos = new FRMDialogOrder(null, true, this.getTitle(), this.lblStatus, orderStatus);
+            FRMDialogOrder dialogPedidos = new FRMDialogOrder(null, true, this.getTitle(), this.lblStatus, orderStatus,jpBackgroundTable);
 
             // Establecer el diálogo como modal y hacerlo visible
             dialogPedidos.setVisible(true);
 
         } else {
             // Crear una instancia de la clase FRMDialogOrder, que es un diálogo para crear un pedido
-            FRMDialogViewOrder viewOrder = new FRMDialogViewOrder(null, true, this.getTitle(), this.lblStatus);
+            FRMDialogViewOrder viewOrder = new FRMDialogViewOrder(null, true, this.getTitle(), this.lblStatus,jpBackgroundTable);
             viewOrder.setVisible(true);
 
         }
@@ -138,7 +144,7 @@ public class JIFTable extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateOrder;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jpBackgroundTable;
     private javax.swing.JLabel lblStatus;
     // End of variables declaration//GEN-END:variables
 }

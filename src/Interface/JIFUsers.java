@@ -154,7 +154,7 @@ public class JIFUsers extends javax.swing.JInternalFrame {
      * @param evt The action event that fires the method.
      */
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
-        logic.deleteTableUser(jtUsers);
+        logic.deleteTableRow(jtUsers);
         logic.loadUsersTable(jtUsers);
         logic.saveUsersToFile();
     }//GEN-LAST:event_btnDeleteUserActionPerformed

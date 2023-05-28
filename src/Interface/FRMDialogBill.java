@@ -1,9 +1,11 @@
 package Interface;
 
 import classes.PaymentMethods;
+import java.awt.Color;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import pos.Logic;
 
@@ -19,13 +21,14 @@ public class FRMDialogBill extends javax.swing.JDialog {
     Logic logic;
     static String table = "";
     static JLabel labelStatus;
-
-    public FRMDialogBill(java.awt.Frame parent, boolean modal, String table, JLabel status) {
+    static JPanel jpBackgroundTable;
+    public FRMDialogBill(java.awt.Frame parent, boolean modal, String table, JLabel status, JPanel jpBackgroundTable) {
         super(parent, modal);
         logic = new Logic();
         initComponents();
         this.table = table;
         this.labelStatus = status;
+        this.jpBackgroundTable= jpBackgroundTable;
 
         logic.tableOrder.clear();
 
@@ -334,6 +337,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
                 logic.setStatusDisponible(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1);
                 logic.saveStatusTxt();
                 labelStatus.setText("Estado: " + logic.listStatus.get(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1));
+                jpBackgroundTable.setBackground(new java.awt.Color(153, 255, 153));
                 dispose();
                 FRMDialogViewBill viewBill = new FRMDialogViewBill(null, true, billingNumber, date, name, idCustomer, email, totalPrice, change, cash, table);
                 viewBill.setVisible(true);
@@ -394,7 +398,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FRMDialogBill dialog = new FRMDialogBill(new javax.swing.JFrame(), true, "", null);
+                FRMDialogBill dialog = new FRMDialogBill(new javax.swing.JFrame(), true, "", null,null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

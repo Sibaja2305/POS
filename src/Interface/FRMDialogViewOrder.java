@@ -1,6 +1,7 @@
 package Interface;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import pos.Logic;
 
 /**
@@ -15,12 +16,14 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
     Logic logic;
     static String table="";
     static JLabel labelStatus;
-    public FRMDialogViewOrder(java.awt.Frame parent, boolean modal,String table,JLabel status) {
+    static JPanel jpBackgroundTable;
+    public FRMDialogViewOrder(java.awt.Frame parent, boolean modal,String table,JLabel status, JPanel jpBackgroundTable) {
         super(parent, modal);
         logic=new Logic();
         initComponents();
         this.table = table;
         this.labelStatus=status;
+        this.jpBackgroundTable=jpBackgroundTable;
         
         logic.tableOrder.clear();
         
@@ -119,7 +122,7 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
 
     private void btnFinalizeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizeOrderActionPerformed
         dispose();
-        FRMDialogBill dialogBill =new FRMDialogBill(null,true,this.table,this.labelStatus);
+        FRMDialogBill dialogBill =new FRMDialogBill(null,true,this.table,this.labelStatus,jpBackgroundTable);
         dialogBill.setVisible(true);
         
         
@@ -155,7 +158,7 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FRMDialogViewOrder dialog = new FRMDialogViewOrder(new javax.swing.JFrame(), true,"",null);
+                FRMDialogViewOrder dialog = new FRMDialogViewOrder(new javax.swing.JFrame(), true,"",null,null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

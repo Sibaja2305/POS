@@ -1,8 +1,10 @@
 package Interface;
 
+import java.awt.Color;
 import java.util.HashMap;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import pos.Logic;
 
@@ -25,6 +27,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
     String table = "";
     static JLabel labelStatus;
     static boolean orderStatus;
+    static JPanel jpBackgroundTable;
 
     /**
      * Constructor of the FRMDialogOrder class. Calls the constructor of the
@@ -35,7 +38,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
      * @param parent The main frame (parent window) that displays this dialog.
      * @param modal Specifies whether the dialog is modal or not.
      */
-    public FRMDialogOrder(java.awt.Frame parent, boolean modal, String table, JLabel status, boolean orderStatus) {
+    public FRMDialogOrder(java.awt.Frame parent, boolean modal, String table, JLabel status, boolean orderStatus,JPanel jpBackgroundTable) {
         super(parent, modal);
         logic = new Logic(); // Initialize the Logic instance
 
@@ -46,6 +49,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
         this.table = table;
         this.orderStatus = orderStatus;
         this.labelStatus = status;
+        this.jpBackgroundTable = jpBackgroundTable;
         System.out.println("Mesa en dialogo: " + table);
     }
 
@@ -104,6 +108,11 @@ public class FRMDialogOrder extends javax.swing.JDialog {
 
         btnDeleteComment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/garbage.png"))); // NOI18N
         btnDeleteComment.setToolTipText("Eliminar Pedido");
+        btnDeleteComment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCommentActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("Pedidos:");
@@ -195,8 +204,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAddComment, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnAddComment, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(105, 105, 105)
                                 .addComponent(btnconfirmOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)))))
@@ -261,9 +269,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
                     .addComponent(btnAddOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(17, 17, 17))))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -439,6 +445,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
             logic.readStatus();
             logic.setStatusOcupado(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1);
             labelStatus.setText("Estado: " + logic.listStatus.get(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1));
+            jpBackgroundTable.setBackground(Color.red);
             logic.saveStatusTxt();
             
             dispose();
@@ -447,6 +454,11 @@ public class FRMDialogOrder extends javax.swing.JDialog {
         }
   
     }//GEN-LAST:event_btnconfirmOrderActionPerformed
+
+    private void btnDeleteCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCommentActionPerformed
+    //  logic.deleteTableRow(jtOrder);
+ 
+    }//GEN-LAST:event_btnDeleteCommentActionPerformed
 
     /**
      * Java application entry point.
@@ -482,7 +494,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-                FRMDialogOrder dialog = new FRMDialogOrder(new javax.swing.JFrame(), true, "", null, false);
+                FRMDialogOrder dialog = new FRMDialogOrder(new javax.swing.JFrame(), true, "", null, false, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
