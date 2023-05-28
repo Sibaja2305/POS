@@ -54,12 +54,11 @@ public class JIFInventory extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Módulo de inventario");
         setMinimumSize(new java.awt.Dimension(800, 500));
         setPreferredSize(new java.awt.Dimension(800, 500));
+
+        jPanel1.setBackground(new java.awt.Color(189, 209, 222));
 
         jtInventory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,21 +90,24 @@ public class JIFInventory extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(jtSearchResult);
 
-        btnSearch.setText("Buscar");
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lupa.png"))); // NOI18N
+        btnSearch.setToolTipText("Buscar");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
             }
         });
 
-        btnDeleteSearch.setText("Borrar");
+        btnDeleteSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exis.png"))); // NOI18N
+        btnDeleteSearch.setToolTipText("Borrar");
         btnDeleteSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteSearchActionPerformed(evt);
             }
         });
 
-        btnDeleteInventory.setText("Eliminar");
+        btnDeleteInventory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/garbage.png"))); // NOI18N
+        btnDeleteInventory.setToolTipText("Eliminar Producto");
         btnDeleteInventory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteInventoryActionPerformed(evt);

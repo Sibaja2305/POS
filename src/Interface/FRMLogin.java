@@ -167,7 +167,7 @@ public class FRMLogin extends javax.swing.JFrame {
                 btnExitMouseExited(evt);
             }
         });
-        Backgroud.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 34, 36));
+        Backgroud.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 34, 36));
 
         blueBackgroud.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/blue Backgroud.jpg"))); // NOI18N
         blueBackgroud.setText("jLabel2");

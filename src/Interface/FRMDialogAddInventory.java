@@ -57,6 +57,8 @@ public class FRMDialogAddInventory extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar nuevo plato");
 
+        jPanel1.setBackground(new java.awt.Color(189, 209, 222));
+
         txtProductName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtProductNameActionPerformed(evt);

@@ -43,6 +43,8 @@ public class JIFMenu extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Módulo de Menu");
 
+        jPanel1.setBackground(new java.awt.Color(189, 209, 222));
+
         jtAdminMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
