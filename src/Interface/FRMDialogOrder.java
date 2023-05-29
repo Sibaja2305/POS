@@ -445,7 +445,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
             logic.readStatus();
             logic.setStatusOcupado(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1);
             labelStatus.setText("Estado: " + logic.listStatus.get(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1));
-            jpBackgroundTable.setBackground(Color.red);
+            jpBackgroundTable.setBackground(new java.awt.Color(255,102,102));
             logic.saveStatusTxt();
             
             dispose();

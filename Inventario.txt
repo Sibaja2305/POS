@@ -2,7 +2,7 @@
 2,hkhjuuj,16,21.4,Bebida
 3,e,19,4.0,Bebida
 4,i,3,5.0,Comida
-5,frijoles,16,34.0,Bebida
-6,hamburqueza,16,98.0,Comida
-7,arroz,2,7.0,Comida
-8,cola coca,17,9.0,Bebida
+5,frijoles,15,34.0,Bebida
+6,hamburqueza,13,98.0,Comida
+7,arroz,0,7.0,Comida
+8,cola coca,16,9.0,Bebida
