@@ -22,13 +22,14 @@ public class FRMDialogBill extends javax.swing.JDialog {
     static String table = "";
     static JLabel labelStatus;
     static JPanel jpBackgroundTable;
+
     public FRMDialogBill(java.awt.Frame parent, boolean modal, String table, JLabel status, JPanel jpBackgroundTable) {
         super(parent, modal);
         logic = new Logic();
         initComponents();
         this.table = table;
         this.labelStatus = status;
-        this.jpBackgroundTable= jpBackgroundTable;
+        this.jpBackgroundTable = jpBackgroundTable;
 
         logic.tableOrder.clear();
 
@@ -176,9 +177,8 @@ public class FRMDialogBill extends javax.swing.JDialog {
                         .addGap(75, 75, 75)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 14, Short.MAX_VALUE)
                                 .addComponent(lblCostumerName)
-                                .addGap(65, 65, 65)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtCostumerName, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblCostumerId)
@@ -190,7 +190,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
                                 .addComponent(txtCostumerGmail, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblPaymentMethod)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                                 .addComponent(jcPaymentMethod, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -236,9 +236,9 @@ public class FRMDialogBill extends javax.swing.JDialog {
                         .addComponent(btnfinishBill, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCostumerName)
-                            .addComponent(txtCostumerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCostumerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCostumerName))
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCostumerId)
@@ -340,6 +340,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
                 jpBackgroundTable.setBackground(new java.awt.Color(153, 255, 153));
                 dispose();
                 FRMDialogViewBill viewBill = new FRMDialogViewBill(null, true, billingNumber, date, name, idCustomer, email, totalPrice, change, cash, table);
+                viewBill.setLocationRelativeTo(null);
                 viewBill.setVisible(true);
 
             } else {
@@ -398,7 +399,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FRMDialogBill dialog = new FRMDialogBill(new javax.swing.JFrame(), true, "", null,null);
+                FRMDialogBill dialog = new FRMDialogBill(new javax.swing.JFrame(), true, "", null, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

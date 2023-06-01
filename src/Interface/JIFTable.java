@@ -40,11 +40,11 @@ public class JIFTable extends javax.swing.JInternalFrame {
 
         btnCreateOrder.setContentAreaFilled(false);
         if (lblStatus.getText().equals("Estado: Ocupado")) {
-          jpBackgroundTable.setBackground(new java.awt.Color(255,102,102));   
-        }else{
-             jpBackgroundTable.setBackground(new java.awt.Color(153, 255, 153));
+            jpBackgroundTable.setBackground(new java.awt.Color(255, 102, 102));
+        } else {
+            jpBackgroundTable.setBackground(new java.awt.Color(153, 255, 153));
         }
-        
+
     }
 
     /**
@@ -126,14 +126,15 @@ public class JIFTable extends javax.swing.JInternalFrame {
         logic.readTable(this.getTitle().replaceAll("Mesa: ", ""));
 
         if (logic.tableOrder.isEmpty()) {
-            FRMDialogOrder dialogPedidos = new FRMDialogOrder(null, true, this.getTitle(), this.lblStatus, orderStatus,jpBackgroundTable);
-
+            FRMDialogOrder dialogOrder = new FRMDialogOrder(null, true, this.getTitle(), this.lblStatus, orderStatus, jpBackgroundTable);
+            dialogOrder.setLocationRelativeTo(null);
             // Establecer el diálogo como modal y hacerlo visible
-            dialogPedidos.setVisible(true);
+            dialogOrder.setVisible(true);
 
         } else {
             // Crear una instancia de la clase FRMDialogOrder, que es un diálogo para crear un pedido
-            FRMDialogViewOrder viewOrder = new FRMDialogViewOrder(null, true, this.getTitle(), this.lblStatus,jpBackgroundTable);
+            FRMDialogViewOrder viewOrder = new FRMDialogViewOrder(null, true, this.getTitle(), this.lblStatus, jpBackgroundTable);
+            viewOrder.setLocationRelativeTo(null);
             viewOrder.setVisible(true);
 
         }

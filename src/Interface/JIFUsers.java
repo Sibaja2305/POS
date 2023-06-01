@@ -27,7 +27,7 @@ public class JIFUsers extends javax.swing.JInternalFrame {
         initComponents(); // Initialize the components of the graphical interface
         logic.loadUserTxt(jtUsers); // Load the user data into a table
         model = new DefaultTableModel(); // empty table model
-        
+
     }
 
     /**
@@ -137,7 +137,7 @@ public class JIFUsers extends javax.swing.JInternalFrame {
     private void btnRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUserActionPerformed
         // Crear una instancia de la clase FRMDialogOrder, que es un diálogo para crear un pedido
         FRMDialogRegisterUser dialogRegisterUser = new FRMDialogRegisterUser(null, true);
-
+        dialogRegisterUser.setLocationRelativeTo(null);
         // Establecer el diálogo como modal y hacerlo visible
         dialogRegisterUser.setVisible(true);
     }//GEN-LAST:event_btnRegisterUserActionPerformed

@@ -249,36 +249,35 @@ public class FRMChef extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDetailsTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsTableActionPerformed
-      
+
         int selectedRow = jtChefTables.getSelectedRow();
-   
-         table = jtChefTables.getValueAt(selectedRow, 0).toString();
-        
+
+        table = jtChefTables.getValueAt(selectedRow, 0).toString();
+
         logic.listTableChefBart.clear();
-     
+
         logic.loadTableChefBart(table);
-         
-       
+
         logic.loadListToTableChef(jtChefOrder);
-        
+
     }//GEN-LAST:event_btnDetailsTableActionPerformed
 
     private void btnLockOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockOutActionPerformed
-  logic.lockOut();
-  dispose();
+        logic.lockOut();
+        dispose();
     }//GEN-LAST:event_btnLockOutActionPerformed
 
     private void btnOrderDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderDoneActionPerformed
-  int selectedRow = jtChefOrder.getSelectedRow();
-  
+        int selectedRow = jtChefOrder.getSelectedRow();
+
         if (selectedRow != -1) {
             String productName = jtChefOrder.getValueAt(selectedRow, 0).toString();
             logic.donePlate(productName);
-            
+
             logic.saveOrderChefBart(table.replaceAll("mesa", ""));
             logic.loadListToTableChef(jtChefOrder);
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Ningun pedido seleccionado");
         }
     }//GEN-LAST:event_btnOrderDoneActionPerformed
@@ -286,7 +285,8 @@ public class FRMChef extends javax.swing.JFrame {
     private void jmHelpChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpChefMouseClicked
         try {
             String nameFrame = "Chef";
-            FRMDialogHelp dialogHelp = new FRMDialogHelp(null,true,nameFrame);
+            FRMDialogHelp dialogHelp = new FRMDialogHelp(null, true, nameFrame);
+            dialogHelp.setLocationRelativeTo(null);
             dialogHelp.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(FRMChef.class.getName()).log(Level.SEVERE, null, ex);

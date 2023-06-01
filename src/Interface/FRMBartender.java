@@ -225,7 +225,7 @@ public class FRMBartender extends javax.swing.JFrame {
 
     private void btnDetailsTableBartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsTableBartActionPerformed
         int selectedRow = jtBartTables.getSelectedRow();
-  
+
         table = jtBartTables.getValueAt(selectedRow, 0).toString();
 
         logic.listTableChefBart.clear();
@@ -257,7 +257,8 @@ public class FRMBartender extends javax.swing.JFrame {
     private void jmHelpBartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpBartMouseClicked
         try {
             String nameFrame = "Bartender";
-            FRMDialogHelp dialogHelp = new FRMDialogHelp(null,true,nameFrame);
+            FRMDialogHelp dialogHelp = new FRMDialogHelp(null, true, nameFrame);
+            dialogHelp.setLocationRelativeTo(null);
             dialogHelp.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(FRMBartender.class.getName()).log(Level.SEVERE, null, ex);

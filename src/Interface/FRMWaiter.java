@@ -1,4 +1,4 @@
- package Interface;
+package Interface;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -17,7 +17,6 @@ import pos.Logic;
 public class FRMWaiter extends javax.swing.JFrame {
 
     private Logic logic;
-    
 
     /**
      * The FRMWaiter instantiates the Logic class, initializes the GUI
@@ -28,7 +27,7 @@ public class FRMWaiter extends javax.swing.JFrame {
         logic = new Logic();
         initComponents();
         logic.createTable(DesktopWaiter);
-        
+
     }
 
     /**
@@ -179,7 +178,8 @@ public class FRMWaiter extends javax.swing.JFrame {
     private void jmHelpWaiterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpWaiterMouseClicked
         try {
             String nameFrame = "Mesero";
-            FRMDialogHelp dialogHelp = new FRMDialogHelp(null,true,nameFrame);
+            FRMDialogHelp dialogHelp = new FRMDialogHelp(null, true, nameFrame);
+            dialogHelp.setLocationRelativeTo(null);
             dialogHelp.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(FRMWaiter.class.getName()).log(Level.SEVERE, null, ex);

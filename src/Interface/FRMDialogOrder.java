@@ -68,7 +68,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
         txtComment = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnAddComment = new javax.swing.JButton();
-        btnDeleteComment = new javax.swing.JButton();
+        btnDeleteTableOrder = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtOrder = new javax.swing.JTable();
@@ -106,11 +106,11 @@ public class FRMDialogOrder extends javax.swing.JDialog {
             }
         });
 
-        btnDeleteComment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/garbage.png"))); // NOI18N
-        btnDeleteComment.setToolTipText("Eliminar Pedido");
-        btnDeleteComment.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteTableOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/garbage.png"))); // NOI18N
+        btnDeleteTableOrder.setToolTipText("Eliminar Pedido");
+        btnDeleteTableOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteCommentActionPerformed(evt);
+                btnDeleteTableOrderActionPerformed(evt);
             }
         });
 
@@ -167,7 +167,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtComment, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnAddComment, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDeleteComment, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDeleteTableOrder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,7 +196,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDeleteComment)
+                        .addComponent(btnDeleteTableOrder)
                         .addGap(13, 13, 13)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -455,10 +455,11 @@ public class FRMDialogOrder extends javax.swing.JDialog {
   
     }//GEN-LAST:event_btnconfirmOrderActionPerformed
 
-    private void btnDeleteCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCommentActionPerformed
-    //  logic.deleteTableRow(jtOrder);
+    private void btnDeleteTableOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteTableOrderActionPerformed
+//      logic.deleteTableOrderRow( jtOrder);
+//      logic.restoreDeletedRow(jtMenu);
  
-    }//GEN-LAST:event_btnDeleteCommentActionPerformed
+    }//GEN-LAST:event_btnDeleteTableOrderActionPerformed
 
     /**
      * Java application entry point.
@@ -510,7 +511,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddComment;
     private javax.swing.JButton btnAddOrder;
-    private javax.swing.JButton btnDeleteComment;
+    private javax.swing.JButton btnDeleteTableOrder;
     private javax.swing.JButton btnconfirmOrder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

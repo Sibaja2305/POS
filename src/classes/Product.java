@@ -106,6 +106,11 @@ public class Product {
         this.price = price;
     }
 
+    public Product(String productName, int quantity) {
+        this.quantity = quantity;
+        this.productName = productName;
+    }
+
     /**
      * @return the plateState
      */

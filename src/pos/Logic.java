@@ -18,6 +18,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -42,12 +43,16 @@ import javax.swing.table.DefaultTableModel;
 public class Logic {
 
     public LinkedList<String> listStatus = new LinkedList<>();
+//    public LinkedList<Object[]> deletedRows = new LinkedList<>(); 
+//    public Object[] deletedRowData;
     public LinkedList<User> users;
     public LinkedList<Product> storage;
     public LinkedList<Product> inventory;
     public LinkedList<Product> tableOrder;
     public LinkedList<Product> listTableChefBart;
     public LinkedList<Billing> listBilling;
+    public HashMap<String, Integer> report;
+    public LinkedList<Product> repor;
     static DefaultTableModel model;
     static User user;
 
@@ -60,6 +65,8 @@ public class Logic {
     public Logic() {
         // Storage st = new Storage();
         //st.getStorage();
+        repor = new LinkedList<>();
+        report = new HashMap();
         storage = new LinkedList<>();
         listTableChefBart = new LinkedList<>();
         inventory = new LinkedList<>();
@@ -268,15 +275,14 @@ public class Logic {
     }
 
     /**
-     * The "deleteTableRow" method that has tbUsers as parameter allows
-     * deleting a selected row from a table. To do this, the table
-     *  from which the row will be removed must be passed as a
-     * parameter. Gets the selected row using int selectedRow =
-     * getSelectedRow(). If selectedRow has a value other than -1, it
-     * indicates that a valid row has been selected. Inside the if, you use
-     * model.removeRow(selectedRow); to remove the selected row of the model
-     * from the table. In case it has not been no rows selected, a warning
-     * dialog is displayed using JOptionPane.showMessageDialog
+     * The "deleteTableRow" method that has tbUsers as parameter allows deleting
+     * a selected row from a table. To do this, the table from which the row
+     * will be removed must be passed as a parameter. Gets the selected row
+     * using int selectedRow = getSelectedRow(). If selectedRow has a value
+     * other than -1, it indicates that a valid row has been selected. Inside
+     * the if, you use model.removeRow(selectedRow); to remove the selected row
+     * of the model from the table. In case it has not been no rows selected, a
+     * warning dialog is displayed using JOptionPane.showMessageDialog
      *
      * @param jtTable The users table (JTable) from which the row will be
      * removed.
@@ -296,6 +302,35 @@ public class Logic {
 
     }
 
+//    public void deleteTableOrderRow(JTable jtTable) {
+//        DefaultTableModel model = (DefaultTableModel) jtTable.getModel();
+//        int selectedRow = jtTable.getSelectedRow();
+//        if (selectedRow != -1) {
+//            // Obtener los datos de la fila seleccionada
+//            deletedRowData = new Object[model.getColumnCount()];
+//            for (int i = 0; i < model.getColumnCount(); i++) {
+//                deletedRowData[i] = model.getValueAt(selectedRow, i);
+//            }
+//
+//            // Eliminar la fila del modelo
+//            model.removeRow(selectedRow);
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Ninguna fila fue seleccionada");
+//        }
+//    }
+//
+//    public void restoreDeletedRow(JTable jtTable) {
+//        DefaultTableModel model = (DefaultTableModel) jtTable.getModel();
+//        if (deletedRowData != null) {
+//            // Agregar la fila nuevamente al modelo
+//            model.addRow(deletedRowData);
+//
+//            // Reiniciar los datos de la fila eliminada
+//            deletedRowData = null;
+//        } else {
+//            JOptionPane.showMessageDialog(null, "No hay filas eliminadas para restaurar");
+//        }
+//    }
     /**
      * The "loadUsersTable" method that has tbUsers as a parameter is
      * responsible for loading user data from a table (JTable) into a list of
@@ -824,13 +859,13 @@ public class Logic {
      * bufferedWriter for this method
      */
     public void savePlateToFile() {
-       
+
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("Inventario.txt"));
             for (Product product : inventory) {
                 writer.write(product.getId() + "," + product.getProductName() + "," + product.getQuantity() + "," + product.getPrice() + "," + product.getCategory());
                 writer.newLine();
-               
+
             }
 
             writer.close();
@@ -994,7 +1029,7 @@ public class Logic {
         lblCash.setText(String.valueOf(listBilling.get(0).getCash()));
         lblChange.setText(String.valueOf(listBilling.get(0).getChange()));
         lblDate.setText(listBilling.get(0).getDate());
-        System.out.println("hhuhiuhi");
+
         lblEmail.setText(listBilling.get(0).getClient().getMail());
         lblIdClient.setText(listBilling.get(0).getClient().getId());
         lblNameCustomer.setText(listBilling.get(0).getClient().getName());
@@ -1253,5 +1288,9 @@ public class Logic {
             JOptionPane.showMessageDialog(null, "Error al leer el archivo" + iOException);
         }
 
+    }
+
+    public void reporte(String productName, int quantity) {
+        
     }
 }

@@ -14,21 +14,22 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
      * Creates new form FRMDialogViewOrder
      */
     Logic logic;
-    static String table="";
+    static String table = "";
     static JLabel labelStatus;
     static JPanel jpBackgroundTable;
-    public FRMDialogViewOrder(java.awt.Frame parent, boolean modal,String table,JLabel status, JPanel jpBackgroundTable) {
+
+    public FRMDialogViewOrder(java.awt.Frame parent, boolean modal, String table, JLabel status, JPanel jpBackgroundTable) {
         super(parent, modal);
-        logic=new Logic();
+        logic = new Logic();
         initComponents();
         this.table = table;
-        this.labelStatus=status;
-        this.jpBackgroundTable=jpBackgroundTable;
-        
+        this.labelStatus = status;
+        this.jpBackgroundTable = jpBackgroundTable;
+
         logic.tableOrder.clear();
-        
+
         logic.readTable(table.replaceAll("Mesa: ", ""));
-       
+
         logic.viewTableOrder(jtViewOrder);
     }
 
@@ -122,10 +123,11 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
 
     private void btnFinalizeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizeOrderActionPerformed
         dispose();
-        FRMDialogBill dialogBill =new FRMDialogBill(null,true,this.table,this.labelStatus,jpBackgroundTable);
+        FRMDialogBill dialogBill = new FRMDialogBill(null, true, this.table, this.labelStatus, jpBackgroundTable);
+        dialogBill.setLocationRelativeTo(null);
         dialogBill.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_btnFinalizeOrderActionPerformed
 
     /**
@@ -158,7 +160,7 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FRMDialogViewOrder dialog = new FRMDialogViewOrder(new javax.swing.JFrame(), true,"",null,null);
+                FRMDialogViewOrder dialog = new FRMDialogViewOrder(new javax.swing.JFrame(), true, "", null, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

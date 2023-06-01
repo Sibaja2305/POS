@@ -254,6 +254,7 @@ public class FRMAdmin extends javax.swing.JFrame {
         try {
             String nameFrame = "Admin";
             FRMDialogHelp dialogHelp = new FRMDialogHelp(null, true, nameFrame);
+            dialogHelp.setLocationRelativeTo(null);
             dialogHelp.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(FRMAdmin.class.getName()).log(Level.SEVERE, null, ex);
@@ -304,10 +305,7 @@ public class FRMAdmin extends javax.swing.JFrame {
     private void btnInventaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventaryActionPerformed
         if (inventoryWindow == null || !inventoryWindow.isShowing()) {
             inventoryWindow = new JIFInventory();
-            int x = 30;
-            int y = 30;
             inventoryWindow.setVisible(true);
-            inventoryWindow.setBounds(x, y, 800, 500);
             desktopAdmin.add(inventoryWindow);
 
         }
