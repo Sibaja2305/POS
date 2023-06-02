@@ -456,9 +456,18 @@ public class FRMDialogOrder extends javax.swing.JDialog {
     }//GEN-LAST:event_btnconfirmOrderActionPerformed
 
     private void btnDeleteTableOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteTableOrderActionPerformed
-//      logic.deleteTableOrderRow( jtOrder);
-//      logic.restoreDeletedRow(jtMenu);
- 
+        try {
+            int selectedRow = jtOrder.getSelectedRow();
+            String plateName = jtOrder.getValueAt(selectedRow, 0).toString();
+            logic.deleteTableRow(jtOrder);
+            for (int i = 0; i < jtMenu.getRowCount(); i++) {
+                if (plateName.equals(jtMenu.getValueAt(i, 1).toString())) {
+                    addedRow.remove(i);
+                }
+            }
+        } catch (Exception e) {
+           JOptionPane.showMessageDialog(null, "No se a seleccionado ninguna fila para eliminar");  
+        }
     }//GEN-LAST:event_btnDeleteTableOrderActionPerformed
 
     /**

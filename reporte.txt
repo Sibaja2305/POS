@@ -1,0 +1,6 @@
+arroz,3
+e,3
+cola coca,1
+frijoles,1
+hamburqueza,2
+hkhjuuj,1

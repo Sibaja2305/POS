@@ -1,5 +1,6 @@
 package Interface;
 
+import static Interface.FRMDialogOrder.tmp;
 import classes.PaymentMethods;
 import java.awt.Color;
 import java.util.Date;
@@ -80,6 +81,13 @@ public class FRMDialogBill extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(189, 209, 222));
+        jPanel1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jPanel1InputMethodTextChanged(evt);
+            }
+        });
 
         lblCostumerName.setText("Nombre:");
 
@@ -110,7 +118,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
 
         lblPaymentMethod.setText("Metodo de pago:");
 
-        jcPaymentMethod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Tarjeta", "SinpeMovil" }));
+        jcPaymentMethod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tarjeta", "Efectivo", "SinpeMovil" }));
         jcPaymentMethod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcPaymentMethodActionPerformed(evt);
@@ -150,6 +158,18 @@ public class FRMDialogBill extends javax.swing.JDialog {
         txtCash.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
                 txtCashComponentAdded(evt);
+            }
+        });
+        txtCash.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txtCashInputMethodTextChanged(evt);
+            }
+        });
+        txtCash.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCashActionPerformed(evt);
             }
         });
 
@@ -332,12 +352,23 @@ public class FRMDialogBill extends javax.swing.JDialog {
             double change = 0;
             change = logic.totalChange(totalPrice, cash);
             logic.billingSave(billingNumber, date, name, idCustomer, email, totalPrice, change, cash);
+           if (jtOrder.getRowCount() > 0) {
+               String productName="";
+               int count=0;
+            for (int i = 0; i < jtOrder.getRowCount(); i++) {
+                 productName = jtOrder.getValueAt(i, 0).toString();
+                 count = Integer.parseInt(jtOrder.getValueAt(i, 1).toString());
+                logic.mostSellingPlate(productName, count);
+            }
+            
+         }
             if (cash >= totalPrice) {
                 logic.readStatus();
                 logic.setStatusDisponible(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1);
                 logic.saveStatusTxt();
                 labelStatus.setText("Estado: " + logic.listStatus.get(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1));
                 jpBackgroundTable.setBackground(new java.awt.Color(153, 255, 153));
+                
                 dispose();
                 FRMDialogViewBill viewBill = new FRMDialogViewBill(null, true, billingNumber, date, name, idCustomer, email, totalPrice, change, cash, table);
                 viewBill.setLocationRelativeTo(null);
@@ -349,7 +380,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
         } catch (NumberFormatException numberFormatException) {
             JOptionPane.showMessageDialog(null, "Caracteres invalidos");
         }
-
+         
     }//GEN-LAST:event_btnfinishBillActionPerformed
 
     private void txtCashComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_txtCashComponentAdded
@@ -368,6 +399,18 @@ public class FRMDialogBill extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Caracteres invalidos");
         }
     }//GEN-LAST:event_btnchangeActionPerformed
+
+    private void txtCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCashActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCashActionPerformed
+
+    private void txtCashInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtCashInputMethodTextChanged
+        
+    }//GEN-LAST:event_txtCashInputMethodTextChanged
+
+    private void jPanel1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jPanel1InputMethodTextChanged
+      
+    }//GEN-LAST:event_jPanel1InputMethodTextChanged
 
     /**
      * @param args the command line arguments

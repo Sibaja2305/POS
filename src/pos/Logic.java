@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -51,8 +52,8 @@ public class Logic {
     public LinkedList<Product> tableOrder;
     public LinkedList<Product> listTableChefBart;
     public LinkedList<Billing> listBilling;
-    public HashMap<String, Integer> report;
-    public LinkedList<Product> repor;
+    public HashMap<String, Integer> reportList;
+
     static DefaultTableModel model;
     static User user;
 
@@ -63,10 +64,8 @@ public class Logic {
      * DefaultTableModel for the table model.
      */
     public Logic() {
-        // Storage st = new Storage();
-        //st.getStorage();
-        repor = new LinkedList<>();
-        report = new HashMap();
+
+        reportList = new HashMap();
         storage = new LinkedList<>();
         listTableChefBart = new LinkedList<>();
         inventory = new LinkedList<>();
@@ -1290,7 +1289,70 @@ public class Logic {
 
     }
 
-    public void reporte(String productName, int quantity) {
-        
+    /**
+     * this method mostSellingPlate contains 2 parameters and what it does is
+     * Load the list of the most sold dishes and enter the amounts if the dish
+     * already exists and if the amount is not going to go up, the dish will
+     * stay like this and is saved again in the txt
+     *
+     * @param productName
+     * @param quantity
+     */
+    public void mostSellingPlate(String productName, int quantity) {
+        upLoadReport();
+
+        if (reportList.containsKey(productName)) {
+            int cantidadExistente = reportList.get(productName);
+            reportList.put(productName, cantidadExistente + quantity);
+        } else {
+            reportList.put(productName, quantity);
+        }
+        quantity = 0;
+
+        savePlateReport(reportList);
+
+    }
+
+    /**
+     * this method downloads the report txt and saves it in a hashMap.
+     */
+    public void upLoadReport() {
+        try (BufferedReader br = new BufferedReader(new FileReader("reporte.txt"))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+
+                if (data.length > 1) {
+                    String productName = data[0];
+                    int quantity = Integer.parseInt(data[1]);
+
+                    Product product = new Product(productName, quantity);
+                    reportList.put(productName, quantity);
+                }
+
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * This method saves the Updated hashMap data again in the report txt
+     * separated by a comma
+     *
+     * @param comidas
+     */
+    public void savePlateReport(Map<String, Integer> comidas) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("reporte.txt"))) {
+            for (Map.Entry<String, Integer> entry : comidas.entrySet()) {
+                String linea = entry.getKey() + "," + entry.getValue();
+                bw.write(linea);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -27,6 +27,7 @@ public class FRMWaiter extends javax.swing.JFrame {
         logic = new Logic();
         initComponents();
         logic.createTable(DesktopWaiter);
+        this.setExtendedState(this.MAXIMIZED_BOTH);
 
     }
 

@@ -34,6 +34,7 @@ public class FRMAdmin extends javax.swing.JFrame {
 
         logic = new Logic();
         initComponents(); // Initialize window components
+        this.setExtendedState(this.MAXIMIZED_BOTH);
     }
 
     /**

@@ -39,6 +39,9 @@
           <Color blue="de" green="d1" red="bd" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="jPanel1InputMethodTextChanged"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -220,8 +223,8 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
-                <StringItem index="0" value="Efectivo"/>
-                <StringItem index="1" value="Tarjeta"/>
+                <StringItem index="0" value="Tarjeta"/>
+                <StringItem index="1" value="Efectivo"/>
                 <StringItem index="2" value="SinpeMovil"/>
               </StringArray>
             </Property>
@@ -319,6 +322,8 @@
         <Component class="javax.swing.JTextField" name="txtCash">
           <Events>
             <EventHandler event="componentAdded" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="txtCashComponentAdded"/>
+            <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="txtCashInputMethodTextChanged"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCashActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblChange">

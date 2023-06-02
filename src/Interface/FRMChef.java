@@ -27,6 +27,7 @@ public class FRMChef extends javax.swing.JFrame {
         logic = new Logic();
         logic.readStatus();
         logic.loadChefBartView(jtChefTables);
+        this.setExtendedState(this.MAXIMIZED_BOTH);
     }
 
     /**

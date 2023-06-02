@@ -27,6 +27,7 @@ public class FRMBartender extends javax.swing.JFrame {
         logic = new Logic();
         logic.readStatus();
         logic.loadChefBartView(jtBartTables);
+        this.setExtendedState(this.MAXIMIZED_BOTH);
     }
 
     /**
