@@ -38,7 +38,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
      * @param parent The main frame (parent window) that displays this dialog.
      * @param modal Specifies whether the dialog is modal or not.
      */
-    public FRMDialogOrder(java.awt.Frame parent, boolean modal, String table, JLabel status, boolean orderStatus,JPanel jpBackgroundTable) {
+    public FRMDialogOrder(java.awt.Frame parent, boolean modal, String table, JLabel status, boolean orderStatus, JPanel jpBackgroundTable) {
         super(parent, modal);
         logic = new Logic(); // Initialize the Logic instance
 
@@ -445,16 +445,27 @@ public class FRMDialogOrder extends javax.swing.JDialog {
             logic.readStatus();
             logic.setStatusOcupado(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1);
             labelStatus.setText("Estado: " + logic.listStatus.get(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1));
-            jpBackgroundTable.setBackground(new java.awt.Color(255,102,102));
+            jpBackgroundTable.setBackground(new java.awt.Color(255, 102, 102));
             logic.saveStatusTxt();
-            
+
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Sin pedidos agregados");
         }
-  
-    }//GEN-LAST:event_btnconfirmOrderActionPerformed
 
+    }//GEN-LAST:event_btnconfirmOrderActionPerformed
+    /**
+     * Handles the click event on the "btnDeleteTableOrder" button. Se asigna a
+     * la variable de tipo int "delectedRow" la fila selecionada en la tabla
+     * "jtOrder". Is obtained the value in the selected row in column 0 and is
+     * assigned in the plateName variable. The deleteTsbleRow(jtOrder) method is
+     * called to delete the order from the table, then the rows of the "jtMenu"
+     * table are traversed in column 1 and if the value is obtained is equal to
+     * the variable "plateName" is removed from the Hashmap "addedRow" the
+     * iteration in the to be found.
+     *
+     * @param evt
+     */
     private void btnDeleteTableOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteTableOrderActionPerformed
         try {
             int selectedRow = jtOrder.getSelectedRow();
@@ -466,7 +477,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
                 }
             }
         } catch (Exception e) {
-           JOptionPane.showMessageDialog(null, "No se a seleccionado ninguna fila para eliminar");  
+            JOptionPane.showMessageDialog(null, "No se a seleccionado ninguna fila para eliminar");
         }
     }//GEN-LAST:event_btnDeleteTableOrderActionPerformed
 

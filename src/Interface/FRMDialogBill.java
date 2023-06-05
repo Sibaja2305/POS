@@ -11,19 +11,34 @@ import javax.swing.JTable;
 import pos.Logic;
 
 /**
+ * This dialog shows the user the billing part where he will enter the different
+ * data that needs to be filled in to create the billing.
  *
- * @author user
+ * @author Diego Herrera López
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Tiffany Hernandez Rodriguez
+ * @author Jonathan Alfaro Herrera
+ *
  */
 public class FRMDialogBill extends javax.swing.JDialog {
 
-    /**
-     * Creates new form FRMDialogBill
-     */
     Logic logic;
     static String table = "";
     static JLabel labelStatus;
     static JPanel jpBackgroundTable;
 
+    /**
+     * we pass as parameters the table, the state and the color of the table to
+     * be able to change them to use the different necessary methods for the
+     * creation of the invoice.
+     *
+     * @param parent
+     * @param modal
+     * @param table
+     * @param status
+     * @param jpBackgroundTable
+     */
     public FRMDialogBill(java.awt.Frame parent, boolean modal, String table, JLabel status, JPanel jpBackgroundTable) {
         super(parent, modal);
         logic = new Logic();
@@ -79,6 +94,11 @@ public class FRMDialogBill extends javax.swing.JDialog {
         btnchange = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                formComponentAdded(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(189, 209, 222));
         jPanel1.addInputMethodListener(new java.awt.event.InputMethodListener() {
@@ -223,7 +243,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(119, 119, 119)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblCash, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                            .addComponent(lblCash, javax.swing.GroupLayout.PREFERRED_SIZE, 58, Short.MAX_VALUE)
                             .addComponent(lblTotalBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblChange, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,7 +359,17 @@ public class FRMDialogBill extends javax.swing.JDialog {
             txtCash.setText(lblTotalBillAmount.getText());
         }
     }//GEN-LAST:event_jcPaymentMethodActionPerformed
-
+    /**
+     * What this button does is finish the part of the invoice since it happens,
+     * all the data and saves it in the billingSave method to be able to show it
+     * later also passes order data from the table and saves it to create a
+     * report the number of meals, also if the cash is less than the total price
+     * will give insufficient money, if there is enough money, it will pass the
+     * table will become available, the color will turn green and it will go to
+     * the dialog to show the invoice
+     *
+     * @param evt
+     */
     private void btnfinishBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfinishBillActionPerformed
         String billingNumber = String.valueOf((int) (Math.random() * 999999999));
         String date = logic.actualDate();
@@ -352,23 +382,23 @@ public class FRMDialogBill extends javax.swing.JDialog {
             double change = 0;
             change = logic.totalChange(totalPrice, cash);
             logic.billingSave(billingNumber, date, name, idCustomer, email, totalPrice, change, cash);
-           if (jtOrder.getRowCount() > 0) {
-               String productName="";
-               int count=0;
-            for (int i = 0; i < jtOrder.getRowCount(); i++) {
-                 productName = jtOrder.getValueAt(i, 0).toString();
-                 count = Integer.parseInt(jtOrder.getValueAt(i, 1).toString());
-                logic.mostSellingPlate(productName, count);
+            if (jtOrder.getRowCount() > 0) {
+                String productName = "";
+                int count = 0;
+                for (int i = 0; i < jtOrder.getRowCount(); i++) {
+                    productName = jtOrder.getValueAt(i, 0).toString();
+                    count = Integer.parseInt(jtOrder.getValueAt(i, 1).toString());
+                    logic.mostSellingPlate(productName, count);
+                }
+
             }
-            
-         }
             if (cash >= totalPrice) {
                 logic.readStatus();
                 logic.setStatusDisponible(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1);
                 logic.saveStatusTxt();
                 labelStatus.setText("Estado: " + logic.listStatus.get(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1));
                 jpBackgroundTable.setBackground(new java.awt.Color(153, 255, 153));
-                
+
                 dispose();
                 FRMDialogViewBill viewBill = new FRMDialogViewBill(null, true, billingNumber, date, name, idCustomer, email, totalPrice, change, cash, table);
                 viewBill.setLocationRelativeTo(null);
@@ -380,13 +410,18 @@ public class FRMDialogBill extends javax.swing.JDialog {
         } catch (NumberFormatException numberFormatException) {
             JOptionPane.showMessageDialog(null, "Caracteres invalidos");
         }
-         
+
     }//GEN-LAST:event_btnfinishBillActionPerformed
 
     private void txtCashComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_txtCashComponentAdded
 
     }//GEN-LAST:event_txtCashComponentAdded
-
+    /**
+     * What this button does is pass the total, the money and the change and
+     * generate The change of the client if the payment method is effective.
+     *
+     * @param evt
+     */
     private void btnchangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchangeActionPerformed
         try {
             double total = Double.parseDouble(lblTotalBillAmount.getText());
@@ -405,14 +440,19 @@ public class FRMDialogBill extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCashActionPerformed
 
     private void txtCashInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtCashInputMethodTextChanged
-        
+
     }//GEN-LAST:event_txtCashInputMethodTextChanged
 
     private void jPanel1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jPanel1InputMethodTextChanged
-      
+
     }//GEN-LAST:event_jPanel1InputMethodTextChanged
 
+    private void formComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_formComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formComponentAdded
+
     /**
+     * what it does is start the frame dialog with all its components
      * @param args the command line arguments
      */
     public static void main(String args[]) {

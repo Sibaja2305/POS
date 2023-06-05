@@ -22,6 +22,14 @@ public class FRMChef extends javax.swing.JFrame {
     static String table = "";
     Logic logic;
 
+    /**
+     * Constructor of the FRMChef class. Create a new instance of the Logic
+     * class and call the initComponents() method to initialize the window
+     * components. The readStatus() method is called to load the statuses of the
+     * tables. The method loadChefBartView(jtChefTables) is called, to which the
+     * table "jtChefTables" is passed as a parameter to show the tables with
+     * orders.
+     */
     public FRMChef() {
         initComponents();
         logic = new Logic();
@@ -249,25 +257,57 @@ public class FRMChef extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Method that is executed when an action is performed on the
+     * "btnDetailsTable" button.A variable of type int is created to which the
+     * number of the selected row in the table is assigned. The value of the
+     * table containing tables in the selected row and column "0" is obtained
+     * and assigned to the variable table . loadTableChefBart(table) is called
+     * to load the txt of the selected table and then
+     * loadListToTableBart(jtChefOrder) is called to display the data in the
+     * "jtBartOrder" table
+     *
+     * @param evt
+     */
     private void btnDetailsTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsTableActionPerformed
 
-        int selectedRow = jtChefTables.getSelectedRow();
+        try {
+            int selectedRow = jtChefTables.getSelectedRow();
 
-        table = jtChefTables.getValueAt(selectedRow, 0).toString();
+            table = jtChefTables.getValueAt(selectedRow, 0).toString();
 
-        logic.listTableChefBart.clear();
+            logic.listTableChefBart.clear();
 
-        logic.loadTableChefBart(table);
+            logic.loadTableChefBart(table);
 
-        logic.loadListToTableChef(jtChefOrder);
+            logic.loadListToTableChef(jtChefOrder);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ninguna mesa seleccionada");
+        }
 
     }//GEN-LAST:event_btnDetailsTableActionPerformed
-
+    /**
+     * Method that is executed when an action is performed on the "btnLockOut"
+     * button. Call the "lockOut()" method of the "logic" class instance. Close
+     * the current window "dispose()"
+     *
+     * @param evt
+     */
     private void btnLockOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockOutActionPerformed
         logic.lockOut();
         dispose();
     }//GEN-LAST:event_btnLockOutActionPerformed
-
+    /**
+     * Method that is executed when an action is performed on the "btnOrderDone"
+     * button. A variable of type int is created to which the number of the
+     * selected row in the table is assigned. Then if a row is selected a String
+     * variable "productName" is assigned to what it has the selected row in
+     * column 0. The method "donePlate(productName)" is called. to assign ready
+     * or waiting and finally it is written again in the txt with the new status
+     * in the order and it is downloaded again
+     *
+     * @param evt
+     */
     private void btnOrderDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderDoneActionPerformed
         int selectedRow = jtChefOrder.getSelectedRow();
 
@@ -282,7 +322,15 @@ public class FRMChef extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ningun pedido seleccionado");
         }
     }//GEN-LAST:event_btnOrderDoneActionPerformed
-
+    /**
+     * * Method that is executed when an action is performed in "jmHelpBart" of
+     * the ToolBar. A dialog of type "FRMDialogHelp" is created to which a
+     * variable of type String with the name of the frame will be passed as a
+     * parameter. The created dialog will be placed in the center of the screen
+     * and will be set visible
+     *
+     * @param evt
+     */
     private void jmHelpChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpChefMouseClicked
         try {
             String nameFrame = "Chef";
@@ -295,6 +343,8 @@ public class FRMChef extends javax.swing.JFrame {
     }//GEN-LAST:event_jmHelpChefMouseClicked
 
     /**
+     * Java application entry point.
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {

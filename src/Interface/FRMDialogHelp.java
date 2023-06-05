@@ -1,4 +1,3 @@
-
 package Interface;
 
 import java.io.IOException;
@@ -7,21 +6,29 @@ import java.util.logging.Logger;
 import pos.Logic;
 
 /**
+ * The Logic class instance is created to access its methods.
  *
- * @author yorda
+ * @author Diego Herrera López
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Tiffany Hernández Rodriguez
+ * @author Jonathan Alfaro Herrera
  */
 public class FRMDialogHelp extends javax.swing.JDialog {
 
-    /**
-     * Creates new form FRMDialogHelp
-     */
     Logic logic;
+
+    /**
+     * Creates new form FRMDialogHelp The logic class is initialized.
+     */
     public FRMDialogHelp(java.awt.Frame parent, boolean modal, String nameFrame) throws IOException {
         super(parent, modal);
         logic = new Logic();
         initComponents();
+        // Make the textarea component non-editable
         jtaHelpText.setEditable(false);
-        logic.readHelpTxt(nameFrame, jtaHelpText );
+        // Read the help file associated with the frame name and display the help text
+        logic.readHelpTxt(nameFrame, jtaHelpText);
     }
 
     /**
@@ -75,6 +82,7 @@ public class FRMDialogHelp extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
+     * Java application entry point.
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -105,7 +113,7 @@ public class FRMDialogHelp extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    FRMDialogHelp dialog = new FRMDialogHelp(new javax.swing.JFrame(), true,"");
+                    FRMDialogHelp dialog = new FRMDialogHelp(new javax.swing.JFrame(), true, "");
                     dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                         @Override
                         public void windowClosing(java.awt.event.WindowEvent e) {

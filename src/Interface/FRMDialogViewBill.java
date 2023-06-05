@@ -1,21 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package Interface;
-
-import static Interface.FRMDialogOrder.quantity;
 
 import pos.Logic;
 
 /**
+ * The logic is instantiated which will be private.
  *
- * @author Hp EliteBook
+ * @author Diego Herrera López
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Tiffany Hernández Rodriguez
+ * @author Jonathan Alfaro Herrera
  */
 public class FRMDialogViewBill extends javax.swing.JDialog {
 
     /**
-     * Creates new form FRMDialogViewBill
+     * Creates new form FRMDialogViewBill. Creates an instance of the Logic
+     * class, initializes GUI components and creates the variables that are
+     * going to be used on the builder.
      */
     Logic logic;
     static String billingNumber;
@@ -26,33 +27,54 @@ public class FRMDialogViewBill extends javax.swing.JDialog {
     static double totalPrice;
     static double change;
     static double cash;
-     static String table="";
-    public FRMDialogViewBill(java.awt.Frame parent, boolean modal, String billingNumber, String date, String name, String idCustomer, 
+    static String table = "";
+
+    /**
+     * The desing pattern "Builder" is what is used here. It invokes a
+     * billingSave() method from the logic object and passes all the variables
+     * recolects information from the FRMDialogBill. Invokes a viewBill() method
+     * and adds all this information on the labels. Clears the LinkedList
+     * "tableOrder" from the Logic class. Then invokes the readTable() method to
+     * save the number of the table. Invokes the viewTableOrder() method an add
+     * the order to "jtbillingTable". By last invokes a deleteTable() method
+     * that delets the respective order that the table has.
+     *
+     * @param parent
+     * @param modal
+     * @param billingNumber
+     * @param date
+     * @param name
+     * @param idCustomer
+     * @param email
+     * @param totalPrice
+     * @param change
+     * @param cash
+     * @param table
+     */
+    public FRMDialogViewBill(java.awt.Frame parent, boolean modal, String billingNumber, String date, String name, String idCustomer,
             String email, double totalPrice, double change, double cash, String table) {
         super(parent, modal);
         logic = new Logic();
         initComponents();
-        this.billingNumber=billingNumber;
-        this.date=date;
-        this.name=name;
-        this.idCustomer=idCustomer;
-        this.email=email;
-        this.totalPrice=totalPrice;
-        this.change=change;
-        this.cash=cash;
-        this.table=table;
-       
+        this.billingNumber = billingNumber;
+        this.date = date;
+        this.name = name;
+        this.idCustomer = idCustomer;
+        this.email = email;
+        this.totalPrice = totalPrice;
+        this.change = change;
+        this.cash = cash;
+        this.table = table;
+
         logic.billingSave(billingNumber, date, name, idCustomer, email, totalPrice, change, cash);
         logic.viewBill(lblBillingNumber, lblCash, lblChange, lblDate, lblEmail,
                 lblIdClient, lblNameCustomer, lblTotalPrice);
-         logic.tableOrder.clear();
-        
+        logic.tableOrder.clear();
+
         logic.readTable(table.replaceAll("Mesa: ", ""));
-       
+
         logic.viewTableOrder(jtbillingTable);
-         logic.deleteTable(table.replaceAll("Mesa: ", ""));
-         
-        
+        logic.deleteTable(table.replaceAll("Mesa: ", ""));
 
     }
 
@@ -218,6 +240,7 @@ public class FRMDialogViewBill extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
+     * Java application entry point.
      * @param args the command line arguments
      */
     public static void main(String args[]) {

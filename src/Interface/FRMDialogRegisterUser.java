@@ -171,7 +171,7 @@ public class FRMDialogRegisterUser extends javax.swing.JDialog {
         System.out.println("-------------------------");
         // Call the logic.addNewUser() method to add a new user with the input data
         logic.addNewUser(username, password, role);
-      dispose();
+        dispose();
     }//GEN-LAST:event_btnRegisterNewUserActionPerformed
     /**
      * Handles the mouse click event on the password text field. Handles the
@@ -221,9 +221,14 @@ public class FRMDialogRegisterUser extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_txtRegisterPassMousePressed
-
+    /**
+     * When the "Cancel" button is clicked, this method is executed and calls
+     * dispose(), resulting in the current window being closed
+     *
+     * @param evt The action event associated with the "btnCancel" button.
+     */
     private void btnCancelRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelRegisterUserActionPerformed
-      dispose();
+        dispose();
     }//GEN-LAST:event_btnCancelRegisterUserActionPerformed
 
     /**

@@ -5,8 +5,14 @@ import javax.swing.JPanel;
 import pos.Logic;
 
 /**
+ * What this frame does is when the order is created, the view will open order
+ * where the order that is in progress will appear.
  *
- * @author Hp EliteBook
+ * @author Diego Herrera López
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Tiffany Hernandez Rodriguez
+ * @author Jonathan Alfaro Herrera
  */
 public class FRMDialogViewOrder extends javax.swing.JDialog {
 
@@ -17,7 +23,16 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
     static String table = "";
     static JLabel labelStatus;
     static JPanel jpBackgroundTable;
-
+/**
+ * pass as necessary parameters in this frame for correct execution, like
+ * the table number, state and color of the table and the table of the table is filled
+ * request
+ * @param parent
+ * @param modal
+ * @param table
+ * @param status
+ * @param jpBackgroundTable 
+ */
     public FRMDialogViewOrder(java.awt.Frame parent, boolean modal, String table, JLabel status, JPanel jpBackgroundTable) {
         super(parent, modal);
         logic = new Logic();
@@ -120,7 +135,11 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * What this button does is pass the user to the billing part and closes
+ * this frame.
+ * @param evt 
+ */
     private void btnFinalizeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizeOrderActionPerformed
         dispose();
         FRMDialogBill dialogBill = new FRMDialogBill(null, true, this.table, this.labelStatus, jpBackgroundTable);
@@ -131,6 +150,7 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
     }//GEN-LAST:event_btnFinalizeOrderActionPerformed
 
     /**
+     * initialize all components and make this frame visible
      * @param args the command line arguments
      */
     public static void main(String args[]) {

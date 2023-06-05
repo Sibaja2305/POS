@@ -250,7 +250,15 @@ public class FRMAdmin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Method that is executed when an action is performed in "jmHelpAdmin"
+ * of the ToolBar. A dialog of type "FRMDialogHelp" is created to which
+ * a variable of type String with the name of the frame will be passed
+ * as a parameter. The created dialog will be placed in the center of
+ * the screen and will be set visible
+ * 
+ * @param evt 
+ */
     private void jmHelpAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpAdminMouseClicked
         try {
             String nameFrame = "Admin";

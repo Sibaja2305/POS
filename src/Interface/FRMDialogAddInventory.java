@@ -170,13 +170,13 @@ public class FRMDialogAddInventory extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProductNameActionPerformed
 
-    /**
-     * Method that is executed when an action is performed on the "btnSave"
-     * button. Gets the values of the text fields and the combo box. Call the
-     * "readMenuTxt()" method of the "logic" class instance. Call the
-     * "addNewPlate()" method of the "logic" class instance to add a new plate.
+   /**
+     * Method that is executed when an action is performed on the Save button.
+     * Gets the values of the text fields and the select box. Calls the
+     * "readMenuTxt()" method of the "logic" class instance. Calls the method
+     * "addNewPlate()" of the "logic" class instance to add a new plate
      *
-     * @param evt The action event associated with the "btnSave" button.
+     * @param evt The action event associated with the "Save" button.
      */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         String productName = txtProductName.getText();
@@ -188,7 +188,12 @@ public class FRMDialogAddInventory extends javax.swing.JDialog {
         logic.addNewInventory(productName, quantity, price, category);
         dispose();
     }//GEN-LAST:event_btnSaveActionPerformed
-
+    /**
+     * When the "Cancel" button is clicked, this method is executed and calls
+     * dispose(), resulting in the current window being closed
+     *
+     * @param evt The action event associated with the "btnCancel" button.
+     */
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelActionPerformed

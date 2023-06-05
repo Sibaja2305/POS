@@ -141,15 +141,19 @@ public class JIFUsers extends javax.swing.JInternalFrame {
         // Establecer el diálogo como modal y hacerlo visible
         dialogRegisterUser.setVisible(true);
     }//GEN-LAST:event_btnRegisterUserActionPerformed
-
+    /**
+     * Handles the action event when the "btnDeleteUser" button is clicked. This
+     * button load the list back to the table to show the new changes made
+     */
     private void btnUpdateTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateTableActionPerformed
 
         logic.loadUserTxt(jtUsers);
 
     }//GEN-LAST:event_btnUpdateTableActionPerformed
     /**
-     * Handles the action event when the "btnDeleteUser" button is clicked.
-     * Removes the selected user from the user table.
+     * Handles the action event when the "btnDeleteUser" button is clicked. This
+     * button removes the selected user from the user table and save the txt
+     * with the Users.
      *
      * @param evt The action event that fires the method.
      */

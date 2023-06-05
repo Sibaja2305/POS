@@ -230,19 +230,28 @@ public class FRMLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * This event gets the position of the mouse in X and Y when it is clicked on the taskbar
+ * @param evt 
+ */
     private void toolbarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toolbarMousePressed
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_toolbarMousePressed
-
+    /**
+     * This event makes it possible to change position when dragging the window
+     * on the taskbar.
+     *
+     * @param evt
+     */
     private void toolbarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toolbarMouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_toolbarMouseDragged
     /**
-     * Close botton
+     * Close botton This button causes the FRMLogin to close completely when
+     * pressed.
      *
      * @param evt
      */
@@ -250,11 +259,19 @@ public class FRMLogin extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnExitMouseClicked
 
-
+    /**
+     * This button makes when passing over it change color to red
+     *
+     * @param evt
+     */
     private void btnExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseEntered
         btnExit.setForeground(Color.red);
     }//GEN-LAST:event_btnExitMouseEntered
-
+    /**
+     * This button makes it change color to gray when you stop passing over
+     *
+     * @param evt
+     */
     private void btnExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseExited
         btnExit.setForeground(Color.gray);
     }//GEN-LAST:event_btnExitMouseExited
@@ -328,15 +345,15 @@ public class FRMLogin extends javax.swing.JFrame {
         try {
             // Call the logic to evaluate the user with the provided data
             if (logic.login(username, password, role)) {
-                 logic.evaluateUser(username, password, role);
-                 dispose();
+                logic.evaluateUser(username, password, role);
+                dispose();
             }
-           
+
         } catch (IOException ex) {
             Logger.getLogger(FRMLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
         // Close the current window (dispose() is a method of the JFrame class)
-        
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
@@ -352,6 +369,7 @@ public class FRMLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPassActionPerformed
 
     /**
+     * Java application entry point.
      * @param args the command line arguments
      */
     public static void main(String args[]) {

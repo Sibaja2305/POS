@@ -175,7 +175,13 @@ public class FRMWaiter extends javax.swing.JFrame {
         // Close the current window (dispose() is a method of the JFrame class)
         dispose();
     }//GEN-LAST:event_btnSignOffActionPerformed
-
+    /**
+     * This button assigns a String with "Waiter" so that the FRMDialogHelp can
+     * read text that contains the help to later display the dialog in the
+     * center of the screen
+     *
+     * @param evt
+     */
     private void jmHelpWaiterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpWaiterMouseClicked
         try {
             String nameFrame = "Mesero";
@@ -188,6 +194,7 @@ public class FRMWaiter extends javax.swing.JFrame {
     }//GEN-LAST:event_jmHelpWaiterMouseClicked
 
     /**
+     * Java application entry point.
      * @param args the command line arguments
      */
     public static void main(String args[]) {
