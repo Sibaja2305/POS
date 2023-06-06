@@ -28,7 +28,7 @@ public class JIFTable extends javax.swing.JInternalFrame {
      * to modifying the state of the table if you have an order and the color
      * according to this state.
      *
-     * @throws IOException
+     * @throws IOException If a read error occurs.
      */
     public JIFTable() throws IOException {
 

@@ -20,6 +20,10 @@ public class FRMDialogHelp extends javax.swing.JDialog {
 
     /**
      * Creates new form FRMDialogHelp The logic class is initialized.
+     * @param parent The main frame of the dialog.
+     * @param modal Indicates whether the dialog is modal or not.
+     * @param nameFrame The name of the framework for which help is displayed.
+     * @throws java.io.IOException If an error occurs while reading the help file.
      */
     public FRMDialogHelp(java.awt.Frame parent, boolean modal, String nameFrame) throws IOException {
         super(parent, modal);
@@ -111,6 +115,7 @@ public class FRMDialogHelp extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     FRMDialogHelp dialog = new FRMDialogHelp(new javax.swing.JFrame(), true, "");

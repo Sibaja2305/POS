@@ -18,9 +18,9 @@ public class Client extends Person {
     }
 /**
  * This constructor contains the data that I inherit from the Person class.
- * @param name
- * @param id
- * @param mail 
+ * @param name passes the name data of the person attribute
+ * @param id pass the id data of the person attribute
+ * @param mail pass the data of the person attribute mail
  */
     public Client(String name, String id, String mail) {
         super(name, id, mail);

@@ -114,11 +114,6 @@ public class FRMLogin extends javax.swing.JFrame {
                 txtUserMousePressed(evt);
             }
         });
-        txtUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUserActionPerformed(evt);
-            }
-        });
         Backgroud.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 260, 20));
         Backgroud.add(userSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 390, 20));
 
@@ -142,11 +137,6 @@ public class FRMLogin extends javax.swing.JFrame {
         txtPass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtPassMousePressed(evt);
-            }
-        });
-        txtPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassActionPerformed(evt);
             }
         });
         Backgroud.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 260, -1));
@@ -210,11 +200,6 @@ public class FRMLogin extends javax.swing.JFrame {
         Backgroud.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
 
         jcRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Chef", "Mesero", "Bartender" }));
-        jcRole.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcRoleActionPerformed(evt);
-            }
-        });
         Backgroud.add(jcRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 150, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -232,7 +217,7 @@ public class FRMLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 /**
  * This event gets the position of the mouse in X and Y when it is clicked on the taskbar
- * @param evt 
+ * @param evt generates a toolbar so that the event has a position
  */
     private void toolbarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toolbarMousePressed
         xMouse = evt.getX();
@@ -242,7 +227,8 @@ public class FRMLogin extends javax.swing.JFrame {
      * This event makes it possible to change position when dragging the window
      * on the taskbar.
      *
-     * @param evt
+     * @param evt makes it possible to change position when dragging the window
+     * on the taskbar
      */
     private void toolbarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toolbarMouseDragged
         int x = evt.getXOnScreen();
@@ -253,7 +239,7 @@ public class FRMLogin extends javax.swing.JFrame {
      * Close botton This button causes the FRMLogin to close completely when
      * pressed.
      *
-     * @param evt
+     * @param evt  buttom exit
      */
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
         System.exit(0);
@@ -262,7 +248,7 @@ public class FRMLogin extends javax.swing.JFrame {
     /**
      * This button makes when passing over it change color to red
      *
-     * @param evt
+     * @param evt  exit button color
      */
     private void btnExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseEntered
         btnExit.setForeground(Color.red);
@@ -270,7 +256,7 @@ public class FRMLogin extends javax.swing.JFrame {
     /**
      * This button makes it change color to gray when you stop passing over
      *
-     * @param evt
+     * @param evt exit button color
      */
     private void btnExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseExited
         btnExit.setForeground(Color.gray);
@@ -356,18 +342,6 @@ public class FRMLogin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
-
-    }//GEN-LAST:event_txtUserActionPerformed
-
-    private void jcRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcRoleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcRoleActionPerformed
-
-    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPassActionPerformed
-
     /**
      * Java application entry point.
      * @param args the command line arguments
@@ -400,6 +374,7 @@ public class FRMLogin extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
 
                 new FRMLogin().setVisible(true);

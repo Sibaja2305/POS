@@ -27,11 +27,11 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
  * pass as necessary parameters in this frame for correct execution, like
  * the table number, state and color of the table and the table of the table is filled
  * request
- * @param parent
- * @param modal
- * @param table
- * @param status
- * @param jpBackgroundTable 
+ * @param parent Main window
+ * @param modal dialog box
+ * @param table table number
+ * @param status table state
+ * @param jpBackgroundTable table color
  */
     public FRMDialogViewOrder(java.awt.Frame parent, boolean modal, String table, JLabel status, JPanel jpBackgroundTable) {
         super(parent, modal);
@@ -138,7 +138,7 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
 /**
  * What this button does is pass the user to the billing part and closes
  * this frame.
- * @param evt 
+ * @param evt finish order
  */
     private void btnFinalizeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizeOrderActionPerformed
         dispose();
@@ -179,6 +179,7 @@ public class FRMDialogViewOrder extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 FRMDialogViewOrder dialog = new FRMDialogViewOrder(new javax.swing.JFrame(), true, "", null, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {

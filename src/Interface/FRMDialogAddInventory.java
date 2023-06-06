@@ -59,12 +59,6 @@ public class FRMDialogAddInventory extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(189, 209, 222));
 
-        txtProductName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProductNameActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Nombre del producto:");
 
         jLabel2.setText("Precio del producto:");
@@ -166,10 +160,6 @@ public class FRMDialogAddInventory extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProductNameActionPerformed
-
    /**
      * Method that is executed when an action is performed on the Save button.
      * Gets the values of the text fields and the select box. Calls the
@@ -230,6 +220,7 @@ public class FRMDialogAddInventory extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 FRMDialogAddInventory dialog = new FRMDialogAddInventory(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {

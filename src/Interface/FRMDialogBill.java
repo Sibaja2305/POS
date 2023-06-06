@@ -1,13 +1,9 @@
 package Interface;
 
-import static Interface.FRMDialogOrder.tmp;
 import classes.PaymentMethods;
-import java.awt.Color;
-import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import pos.Logic;
 
 /**
@@ -91,50 +87,22 @@ public class FRMDialogBill extends javax.swing.JDialog {
         lblChange = new javax.swing.JLabel();
         lblTotalBillAmount = new javax.swing.JLabel();
         lblChangeAmount = new javax.swing.JLabel();
-        btnchange = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                formComponentAdded(evt);
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(189, 209, 222));
-        jPanel1.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jPanel1InputMethodTextChanged(evt);
-            }
-        });
 
         lblCostumerName.setText("Nombre:");
 
         txtCostumerName.setToolTipText("Nombre del Cliente");
-        txtCostumerName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCostumerNameActionPerformed(evt);
-            }
-        });
 
         lblCostumerId.setText("ID Cliente:");
 
         txtCostumerId.setToolTipText("ID del Cliente");
-        txtCostumerId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCostumerIdActionPerformed(evt);
-            }
-        });
 
         lblCostumerGmail.setText("Gmail:");
 
         txtCostumerGmail.setToolTipText("Gmail del Cliente");
-        txtCostumerGmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCostumerGmailActionPerformed(evt);
-            }
-        });
 
         lblPaymentMethod.setText("Metodo de pago:");
 
@@ -175,34 +143,13 @@ public class FRMDialogBill extends javax.swing.JDialog {
 
         lblCash.setText("EFECTIVO");
 
-        txtCash.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                txtCashComponentAdded(evt);
-            }
-        });
-        txtCash.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                txtCashInputMethodTextChanged(evt);
-            }
-        });
-        txtCash.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCashActionPerformed(evt);
+        txtCash.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCashKeyReleased(evt);
             }
         });
 
         lblChange.setText("CAMBIO");
-
-        btnchange.setBackground(new java.awt.Color(69, 147, 108));
-        btnchange.setForeground(new java.awt.Color(255, 255, 255));
-        btnchange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/check.png"))); // NOI18N
-        btnchange.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnchangeActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -243,7 +190,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(119, 119, 119)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblCash, javax.swing.GroupLayout.PREFERRED_SIZE, 58, Short.MAX_VALUE)
+                            .addComponent(lblCash, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                             .addComponent(lblTotalBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblChange, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,9 +201,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
                                     .addComponent(lblChangeAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(lblTotalBillAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnchange)))
+                                .addComponent(lblTotalBillAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -296,11 +241,9 @@ public class FRMDialogBill extends javax.swing.JDialog {
                             .addComponent(lblTotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTotalBillAmount))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnchange, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblCash, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtCash, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblCash, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCash, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(159, 159, 159))))
         );
 
@@ -317,18 +260,6 @@ public class FRMDialogBill extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCostumerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostumerNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCostumerNameActionPerformed
-
-    private void txtCostumerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostumerIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCostumerIdActionPerformed
-
-    private void txtCostumerGmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostumerGmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCostumerGmailActionPerformed
 
     /**
      * If the seletion of the "jcPaymentMethod" matches with the payment method
@@ -378,7 +309,12 @@ public class FRMDialogBill extends javax.swing.JDialog {
         String email = txtCostumerGmail.getText();
         try {
             double totalPrice = Double.parseDouble(lblTotalBillAmount.getText());
-            double cash = Double.parseDouble(txtCash.getText());
+            double cash = 0;
+            if (txtCash.getText().equals("")) {
+                cash = totalPrice;
+            } else {
+                cash = Double.parseDouble(txtCash.getText());
+            }
             double change = 0;
             change = logic.totalChange(totalPrice, cash);
             logic.billingSave(billingNumber, date, name, idCustomer, email, totalPrice, change, cash);
@@ -394,7 +330,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
             }
             if (cash >= totalPrice) {
                 logic.readStatus();
-                logic.setStatusDisponible(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1);
+                logic.setStatusDisponible(Integer.parseInt(table.replaceAll("Mesa: ", "")));
                 logic.saveStatusTxt();
                 labelStatus.setText("Estado: " + logic.listStatus.get(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1));
                 jpBackgroundTable.setBackground(new java.awt.Color(153, 255, 153));
@@ -413,16 +349,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnfinishBillActionPerformed
 
-    private void txtCashComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_txtCashComponentAdded
-
-    }//GEN-LAST:event_txtCashComponentAdded
-    /**
-     * What this button does is pass the total, the money and the change and
-     * generate The change of the client if the payment method is effective.
-     *
-     * @param evt
-     */
-    private void btnchangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchangeActionPerformed
+    private void txtCashKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCashKeyReleased
         try {
             double total = Double.parseDouble(lblTotalBillAmount.getText());
             double cash = Double.parseDouble(txtCash.getText());
@@ -433,26 +360,12 @@ public class FRMDialogBill extends javax.swing.JDialog {
             System.out.println("ERROR");
             JOptionPane.showMessageDialog(null, "Caracteres invalidos");
         }
-    }//GEN-LAST:event_btnchangeActionPerformed
 
-    private void txtCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCashActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCashActionPerformed
-
-    private void txtCashInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtCashInputMethodTextChanged
-
-    }//GEN-LAST:event_txtCashInputMethodTextChanged
-
-    private void jPanel1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jPanel1InputMethodTextChanged
-
-    }//GEN-LAST:event_jPanel1InputMethodTextChanged
-
-    private void formComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_formComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formComponentAdded
+    }//GEN-LAST:event_txtCashKeyReleased
 
     /**
      * what it does is start the frame dialog with all its components
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -481,6 +394,7 @@ public class FRMDialogBill extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 FRMDialogBill dialog = new FRMDialogBill(new javax.swing.JFrame(), true, "", null, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -495,7 +409,6 @@ public class FRMDialogBill extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnchange;
     private javax.swing.JButton btnfinishBill;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

@@ -1,6 +1,5 @@
 package Interface;
 
-import java.awt.Color;
 import java.util.HashMap;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,13 +29,17 @@ public class FRMDialogOrder extends javax.swing.JDialog {
     static JPanel jpBackgroundTable;
 
     /**
-     * Constructor of the FRMDialogOrder class. Calls the constructor of the
-     * parent class (JDialog) passing the main frame and the mode flag. Call the
-     * initComponents() method to initialize the window components. Creates new
+     * Constructor of the FRMDialogOrder class.Calls the constructor of the
+     * parent class (JDialog) passing the main frame and the mode flag.Call the
+     * initComponents() method to initialize the window components.Creates new
      * form FRMDialogPedido
      *
      * @param parent The main frame (parent window) that displays this dialog.
      * @param modal Specifies whether the dialog is modal or not.
+     * @param table table number
+     * @param status table state
+     * @param orderStatus status order
+     * @param jpBackgroundTable table color
      */
     public FRMDialogOrder(java.awt.Frame parent, boolean modal, String table, JLabel status, boolean orderStatus, JPanel jpBackgroundTable) {
         super(parent, modal);
@@ -87,12 +90,6 @@ public class FRMDialogOrder extends javax.swing.JDialog {
         jSplitPane1.setDividerLocation(530);
 
         jPanel2.setBackground(new java.awt.Color(65, 128, 171));
-
-        txtComment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCommentActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Comentario:");
@@ -376,10 +373,6 @@ public class FRMDialogOrder extends javax.swing.JDialog {
         jtMenu.clearSelection(); // Clear the selection in the jtMenu table
     }//GEN-LAST:event_btnAddOrderActionPerformed
 
-    private void txtCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCommentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCommentActionPerformed
-
     /**
      * Handles the click event on the "Add Comment" button. The comment field
      * (txtComment) is checked for empty using the getText() method and compared
@@ -443,7 +436,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "pedido ingresado exitosamente");
 
             logic.readStatus();
-            logic.setStatusOcupado(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1);
+            logic.setStatusOcupado(Integer.parseInt(table.replaceAll("Mesa: ", "")));
             labelStatus.setText("Estado: " + logic.listStatus.get(Integer.parseInt(table.replaceAll("Mesa: ", "")) - 1));
             jpBackgroundTable.setBackground(new java.awt.Color(255, 102, 102));
             logic.saveStatusTxt();
@@ -464,7 +457,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
      * the variable "plateName" is removed from the Hashmap "addedRow" the
      * iteration in the to be found.
      *
-     * @param evt
+     * @param evt delete the selected row
      */
     private void btnDeleteTableOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteTableOrderActionPerformed
         try {
@@ -513,6 +506,7 @@ public class FRMDialogOrder extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
 
                 FRMDialogOrder dialog = new FRMDialogOrder(new javax.swing.JFrame(), true, "", null, false, null);

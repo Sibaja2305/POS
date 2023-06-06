@@ -22,6 +22,7 @@ public class FRMWaiter extends javax.swing.JFrame {
      * The FRMWaiter instantiates the Logic class, initializes the GUI
      * components, and calls the createTable() method to load the data into the
      * table as soon as you enter
+     * @throws java.io.IOException If an input/output error occurs during method execution.
      */
     public FRMWaiter() throws IOException {
         logic = new Logic();
@@ -180,7 +181,7 @@ public class FRMWaiter extends javax.swing.JFrame {
      * read text that contains the help to later display the dialog in the
      * center of the screen
      *
-     * @param evt
+     * @param evt waiter help action
      */
     private void jmHelpWaiterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpWaiterMouseClicked
         try {
@@ -223,6 +224,7 @@ public class FRMWaiter extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     new FRMWaiter().setVisible(true);

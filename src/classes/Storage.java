@@ -23,7 +23,7 @@ public class Storage {
     }
 
     /**
-     * @return the storage
+     * @return the storage 
      */
     public LinkedList<Product> getStorage() {
         return storage;
@@ -35,7 +35,11 @@ public class Storage {
     public void setStorage(LinkedList<Product> storage) {
         this.storage = storage;
     }
-
+    
+    /**
+     * 
+     * @return list Storage
+     */
     @Override
     public String toString() {
         return "Storage{" + "storage=" + storage + '}';

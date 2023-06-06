@@ -16,14 +16,14 @@ public enum PaymentMethods {
     private String description;
   /**
    * What this method does is put a description of each payment method
-   * @param description 
+   * @param description The description of the payment method.
    */
     private PaymentMethods(String description) {
         this.description = description;
     }
  /**
   * This method returns the description of each payment method
-  * @return 
+  * @return description
   */
     @Override
     public String toString() {

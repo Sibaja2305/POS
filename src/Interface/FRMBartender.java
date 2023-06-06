@@ -232,31 +232,31 @@ public class FRMBartender extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     /**
      * Method that is executed when an action is performed on the
      * "btnDetailsTableBart" button.A variable of type int is created to which
-     * the number of the selected row in the table is assigned. The value
-     * of the table containing tables in the selected row and column "0"
-     * is obtained and assigned to the variable table . loadTableChefBart(table)
-     * is called to load the txt of the selected table and then
+     * the number of the selected row in the table is assigned. The value of the
+     * table containing tables in the selected row and column "0" is obtained
+     * and assigned to the variable table . loadTableChefBart(table) is called
+     * to load the txt of the selected table and then
      * loadListToTableBart(jtBartOrder) is called to display the data in the
      * "jtBartOrder" table
      *
-     * @param evt
+     * @param evt table detail button
      */
     private void btnDetailsTableBartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsTableBartActionPerformed
         try {
             int selectedRow = jtBartTables.getSelectedRow();
-            
+
             table = jtBartTables.getValueAt(selectedRow, 0).toString();
-            
+
             logic.listTableChefBart.clear();
-            
+
             logic.loadTableChefBart(table);
             logic.loadListToTableBart(jtBartOrder);
         } catch (Exception e) {
-          JOptionPane.showMessageDialog(null, "Ninguna mesa seleccionada");  
+            JOptionPane.showMessageDialog(null, "Ninguna mesa seleccionada");
         }
     }//GEN-LAST:event_btnDetailsTableBartActionPerformed
     /**
@@ -264,22 +264,23 @@ public class FRMBartender extends javax.swing.JFrame {
      * button. Call the "lockOut()" method of the "logic" class instance. Close
      * the current window "dispose()"
      *
-     * @param evt
+     * @param evt close frame button
      */
     private void btnLockOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockOutActionPerformed
         logic.lockOut();
         dispose();
     }//GEN-LAST:event_btnLockOutActionPerformed
-   /**
-    * Method that is executed when an action is performed on the "btnOrderDone"
-     * button. A variable of type int is created to which
-     * the number of the selected row in the table is assigned. Then if a row
-      * is selected a String variable "productName" is assigned to what it has
-      * the selected row in column 0. The method "donePlate(productName)" is called.
-      * to assign ready or waiting and finally it is written again in the txt with
-      * the new status in the order and it is downloaded again
-    * @param evt 
-    */
+    /**
+     * Method that is executed when an action is performed on the "btnOrderDone"
+     * button. A variable of type int is created to which the number of the
+     * selected row in the table is assigned. Then if a row is selected a String
+     * variable "productName" is assigned to what it has the selected row in
+     * column 0. The method "donePlate(productName)" is called. to assign ready
+     * or waiting and finally it is written again in the txt with the new status
+     * in the order and it is downloaded again
+     *
+     * @param evt order button ready
+     */
     private void btnOrderDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderDoneActionPerformed
         int selectedRow = jtBartOrder.getSelectedRow();
 
@@ -294,15 +295,15 @@ public class FRMBartender extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ningun pedido seleccionado");
         }
     }//GEN-LAST:event_btnOrderDoneActionPerformed
-/**
- * Method that is executed when an action is performed in "jmHelpBart"
- * of the ToolBar. A dialog of type "FRMDialogHelp" is created to which
- * a variable of type String with the name of the frame will be passed
- * as a parameter. The created dialog will be placed in the center of
- * the screen and will be set visible
- * 
- * @param evt 
- */
+    /**
+     * Method that is executed when an action is performed in "jmHelpBart" of
+     * the ToolBar. A dialog of type "FRMDialogHelp" is created to which a
+     * variable of type String with the name of the frame will be passed as a
+     * parameter. The created dialog will be placed in the center of the screen
+     * and will be set visible
+     *
+     * @param evt bartender help button
+     */
     private void jmHelpBartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpBartMouseClicked
         try {
             String nameFrame = "Bartender";
@@ -316,7 +317,7 @@ public class FRMBartender extends javax.swing.JFrame {
 
     /**
      * Java application entry point.
-     * 
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -345,6 +346,7 @@ public class FRMBartender extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new FRMBartender().setVisible(true);
             }

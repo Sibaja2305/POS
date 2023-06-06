@@ -1,5 +1,6 @@
 arroz,3
-e,3
+e,4
+wfeww,1
 cola coca,1
 frijoles,1
 hamburqueza,2

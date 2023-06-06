@@ -26,9 +26,9 @@ public class Person {
      * This constructor contains the attributes of a person to be used in the
      * necessary methods of the POS
      *
-     * @param name
-     * @param id
-     * @param mail
+     * @param name pass the data of the name of the person
+     * @param id pass the person's id data
+     * @param mail pass the person's email data
      */
     public Person(String name, String id, String mail) {
         this.name = name;
@@ -77,7 +77,11 @@ public class Person {
     public void setMail(String mail) {
         this.mail = mail;
     }
-
+    
+    /**
+     * 
+     * @return description
+     */
     @Override
     public String toString() {
         return "Person{" + "name=" + name + ", id=" + id + ", mail=" + mail + '}';

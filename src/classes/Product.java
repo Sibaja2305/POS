@@ -29,11 +29,11 @@ public class Product {
     /**
      * This constructor is used for inventory, since these are the data you need
      *
-     * @param id
-     * @param productName
-     * @param quantity
-     * @param price
-     * @param category
+     * @param id pass the data of the product id
+     * @param productName product name data
+     * @param quantity pass the quantity data of the product
+     * @param price pass the product price data
+     * @param category pass the category data
      */
     public Product(String id, String productName, int quantity, double price, String category) {
         this.id = id;
@@ -47,10 +47,10 @@ public class Product {
      * This constructor is created for orders, since it contains the data that
      * need the order
      *
-     * @param productName
-     * @param quantity
-     * @param price
-     * @param comment
+     * @param productName product name data
+     * @param quantity pass the quantity data of the product
+     * @param price pass the product price data
+     * @param comment pass the comment data
      */
     public Product(String productName, int quantity, double price, String comment) {
         this.productName = productName;
@@ -62,10 +62,10 @@ public class Product {
     /**
      * Constructor used for the menu, since it contains necessary for the menu
      *
-     * @param id
-     * @param productName
-     * @param price
-     * @param category
+     * @param id pass the data of the product id
+     * @param productName product name data
+     * @param price pass the product price data
+     * @param category pass the category data
      */
     public Product(String id, String productName, double price, String category) {
         this.id = id;
@@ -77,9 +77,9 @@ public class Product {
     /**
      * constructor to create a new product to inventory
      *
-     * @param productName
-     * @param price
-     * @param category
+     * @param productName product name data
+     * @param price pass the product price data
+     * @param category pass the category data
      */
     public Product(String productName, double price, String category) {
         this.price = price;
@@ -90,12 +90,12 @@ public class Product {
     /**
      * constructor to pass each customer's order to use in chef and bartender
      *
-     * @param productName
-     * @param quantity
-     * @param price
-     * @param comment
-     * @param plateState
-     * @param category
+     * @param productName product name data
+     * @param quantity pass the quantity data of the product
+     * @param price pass the product price data
+     * @param comment pass the comment data
+     * @param plateState pass the plate status data
+     * @param category pass the category data
      */
     public Product(String productName, int quantity, double price, String comment, String plateState, String category) {
         this.quantity = quantity;
@@ -106,6 +106,12 @@ public class Product {
         this.price = price;
     }
 
+    /**
+     * constructor to pass each a report
+     *
+     * @param productName product name data
+     * @param quantity pass the quantity data of the product
+     */
     public Product(String productName, int quantity) {
         this.quantity = quantity;
         this.productName = productName;
@@ -209,6 +215,10 @@ public class Product {
         this.productName = productName;
     }
 
+    /**
+     *
+     * @return Product
+     */
     @Override
     public String toString() {
         return "Product{" + "id=" + id + ", price=" + price + ", quantity=" + quantity + ", category=" + category + ", comment=" + comment + ", productName=" + productName + ", plateState=" + plateState + '}';

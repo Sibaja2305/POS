@@ -39,17 +39,17 @@ public class FRMDialogViewBill extends javax.swing.JDialog {
      * the order to "jtbillingTable". By last invokes a deleteTable() method
      * that delets the respective order that the table has.
      *
-     * @param parent
-     * @param modal
-     * @param billingNumber
-     * @param date
-     * @param name
-     * @param idCustomer
-     * @param email
-     * @param totalPrice
-     * @param change
-     * @param cash
-     * @param table
+     * @param parent Main window
+     * @param modal modal dialog box
+     * @param billingNumber invoice number data
+     * @param date invoice date data
+     * @param name customer name data
+     * @param idCustomer customer id data
+     * @param email customer's email information
+     * @param totalPrice total price data
+     * @param change customer change data
+     * @param cash money fact
+     * @param table table number
      */
     public FRMDialogViewBill(java.awt.Frame parent, boolean modal, String billingNumber, String date, String name, String idCustomer,
             String email, double totalPrice, double change, double cash, String table) {
@@ -137,7 +137,7 @@ public class FRMDialogViewBill extends javax.swing.JDialog {
         lblCash.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setText("Efectivo:");
+        jLabel5.setText("Pago:");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Cambio:");
@@ -269,6 +269,7 @@ public class FRMDialogViewBill extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 FRMDialogViewBill dialog = new FRMDialogViewBill(new javax.swing.JFrame(), true, "", "", "", "", "", 0.0, 0.0, 0.0, "");
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {

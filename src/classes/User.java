@@ -26,7 +26,7 @@ public class User extends Person {
     /**
      * Este metodo returna una unica instancia de la clase User
      *
-     * @return
+     * @return instance
      */
     public static User getInstance() {
         if (instance == null) {
@@ -38,9 +38,9 @@ public class User extends Person {
     /**
      * This constructor is used to create a new user or update a new user
      *
-     * @param idUser
-     * @param passwordUser
-     * @param userType
+     * @param idUser pass the user id data
+     * @param passwordUser passwordUser pass the user's password data
+     * @param userType pass the user type data
      */
     public User(String idUser, String passwordUser, String userType) {
         this.userType = userType;
@@ -51,12 +51,12 @@ public class User extends Person {
     /**
      * This constructor contains all user data
      *
-     * @param userType
-     * @param idUser
-     * @param passwordUser
-     * @param name
-     * @param id
-     * @param mail
+     * @param userType pass the user type data
+     * @param idUser pass the user id data
+     * @param passwordUser passwordUser pass the user's password data
+     * @param name pass the user id data
+     * @param id pass the data of the user's ID
+     * @param mail pass the user's email data
      */
     public User(String userType, String idUser, String passwordUser, String name, String id, String mail) {
         super(name, id, mail);

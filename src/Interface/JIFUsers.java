@@ -144,6 +144,8 @@ public class JIFUsers extends javax.swing.JInternalFrame {
     /**
      * Handles the action event when the "btnDeleteUser" button is clicked. This
      * button load the list back to the table to show the new changes made
+     * 
+     * @param evt the action event that fires the method
      */
     private void btnUpdateTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateTableActionPerformed
 

@@ -43,9 +43,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Logic {
 
-    public LinkedList<String> listStatus = new LinkedList<>();
-//    public LinkedList<Object[]> deletedRows = new LinkedList<>(); 
-//    public Object[] deletedRowData;
+    public LinkedList<String> listStatus;
     public LinkedList<User> users;
     public LinkedList<Product> storage;
     public LinkedList<Product> inventory;
@@ -68,6 +66,7 @@ public class Logic {
         reportList = new HashMap();
         storage = new LinkedList<>();
         listTableChefBart = new LinkedList<>();
+        listStatus = new LinkedList<>();
         inventory = new LinkedList<>();
         users = new LinkedList<>();
         tableOrder = new LinkedList<>();
@@ -93,7 +92,7 @@ public class Logic {
     public void addUser(String username, String password, String role) {
         User newUser = new User(username, password, role);
         users.add(newUser);
-        System.out.println("se añadio " + username + " " + password + " " + role);
+        System.out.println("Se añadio " + username + " " + password + " " + role);
     }
 
     /**
@@ -236,7 +235,7 @@ public class Logic {
 
     /**
      * This method evaluateUser which receives three parameters username,
-     * password and role. Evaluates a user's login credentials and takes action
+     * password and role.Evaluates a user's login credentials and takes action
      * based on the result. If the credentials are valid, it displays a welcome
      * message and opens the interface corresponding to the user's role. If the
      * credentials are invalid, it displays an error message.
@@ -245,6 +244,7 @@ public class Logic {
      * @param password the password provided by the user.
      * @param role the role of the user (Administrator, Chef, Waiter and
      * Bartender)
+     * @throws java.io.IOException If an input/output error occurs during method execution.
      */
     public void evaluateUser(String username, String password, String role) throws IOException {
         //      if (login(username, password, role)) {
@@ -301,35 +301,7 @@ public class Logic {
 
     }
 
-//    public void deleteTableOrderRow(JTable jtTable) {
-//        DefaultTableModel model = (DefaultTableModel) jtTable.getModel();
-//        int selectedRow = jtTable.getSelectedRow();
-//        if (selectedRow != -1) {
-//            // Obtener los datos de la fila seleccionada
-//            deletedRowData = new Object[model.getColumnCount()];
-//            for (int i = 0; i < model.getColumnCount(); i++) {
-//                deletedRowData[i] = model.getValueAt(selectedRow, i);
-//            }
-//
-//            // Eliminar la fila del modelo
-//            model.removeRow(selectedRow);
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Ninguna fila fue seleccionada");
-//        }
-//    }
-//
-//    public void restoreDeletedRow(JTable jtTable) {
-//        DefaultTableModel model = (DefaultTableModel) jtTable.getModel();
-//        if (deletedRowData != null) {
-//            // Agregar la fila nuevamente al modelo
-//            model.addRow(deletedRowData);
-//
-//            // Reiniciar los datos de la fila eliminada
-//            deletedRowData = null;
-//        } else {
-//            JOptionPane.showMessageDialog(null, "No hay filas eliminadas para restaurar");
-//        }
-//    }
+
     /**
      * The "loadUsersTable" method that has tbUsers as a parameter is
      * responsible for loading user data from a table (JTable) into a list of
@@ -374,7 +346,7 @@ public class Logic {
     public void loadUserTxt(JTable jtUsers) {
         DefaultTableModel model = (DefaultTableModel) jtUsers.getModel();
 
-        // Configuración inicial de la tabla
+        // Initial configuration of the table
         jtUsers.setDefaultEditor(Object.class, null);
         model.setColumnCount(0);
         model.setRowCount(0);
@@ -388,7 +360,7 @@ public class Logic {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
 
-                // Agrega la fila a la tabla
+               // Add the row to the table
                 model.addRow(row);
             }
         } catch (IOException e) {
@@ -445,7 +417,7 @@ public class Logic {
     public void createTable(JDesktopPane DesktopWaiter) throws IOException {
         int x = 10;
         int y = 10;
-        int i = 0;
+        
         JIFTable listTable[] = new JIFTable[10];
 
         // Create and configure the table windows
@@ -520,7 +492,7 @@ public class Logic {
             writer.close();
 
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "estado no ingresado a la base de datos" + e);
+            JOptionPane.showMessageDialog(null, "Estado no ingresado a la base de datos" + e);
         }
     }
 
@@ -555,7 +527,7 @@ public class Logic {
      * value 0. A BufferedReader object is used to read the file "indexMesa.txt"
      * using a FileReader.
      *
-     * @return The table state index read from the file.
+     * @return  The table state index read from the file.
      */
     public int readIndexStatus() {
         int index = 0;
@@ -603,10 +575,13 @@ public class Logic {
      * saving in the constructor the saveOrderTxt method is used to save it in
      * the txt of the assigned table.
      *
-     * @param productName
-     * @param quantity
-     * @param price
-     * @param comment
+     * @param productName The name of the product that you want to save in the order.
+     * @param quantity The quantity of the product that you want to keep in the order.
+     * @param price The price of the product that you want to save in the order.
+     * @param comment Any additional comments related to the order.
+     * @param mesa The number or identifier of the table associated with the order.
+     * @param plateState The status of the dish in the order.
+     * @param category The category to which the product on the order belongs.
      */
     public void saveOrder(String productName, int quantity, double price, String comment, String mesa, String plateState, String category) {
         Product product = new Product(productName, quantity, price, comment, plateState, category);
@@ -614,7 +589,7 @@ public class Logic {
         storage.add(product);
         subtractQuantity(inventory, product);
         saveOrderTxt(mesa);
-        System.out.println("se añadio " + productName + " " + quantity + " " + price + " " + comment);
+        System.out.println("Se añadio " + productName + " " + quantity + " " + price + " " + comment);
     }
 
     /**
@@ -649,7 +624,8 @@ public class Logic {
      * the txt of the table with all its data that this order needs so that it
      * is saved in each table in which the order is being made.
      *
-     * @param mesa
+     * @param mesa The number or identifier of the table.
+     *
      */
     public void saveOrderTxt(String mesa) {
 
@@ -664,7 +640,7 @@ public class Logic {
             writer.close();
 
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "pedido no ingresado a la base de datos" + e);
+            JOptionPane.showMessageDialog(null, "Pedido no ingresado a la base de datos" + e);
         }
     }
 
@@ -673,9 +649,8 @@ public class Logic {
      * the multiplied price to know the total of the order and each time a data
      * is passed to the table on request, it will add it.
      *
-     * @param jtOrder
-     * @param jlTotal
-     * @param quantity
+     * @param jtOrder The order table (JTable) that contains the products.
+     * @param jlTotal The label (JLabel) where the total to be paid will be displayed.
      */
     public void totalPay(JTable jtOrder, JLabel jlTotal) {
         double fullPay = 0.00;
@@ -695,7 +670,7 @@ public class Logic {
      * is going to load the data that is in Inventory.txt to the
      * inventory table.
      *
-     * @param tbInventory
+     * @param tbInventory The inventory table (JTable) where the data will be loaded.
      */
     public void readInventory(JTable tbInventory) {
 
@@ -733,9 +708,9 @@ public class Logic {
      * that has the name and you can see if it is already has that product
      * added in inventory.
      *
-     * @param jtSearchResult
-     * @param txtSearch
-     * @param jtInventory
+     * @param jtSearchResult The results table (JTable) where the search results will be displayed.
+     * @param txtSearch The search field (JTextField) that contains the text to search for.
+     * @param jtInventory The inventory table (JTable) where the lookup will be performed.
      */
     public void searchResult(JTable jtSearchResult, JTextField txtSearch, JTable jtInventory) {
         String search = txtSearch.getText();
@@ -758,10 +733,10 @@ public class Logic {
      * parameters and these will be saved in the constructor of the Product
      * class and that data is loaded in the inventory list.
      *
-     * @param productName
-     * @param quantity
-     * @param price
-     * @param category
+     * @param productName The name of the product that you want to record in inventory.
+     * @param quantity The quantity of the product that you want to record in inventory.
+     * @param price The price of the product that you want to record in inventory.
+     * @param category The category of the product that you want to register in the inventory.
      */
     public void registerInventory(String productName, int quantity, double price, String category) {
         int x = 1;
@@ -804,23 +779,24 @@ public class Logic {
 
     /**
      * This method addNewInventory has as parameters 4 attributes that are a
-     * String productName, a double price, a String category and int quantity.
-     * This method is What it does is enter a condition where it would use the
-     * addNewInventoryExist method and pass productName as a parameter, if this
-     * attribute is different from the other attributes that are in the list, it
-     * would register the plate in the registerInventory method and pass the 3
-     * parameters to that method and then I would save it in the inventory.txt
-     * with the savePlateToFile method.
+     * String productName, a double price, a String category and int
+     * quantity.This method is What it does is enter a condition where it would
+     * use the addNewInventoryExist method and pass productName as a parameter,
+     * if this attribute is different from the other attributes that are in the
+     * list, it would register the plate in the registerInventory method and
+     * pass the 3 parameters to that method and then I would save it in the
+     * inventory.txt with the savePlateToFile method.
      *
-     * @param productName
-     * @param price
-     * @param category
+     * @param productName The name of the product that you want to add to inventory.
+     * @param quantity The quantity of the product that you want to add to inventory.
+     * @param price The price of the product that you want to add to inventory.
+     * @param category The category of the product that you want to add to inventory.
      */
     public void addNewInventory(String productName, int quantity, double price, String category) {
         if (!addNewInventoryExist(productName)) {
             registerInventory(productName, quantity, price, category);
             savePlateToFile(); // save dish to file
-            JOptionPane.showMessageDialog(null, "se ha agregado exitosamente");
+            JOptionPane.showMessageDialog(null, "Se ha agregado exitosamente");
         } else {
             for (Product product : inventory) {
                 if (product.getProductName().equals(productName)) {
@@ -829,7 +805,7 @@ public class Logic {
                 }
             }
             savePlateToFile();
-            JOptionPane.showMessageDialog(null, "se ha agregado cantidad a producto existente");
+            JOptionPane.showMessageDialog(null, "Se ha agregado cantidad a producto existente");
         }
     }
 
@@ -839,8 +815,8 @@ public class Logic {
      * if there is an equal name in the productName part, if it finds it, it
      * returns true and if it does not find it, it returns false
      *
-     * @param productName
-     * @return
+     * @param productName The name of the product that you want to check if it exists in inventory.
+     * @return true if the product already exists in inventory, false otherwise.
      */
     public boolean addNewInventoryExist(String productName) {
         for (Product product : inventory) {
@@ -880,7 +856,7 @@ public class Logic {
      * which deletes the selected row, then that product, which was saved in the
      * table, will be deleted.
      *
-     * @param jtInventory
+     * @param jtInventory jtInventory The JTable containing the inventory.
      */
     public void deleteTableInventory(JTable jtInventory) {
         DefaultTableModel model = (DefaultTableModel) jtInventory.getModel();
@@ -889,7 +865,7 @@ public class Logic {
         if (selectedRow != -1) {
             model.removeRow(selectedRow);
         } else {
-            JOptionPane.showMessageDialog(null, "Ningun producto fue seleccionado");
+            JOptionPane.showMessageDialog(null, "Ningún producto fue seleccionado");
         }
 
     }
@@ -900,7 +876,7 @@ public class Logic {
      * row of the jtInventory table which is stored in the registerInventory
      * method each row.
      *
-     * @param jtInventory
+     * @param jtInventory The JTable containing the inventory data.
      */
     public void loadInventoryTable(JTable jtInventory) {
         DefaultTableModel model = (DefaultTableModel) jtInventory.getModel();
@@ -924,7 +900,7 @@ public class Logic {
      * constructor containing productName, quantity, price and comment and saves
      * them in the tableOrder list.
      *
-     * @param table
+     * @param table The table number from which you want to load the data.
      */
     public void readTable(String table) {
         try (BufferedReader br = new BufferedReader(new FileReader("mesa" + table + ".txt"))) {
@@ -954,7 +930,7 @@ public class Logic {
      * where the table is added and each column is assigned to the table and in
      * a for each it saves each part to the table so that the waiter can see it.
      *
-     * @param jtViewOrder
+     * @param jtViewOrder The JTable instance where the table order will be displayed.
      */
     public void viewTableOrder(JTable jtViewOrder) {
 
@@ -984,14 +960,14 @@ public class Logic {
      * the data that contained the invoice and then they are saved in the data
      * in a list called listBilling.
      *
-     * @param billingNumber
-     * @param date
-     * @param name
-     * @param idClient
-     * @param mail
-     * @param totalPrice
-     * @param change
-     * @param cash
+     * @param billingNumber The number of the customer's invoice which is to be awaited
+     * @param date The date of the invoice which will be generated at the moment of generating the invoice
+     * @param name The name of the client which is to be awaited
+     * @param idClient The ID of the client which is to be awaited
+     * @param mail The email of the customer which is to be saved
+     * @param totalPrice The total price of the invoice, which is extracted from the order
+     * @param change The change of the transaction, which will be generated after finishing the billing
+     * @param cash The cash received.
      */
     public void billingSave(String billingNumber, String date, String name, String idClient, String mail, double totalPrice, double change, double cash) {
         Client client = new Client(name, idClient, mail);
@@ -1013,15 +989,15 @@ public class Logic {
      * which assigns to it a data from the invoice to each one and they are
      * saved in that JLabel to be used the impression of the invoice.
      *
-     * @param lblBillingNumber
-     * @param lblCash
-     * @param lblChange
-     * @param lblDate
-     * @param lblEmail
-     * @param lblIdClient
-     * @param lblNameCustomer
-     * @param lblTotalPrice
-     */
+     * @param lblBillingNumber The JLabel to display the invoice number.
+     * @param lblCash The JLabel to display the cash received.
+     * @param lblChange The JLabel to display the transaction change.
+     * @param lblDate The JLabel to display the invoice date.
+     * @param lblEmail The JLabel to display the customer's email.
+     * @param lblIdClient The JLabel to display the customer ID.
+     * @param lblNameCustomer The JLabel to display the customer's name.
+     * @param lblTotalPrice The JLabel to display the total price of the invoice.
+     */ 
     public void viewBill(JLabel lblBillingNumber, JLabel lblCash, JLabel lblChange, JLabel lblDate, JLabel lblEmail, JLabel lblIdClient, JLabel lblNameCustomer, JLabel lblTotalPrice) {
 
         lblBillingNumber.setText(listBilling.get(0).getBillingNumber());
@@ -1039,7 +1015,7 @@ public class Logic {
      * What this method actualDate does is write the current system date which
      * it does a format and passes them to String and returns a resetDate.
      *
-     * @return
+     * @return The current date in text string format (mm/dd/yyyy).
      */
     public String actualDate() {
 
@@ -1059,9 +1035,9 @@ public class Logic {
      * cash which which means that if the cash is greater than the total, it
      * subtracts the cash from the total and returns the change.
      *
-     * @param total
-     * @param cash
-     * @return
+     * @param total The total purchase.
+     * @param cash The cash received.
+     * @return The change to return.
      */
     public double totalChange(double total, double cash) {
         double change = 0;
@@ -1077,7 +1053,7 @@ public class Logic {
      * which writes all the tables that are occupied in a table so that the
      * bartender or chef can be shown.
      *
-     * @param jtTables
+     * @param jtTables jtTables The table where the occupied tables will be displayed.
      */
     public void loadChefBartView(JTable jtTables) {
         model.addColumn("Mesas");
@@ -1097,7 +1073,7 @@ public class Logic {
      * it does is load the data of the selected table that the chef or bartender
      * selected and saves it in a listTableChefBart.
      *
-     * @param table
+     * @param table The name of the selected table.
      */
     public void loadTableChefBart(String table) {
         try (BufferedReader br = new BufferedReader(new FileReader(table + ".txt"))) {
@@ -1130,7 +1106,7 @@ public class Logic {
      * the columns are added, and load the data in the table but only the orders
      * of the table that are food.
      *
-     * @param jtChefOrder
+     * @param jtChefOrder The table where the chef's order will be loaded.
      */
     public void loadListToTableChef(JTable jtChefOrder) {
         DefaultTableModel model = (DefaultTableModel) jtChefOrder.getModel();
@@ -1163,7 +1139,7 @@ public class Logic {
      * the columns, and loop through listTableChefBart to add them to the table
      * but only drinks.
      *
-     * @param jtBartOrder
+     * @param jtBartOrder The table where the bartender's order will be loaded.
      */
     public void loadListToTableBart(JTable jtBartOrder) {
         DefaultTableModel model = (DefaultTableModel) jtBartOrder.getModel();
@@ -1194,7 +1170,7 @@ public class Logic {
      * what it does is to search the list for the product that is the same and
      * if the dish is on hold, it will be makes a set to pass it to ready.
      *
-     * @param productName
+     * @param productName The name of the product to mark as Done.
      */
     public void donePlate(String productName) {
 
@@ -1215,7 +1191,7 @@ public class Logic {
      * it does is write in the txt the new data to the table of the part of the
      * chef or bartender, since the status of the dish is changed to ready.
      *
-     * @param table
+     * @param table The corresponding table number.
      */
     public void saveOrderChefBart(String table) {
         try {
@@ -1229,7 +1205,7 @@ public class Logic {
             writer.close();
 
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "pedido no ingresado a la base de datos" + e);
+            JOptionPane.showMessageDialog(null, "Pedido no ingresado a la base de datos" + e);
         }
     }
 
@@ -1239,7 +1215,7 @@ public class Logic {
      * order of that table and can be cleaned to be used again after it is
      * finished The Billing.
      *
-     * @param table
+     * @param table The corresponding table number.
      */
     public void deleteTable(String table) {
 
@@ -1266,9 +1242,9 @@ public class Logic {
      * that is written to in a textArea called jtahelpText and the user can see
      * the help of the part in which it is of the page.
      *
-     * @param nameFrame
-     * @param jtaHelpText
-     * @throws IOException
+     * @param nameFrame The name of the framework or section of the help.
+     * @param jtaHelpText The JTextArea in which to display the help content.
+     * @throws IOException If an error occurs while reading the file.
      */
     public void readHelpTxt(String nameFrame, JTextArea jtaHelpText) throws IOException {
 
@@ -1295,8 +1271,8 @@ public class Logic {
      * already exists and if the amount is not going to go up, the dish will
      * stay like this and is saved again in the txt
      *
-     * @param productName
-     * @param quantity
+     * @param productName The name of the dish.
+     * @param quantity The quantity of the dish sold.
      */
     public void mostSellingPlate(String productName, int quantity) {
         upLoadReport();
@@ -1342,11 +1318,11 @@ public class Logic {
      * This method saves the Updated hashMap data again in the report txt
      * separated by a comma
      *
-     * @param comidas
+     * @param foods The map of dishes and amounts to save in the report.
      */
-    public void savePlateReport(Map<String, Integer> comidas) {
+    public void savePlateReport(Map<String, Integer> foods) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("reporte.txt"))) {
-            for (Map.Entry<String, Integer> entry : comidas.entrySet()) {
+            for (Map.Entry<String, Integer> entry : foods.entrySet()) {
                 String linea = entry.getKey() + "," + entry.getValue();
                 bw.write(linea);
                 bw.newLine();

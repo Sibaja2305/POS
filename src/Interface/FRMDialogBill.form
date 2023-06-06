@@ -8,9 +8,6 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
-  <Events>
-    <EventHandler event="componentAdded" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="formComponentAdded"/>
-  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -42,9 +39,6 @@
           <Color blue="de" green="d1" red="bd" type="rgb"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="jPanel1InputMethodTextChanged"/>
-      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -111,8 +105,6 @@
                                   <Component id="lblTotalBillAmount" min="-2" pref="170" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnchange" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -163,12 +155,9 @@
                               <Component id="lblTotalBillAmount" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnchange" pref="0" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblCash" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="txtCash" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblCash" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="txtCash" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
                       </Group>
@@ -187,9 +176,6 @@
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="Nombre del Cliente"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCostumerNameActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCostumerId">
           <Properties>
@@ -200,9 +186,6 @@
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="ID del Cliente"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCostumerIdActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCostumerGmail">
           <Properties>
@@ -213,9 +196,6 @@
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="Gmail del Cliente"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCostumerGmailActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPaymentMethod">
           <Properties>
@@ -324,9 +304,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtCash">
           <Events>
-            <EventHandler event="componentAdded" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="txtCashComponentAdded"/>
-            <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="txtCashInputMethodTextChanged"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCashActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCashKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblChange">
@@ -337,22 +315,6 @@
         <Component class="javax.swing.JLabel" name="lblTotalBillAmount">
         </Component>
         <Component class="javax.swing.JLabel" name="lblChangeAmount">
-        </Component>
-        <Component class="javax.swing.JButton" name="btnchange">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="6c" green="93" red="45" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/check.png"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnchangeActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

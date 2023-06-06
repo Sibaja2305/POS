@@ -1,11 +1,8 @@
 package Interface;
 
-import classes.User;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDesktopPane;
-import javax.swing.plaf.DesktopPaneUI;
 import pos.Logic;
 
 /**
@@ -257,7 +254,7 @@ public class FRMAdmin extends javax.swing.JFrame {
  * as a parameter. The created dialog will be placed in the center of
  * the screen and will be set visible
  * 
- * @param evt 
+ * @param evt admin help button
  */
     private void jmHelpAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpAdminMouseClicked
         try {
@@ -366,6 +363,7 @@ public class FRMAdmin extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new FRMAdmin().setVisible(true);
             }

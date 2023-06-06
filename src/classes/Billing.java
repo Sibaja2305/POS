@@ -32,7 +32,7 @@ public class Billing {
      * This Billing constructor has the Builder class as a parameter, which this
      * constructor contains all the attributes of the Billing class
      *
-     * @param builder
+     * @param builder pass the invoice class data
      */
     private Billing(Builder builder) {
         this.totalPrice = builder.totalPrice;
@@ -46,7 +46,7 @@ public class Billing {
     /**
      * This method returns the total price
      *
-     * @return
+     * @return totalPrice
      */
     public Double getTotalPrice() {
         return totalPrice;
@@ -55,7 +55,7 @@ public class Billing {
     /**
      * This method returns the invoice number
      *
-     * @return
+     * @return billingNumber
      */
     public String getBillingNumber() {
         return billingNumber;
@@ -64,7 +64,7 @@ public class Billing {
     /**
      * This method returns the invoice date
      *
-     * @return
+     * @return date
      */
     public String getDate() {
         return date;
@@ -73,7 +73,7 @@ public class Billing {
     /**
      * This method returns the bill change
      *
-     * @return
+     * @return change
      */
     public double getChange() {
         return change;
@@ -82,7 +82,7 @@ public class Billing {
     /**
      * This method returns the money method that the user entered
      *
-     * @return
+     * @return cash
      */
     public double getCash() {
         return cash;
@@ -91,7 +91,7 @@ public class Billing {
     /**
      * This method returns the Attributes of the client class
      *
-     * @return
+     * @return client
      */
     public Client getClient() {
         return client;
@@ -100,7 +100,7 @@ public class Billing {
     /**
      * This method returns all the data from the Billing class
      *
-     * @return
+     * @return Billing
      */
     @Override
     public String toString() {
@@ -130,8 +130,8 @@ public class Billing {
         /**
          * this method sets the value of the total price
          *
-         * @param totalPrice
-         * @return
+         * @param totalPrice contains the total price data
+         * @return this
          */
         public Builder totalPrice(Double totalPrice) {
             this.totalPrice = totalPrice;
@@ -141,8 +141,8 @@ public class Billing {
         /**
          * This method sets invoice number value
          *
-         * @param billingNumber
-         * @return
+         * @param billingNumber contains billing Number data
+         * @return this
          */
         public Builder billingNumber(String billingNumber) {
             this.billingNumber = billingNumber;
@@ -152,8 +152,8 @@ public class Billing {
         /**
          * This method sets the date value
          *
-         * @param date
-         * @return
+         * @param date the data of the billing date
+         * @return this
          */
         public Builder date(String date) {
             this.date = date;
@@ -163,8 +163,8 @@ public class Billing {
         /**
          * This method sets the change value
          *
-         * @param change
-         * @return
+         * @param change contains the customer change data
+         * @return this
          */
         public Builder change(double change) {
             this.change = change;
@@ -174,8 +174,8 @@ public class Billing {
         /**
          * This method sets the value of money
          *
-         * @param cash
-         * @return
+         * @param cash contains the customer's money data
+         * @return this
          */
         public Builder cash(double cash) {
             this.cash = cash;
@@ -185,7 +185,7 @@ public class Billing {
         /**
          * This method establishes the billing method
          *
-         * @return
+         * @return Billing this
          */
         public Billing build() {
             return new Billing(this);
@@ -194,8 +194,8 @@ public class Billing {
         /**
          * This method sets the client method
          *
-         * @param client
-         * @return
+         * @param client pass the data from the client class
+         * @return this
          */
         public Builder client(Client client) {
             this.client = client;
