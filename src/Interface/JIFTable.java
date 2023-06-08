@@ -1,11 +1,11 @@
 package Interface;
 
-import java.awt.Color;
 import java.io.IOException;
 import pos.Logic;
 
 /**
-  * Class that represents the table window in the application.
+ * Class that represents the table window in the application.
+ *
  * @author Diego Herrera López
  * @author Kevin Sibaja Granados
  * @author Yordany Navarro Hernandez
@@ -14,10 +14,6 @@ import pos.Logic;
  */
 public class JIFTable extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form JIFTable
-     *
-     */
     static boolean orderStatus;
     static int index;
     Logic logic;
@@ -136,11 +132,11 @@ public class JIFTable extends javax.swing.JInternalFrame {
         if (logic.tableOrder.isEmpty()) {
             FRMDialogOrder dialogOrder = new FRMDialogOrder(null, true, this.getTitle(), this.lblStatus, orderStatus, jpBackgroundTable);
             dialogOrder.setLocationRelativeTo(null);
-           // Set the dialog as modal and make it visible
+            // Set the dialog as modal and make it visible
             dialogOrder.setVisible(true);
 
         } else {
-          // Create an instance of the FRMDialogOrder class, which is a dialog for creating an order
+            // Create an instance of the FRMDialogOrder class, which is a dialog for creating an order
             FRMDialogViewOrder viewOrder = new FRMDialogViewOrder(null, true, this.getTitle(), this.lblStatus, jpBackgroundTable);
             viewOrder.setLocationRelativeTo(null);
             viewOrder.setVisible(true);

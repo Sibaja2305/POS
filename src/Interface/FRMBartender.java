@@ -17,9 +17,6 @@ import pos.Logic;
  */
 public class FRMBartender extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FRMBartender
-     */
     static String table = "";
     Logic logic;
 

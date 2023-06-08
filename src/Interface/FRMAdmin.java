@@ -255,14 +255,14 @@ public class FRMAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 /**
- * Method that is executed when an action is performed in "jmHelpAdmin"
- * of the ToolBar. A dialog of type "FRMDialogHelp" is created to which
- * a variable of type String with the name of the frame will be passed
- * as a parameter. The created dialog will be placed in the center of
- * the screen and will be set visible
- * 
- * @param evt admin help button
- */
+     * Method that is executed when an action is performed in "jmHelpAdmin" of
+     * the ToolBar. A dialog of type "FRMDialogHelp" is created to which a
+     * variable of type String with the name of the frame will be passed as a
+     * parameter. The created dialog will be placed in the center of the screen
+     * and will be set visible
+     *
+     * @param evt admin help button
+     */
     private void jmHelpAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmHelpAdminMouseClicked
         try {
             String nameFrame = "Admin";
@@ -303,9 +303,14 @@ public class FRMAdmin extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnUsersActionPerformed
-
+    /**
+     * Method that handles the action event generated when the report button is
+     * clicked.
+     *
+     * @param evt The generated action event
+     */
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-         if (report == null || !report.isShowing()) {
+        if (report == null || !report.isShowing()) {
             report = new JIFReport();
             report.setVisible(true);
             desktopAdmin.add(report);
@@ -343,9 +348,13 @@ public class FRMAdmin extends javax.swing.JFrame {
             desktopAdmin.add(menu);
         }
     }//GEN-LAST:event_btnMenuActionPerformed
-
+    /**
+     * This method displays a popup message when clicking the button
+     *
+     * @param evt The generated action event
+     */
     private void btnTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTableActionPerformed
-       JOptionPane.showMessageDialog(null, "En mantenimiento :(");
+        JOptionPane.showMessageDialog(null, "En mantenimiento :(");
     }//GEN-LAST:event_btnTableActionPerformed
 
     /**

@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import pos.Logic;
 
 /**
+ * Class that represents the Chef window in the application.
  *
  * @author Diego Herrera López
  * @author Kevin Sibaja Granados
@@ -16,9 +17,6 @@ import pos.Logic;
  */
 public class FRMChef extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FRMChef
-     */
     static String table = "";
     Logic logic;
 
