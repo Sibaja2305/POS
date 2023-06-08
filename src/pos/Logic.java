@@ -92,7 +92,6 @@ public class Logic {
     public void addUser(String username, String password, String role) {
         User newUser = new User(username, password, role);
         users.add(newUser);
-        System.out.println("Se añadio " + username + " " + password + " " + role);
     }
 
     /**
@@ -244,7 +243,8 @@ public class Logic {
      * @param password the password provided by the user.
      * @param role the role of the user (Administrator, Chef, Waiter and
      * Bartender)
-     * @throws java.io.IOException If an input/output error occurs during method execution.
+     * @throws java.io.IOException If an input/output error occurs during method
+     * execution.
      */
     public void evaluateUser(String username, String password, String role) throws IOException {
         //      if (login(username, password, role)) {
@@ -300,7 +300,6 @@ public class Logic {
         }
 
     }
-
 
     /**
      * The "loadUsersTable" method that has tbUsers as a parameter is
@@ -360,7 +359,7 @@ public class Logic {
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
 
-               // Add the row to the table
+                // Add the row to the table
                 model.addRow(row);
             }
         } catch (IOException e) {
@@ -417,7 +416,7 @@ public class Logic {
     public void createTable(JDesktopPane DesktopWaiter) throws IOException {
         int x = 10;
         int y = 10;
-        
+
         JIFTable listTable[] = new JIFTable[10];
 
         // Create and configure the table windows
@@ -527,7 +526,7 @@ public class Logic {
      * value 0. A BufferedReader object is used to read the file "indexMesa.txt"
      * using a FileReader.
      *
-     * @return  The table state index read from the file.
+     * @return The table state index read from the file.
      */
     public int readIndexStatus() {
         int index = 0;
@@ -575,11 +574,14 @@ public class Logic {
      * saving in the constructor the saveOrderTxt method is used to save it in
      * the txt of the assigned table.
      *
-     * @param productName The name of the product that you want to save in the order.
-     * @param quantity The quantity of the product that you want to keep in the order.
+     * @param productName The name of the product that you want to save in the
+     * order.
+     * @param quantity The quantity of the product that you want to keep in the
+     * order.
      * @param price The price of the product that you want to save in the order.
      * @param comment Any additional comments related to the order.
-     * @param mesa The number or identifier of the table associated with the order.
+     * @param mesa The number or identifier of the table associated with the
+     * order.
      * @param plateState The status of the dish in the order.
      * @param category The category to which the product on the order belongs.
      */
@@ -650,7 +652,8 @@ public class Logic {
      * is passed to the table on request, it will add it.
      *
      * @param jtOrder The order table (JTable) that contains the products.
-     * @param jlTotal The label (JLabel) where the total to be paid will be displayed.
+     * @param jlTotal The label (JLabel) where the total to be paid will be
+     * displayed.
      */
     public void totalPay(JTable jtOrder, JLabel jlTotal) {
         double fullPay = 0.00;
@@ -670,7 +673,8 @@ public class Logic {
      * is going to load the data that is in Inventory.txt to the
      * inventory table.
      *
-     * @param tbInventory The inventory table (JTable) where the data will be loaded.
+     * @param tbInventory The inventory table (JTable) where the data will be
+     * loaded.
      */
     public void readInventory(JTable tbInventory) {
 
@@ -708,9 +712,12 @@ public class Logic {
      * that has the name and you can see if it is already has that product
      * added in inventory.
      *
-     * @param jtSearchResult The results table (JTable) where the search results will be displayed.
-     * @param txtSearch The search field (JTextField) that contains the text to search for.
-     * @param jtInventory The inventory table (JTable) where the lookup will be performed.
+     * @param jtSearchResult The results table (JTable) where the search results
+     * will be displayed.
+     * @param txtSearch The search field (JTextField) that contains the text to
+     * search for.
+     * @param jtInventory The inventory table (JTable) where the lookup will be
+     * performed.
      */
     public void searchResult(JTable jtSearchResult, JTextField txtSearch, JTable jtInventory) {
         String search = txtSearch.getText();
@@ -733,10 +740,14 @@ public class Logic {
      * parameters and these will be saved in the constructor of the Product
      * class and that data is loaded in the inventory list.
      *
-     * @param productName The name of the product that you want to record in inventory.
-     * @param quantity The quantity of the product that you want to record in inventory.
-     * @param price The price of the product that you want to record in inventory.
-     * @param category The category of the product that you want to register in the inventory.
+     * @param productName The name of the product that you want to record in
+     * inventory.
+     * @param quantity The quantity of the product that you want to record in
+     * inventory.
+     * @param price The price of the product that you want to record in
+     * inventory.
+     * @param category The category of the product that you want to register in
+     * the inventory.
      */
     public void registerInventory(String productName, int quantity, double price, String category) {
         int x = 1;
@@ -787,10 +798,13 @@ public class Logic {
      * pass the 3 parameters to that method and then I would save it in the
      * inventory.txt with the savePlateToFile method.
      *
-     * @param productName The name of the product that you want to add to inventory.
-     * @param quantity The quantity of the product that you want to add to inventory.
+     * @param productName The name of the product that you want to add to
+     * inventory.
+     * @param quantity The quantity of the product that you want to add to
+     * inventory.
      * @param price The price of the product that you want to add to inventory.
-     * @param category The category of the product that you want to add to inventory.
+     * @param category The category of the product that you want to add to
+     * inventory.
      */
     public void addNewInventory(String productName, int quantity, double price, String category) {
         if (!addNewInventoryExist(productName)) {
@@ -815,7 +829,8 @@ public class Logic {
      * if there is an equal name in the productName part, if it finds it, it
      * returns true and if it does not find it, it returns false
      *
-     * @param productName The name of the product that you want to check if it exists in inventory.
+     * @param productName The name of the product that you want to check if it
+     * exists in inventory.
      * @return true if the product already exists in inventory, false otherwise.
      */
     public boolean addNewInventoryExist(String productName) {
@@ -930,7 +945,8 @@ public class Logic {
      * where the table is added and each column is assigned to the table and in
      * a for each it saves each part to the table so that the waiter can see it.
      *
-     * @param jtViewOrder The JTable instance where the table order will be displayed.
+     * @param jtViewOrder The JTable instance where the table order will be
+     * displayed.
      */
     public void viewTableOrder(JTable jtViewOrder) {
 
@@ -960,13 +976,17 @@ public class Logic {
      * the data that contained the invoice and then they are saved in the data
      * in a list called listBilling.
      *
-     * @param billingNumber The number of the customer's invoice which is to be awaited
-     * @param date The date of the invoice which will be generated at the moment of generating the invoice
+     * @param billingNumber The number of the customer's invoice which is to be
+     * awaited
+     * @param date The date of the invoice which will be generated at the moment
+     * of generating the invoice
      * @param name The name of the client which is to be awaited
      * @param idClient The ID of the client which is to be awaited
      * @param mail The email of the customer which is to be saved
-     * @param totalPrice The total price of the invoice, which is extracted from the order
-     * @param change The change of the transaction, which will be generated after finishing the billing
+     * @param totalPrice The total price of the invoice, which is extracted from
+     * the order
+     * @param change The change of the transaction, which will be generated
+     * after finishing the billing
      * @param cash The cash received.
      */
     public void billingSave(String billingNumber, String date, String name, String idClient, String mail, double totalPrice, double change, double cash) {
@@ -996,8 +1016,9 @@ public class Logic {
      * @param lblEmail The JLabel to display the customer's email.
      * @param lblIdClient The JLabel to display the customer ID.
      * @param lblNameCustomer The JLabel to display the customer's name.
-     * @param lblTotalPrice The JLabel to display the total price of the invoice.
-     */ 
+     * @param lblTotalPrice The JLabel to display the total price of the
+     * invoice.
+     */
     public void viewBill(JLabel lblBillingNumber, JLabel lblCash, JLabel lblChange, JLabel lblDate, JLabel lblEmail, JLabel lblIdClient, JLabel lblNameCustomer, JLabel lblTotalPrice) {
 
         lblBillingNumber.setText(listBilling.get(0).getBillingNumber());
@@ -1053,7 +1074,8 @@ public class Logic {
      * which writes all the tables that are occupied in a table so that the
      * bartender or chef can be shown.
      *
-     * @param jtTables jtTables The table where the occupied tables will be displayed.
+     * @param jtTables jtTables The table where the occupied tables will be
+     * displayed.
      */
     public void loadChefBartView(JTable jtTables) {
         model.addColumn("Mesas");
@@ -1061,7 +1083,7 @@ public class Logic {
         String row[] = new String[1];
         for (int i = 0; i < listStatus.size(); i++) {
             if (listStatus.get(i).equals("Ocupado")) {
-                row[0] = "mesa" + (i + 1);
+                row[0] = "mesa" + (i);
                 model.addRow(row);
             }
 

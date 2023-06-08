@@ -1,2 +1,0 @@
-e,1,4.0,-,En espera,Bebida
-arroz,1,7.0,-,En espera,Comida

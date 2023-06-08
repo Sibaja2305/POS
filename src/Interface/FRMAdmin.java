@@ -3,6 +3,7 @@ package Interface;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import pos.Logic;
 
 /**
@@ -88,6 +89,11 @@ public class FRMAdmin extends javax.swing.JFrame {
         btnTable.setBackground(new java.awt.Color(227, 167, 47));
         btnTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/draft.png"))); // NOI18N
         btnTable.setText("Mesas");
+        btnTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTableActionPerformed(evt);
+            }
+        });
 
         btnReport.setBackground(new java.awt.Color(227, 167, 47));
         btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/report.png"))); // NOI18N
@@ -337,6 +343,10 @@ public class FRMAdmin extends javax.swing.JFrame {
             desktopAdmin.add(menu);
         }
     }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTableActionPerformed
+       JOptionPane.showMessageDialog(null, "En mantenimiento :(");
+    }//GEN-LAST:event_btnTableActionPerformed
 
     /**
      * Java application entry point.

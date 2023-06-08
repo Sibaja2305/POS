@@ -1,8 +1,6 @@
-1,wfeww,-2,33.2,Comida
-2,hkhjuuj,15,21.4,Bebida
-3,e,12,4.0,Bebida
-4,i,0,5.0,Comida
-5,frijoles,5,34.0,Bebida
-6,hamburqueza,-2,98.0,Comida
-7,arroz,-16,7.0,Comida
-8,cola coca,-3,9.0,Bebida
+1,Arroz con pollo,39,3000.0,Comida
+2,Fajitas de pollo ,30,3500.0,Comida
+3,Pescado empanizado,30,4000.0,Comida
+4,Coca Cola ,30,1000.0,Bebida
+5,Tang de Uva,30,500.0,Bebida
+6,Te frío de melocotón,28,600.0,Bebida
