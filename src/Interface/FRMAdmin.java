@@ -21,6 +21,7 @@ public class FRMAdmin extends javax.swing.JFrame {
     private JIFMenu menu;
     private JIFInventory inventoryWindow;
     private JIFUsers userWindow;
+    private JIFReport report;
 
     /**
      * Constructor of the FRMAdmin class. Create a new instance of the Logic
@@ -298,7 +299,12 @@ public class FRMAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsersActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-        // TODO add your handling code here:
+         if (report == null || !report.isShowing()) {
+            report = new JIFReport();
+            report.setVisible(true);
+            desktopAdmin.add(report);
+
+        }
     }//GEN-LAST:event_btnReportActionPerformed
 
     /**

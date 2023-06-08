@@ -1,8 +1,10 @@
 package classes;
 
 import java.util.Date;
+
 /**
  * Contains the data needed to create the report
+ *
  * @author Diego Herrera López
  * @author Kevin Sibaja Granados
  * @author Yordany Navarro Hernandez
